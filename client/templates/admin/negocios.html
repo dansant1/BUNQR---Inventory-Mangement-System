@@ -1,0 +1,56 @@
+<template name="negocios">
+	{{>menuNegocios}}
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+
+				<div class="negocio">
+					<span class="negocio-item" style="text-align: center;">Negocios
+					</span>
+				</div>	
+
+		</div>
+	</div>
+	<div class="cuadro-main">
+	<br>
+		{{#if Template.subscriptionsReady}}
+		{{#each negocios}}
+		<div class="mostrar-negocio">
+			<div class="mostrar-nombre">
+				<h2 style="margin-left: 15px; width: 50%; margin-right: 0">{{nombre}}</h2>
+			</div>
+			<div class="line" style="margin-top: -65px; height: 100px; margin-right: 20px;">
+			</div>
+			<div style="margin-top: -38.5px; width: 200px; margin-left: 44px;" class="item-negocio">
+				<input class="button-primary boton-formulario" type="button" id="boton-login" value="Ingresar">
+			</div>
+		</div>
+		{{else}}
+			<div class="bienvenido">
+				<img src="/presentacion.png" alt="Bienvenido" galleryimg="no">
+				<div class="bienvenido-instrucciones">
+					{{#each nombres}}
+					<h1>Bienvenido, {{profile.nombre}}</h1>
+					{{/each}}
+					<blockquote>
+  						<p><em>De vez en cuando aparece un producto revolucionario que lo cambia todo. Uno es muy afortunado si puede trabajar en sólo uno de estos en su carrera. <strong>Steve Jobs.</strong></em></p>
+					</blockquote>
+					<ul>
+  						<li><strong>Primero,</strong> crea una empresa</li>
+  						<li>Haz click en 
+							<div class="negocio-mas-nuevo">
+				<a style="font-size: 18px;" href="/dashboard/nuevo-negocio">
+					<i class="plus icon" style="color: white; margin-left: 2.4px;"></i>	
+				</a>
+			</div>
+  						</li>
+					</ul>
+				</div>
+			</div>
+		{{/each}}
+		{{else}}
+			<div class="loading" style="width: 225px;">
+  					{{>loaderDos}}
+  			</div>
+		{{/if}}
+	</div>
+</template>

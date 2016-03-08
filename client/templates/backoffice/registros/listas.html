@@ -1,0 +1,1525 @@
+<!-- Lista de marcas -->
+<template name="listaMarca">
+	<div class="menu-negocios">
+		<a class="button" href="/dashboard/{{id}}/registros/marcas/nuevo">Registrar marca</a>	
+	</div>
+	
+</template>
+
+<!-- Lista de lineas de productos -->
+<template name="listaLinea">
+	<div class="menu-negocios">
+		<a class="button" href="/dashboard/{{id}}/registros/linea/nuevo">Registrar linea</a>	
+	</div>
+</template>
+
+<!-- Lista de categoria de productos -->
+<template name="listaCategoria">
+	<div class="menu-negocios">
+		<a class="button" href="/dashboard/{{id}}/registros/categoria/nuevo">Registrar categoria</a>
+	</div>
+</template>
+
+
+
+<!-- Lista de presentacion -->
+<template name="listaPresentacion">
+	<div class="menu-negocios">
+		<a class="button" href="/dashboard/{{id}}/registros/presentacion/nuevo">Registrar presentacion</a>
+	</div>
+</template>
+
+<!-- Lista de servicios -->
+<template name="listaServicio">
+	<div class="menu-negocios">
+		<a class="button" href="/dashboard/{{id}}/registros/servicio/nuevo">Registrar servicio</a>
+	</div>
+</template>
+
+<!-- Lista de proveedores -->
+<template name="listaProveedor">
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-producto ingreso-presentacion">
+				<span class="negocio-item" style="text-align: center;">Presentaciones</span>
+			</div>		
+			<div class="negocio item-negocio ingreso-pago almacen-producto">
+				<span class="negocio-item" style="text-align: center;">forma de pagos</span>
+			</div>	
+			<div class="negocio  elegido item-negocio ingreso-proveedor almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Proveedores</span>
+			</div>	
+			<div class="negocio item-negocio ingreso-almacen almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Almacenes</span>
+			</div>	
+			<div class="negocio item-negocio ingreso-cliente almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Clientes</span>
+			</div>	
+		</div>
+	</div>
+
+	<div class="cuadro-main">
+		<div class="sub-menu">
+			<div class="stock stock-elegido">
+				<p>Lista de proveedores</p>
+			</div>
+			<div class="stock nuevo-proveedor">
+				<p>Nuevo proveedor</p>
+			</div>		
+		</div>
+		
+		{{>registroProveedor}}
+
+		<table>
+			<thead>
+				<tr>
+					<th><p style="margin-top: 10px; margin-bottom: 15px;">Proveedores</p></th>
+					<th><p style="margin-top: 10px; margin-bottom: 15px;">Descripcion</p></th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each proveedores}}
+				<tr class="tabla-hover">
+					<td><p style="text-align: center;">{{nombre}}</p></td>
+					<td><p style="text-align: center;">{{descripcion}}</p></td>
+				</tr>
+				{{/each}}
+				
+			</tbody>
+		</table>
+	</div>
+</template>
+
+<!-- Lista de clientes -->
+<template name="listaCliente">
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-producto ingreso-presentacion">
+				<span class="negocio-item" style="text-align: center;">Presentaciones</span>
+			</div>		
+			<div class="negocio item-negocio ingreso-pago almacen-producto">
+				<span class="negocio-item" style="text-align: center;">forma de pagos</span>
+			</div>	
+			<div class="negocio item-negocio ingreso-proveedor almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Proveedores</span>
+			</div>	
+			<div class="negocio item-negocio ingreso-almacen almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Almacenes</span>
+			</div>	
+			<div class="negocio item-negocio  elegido ingreso-cliente almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Clientes</span>
+			</div>	
+		</div>
+	</div>
+
+	<div class="cuadro-main">
+		<div class="sub-menu">
+			<div class="stock stock-elegido">
+				<p>Lista de clientes</p>
+			</div>
+			<div class="stock ingresar-carga">
+				<p>Nuevo cliente</p>
+			</div>
+		</div>
+		{{>registroCliente}}
+		<table>
+			<thead>
+				<tr>
+					<th><p style="margin-top: 10px; margin-bottom: 15px;">Nombre</p></th>
+					<th><p style="margin-top: 10px; margin-bottom: 15px;">N. DNI/RUC</p></th>
+					<th><p style="margin-top: 10px; margin-bottom: 15px;">Dirección</p></th>
+					<th><p style="margin-top: 10px; margin-bottom: 15px;">Contacto</p></th>
+					<th><p style="margin-top: 10px; margin-bottom: 15px;">Email</p></th>
+					<th><p style="margin-top: 10px; margin-bottom: 15px;">Teléfono</p></th>
+				</tr>
+			</thead>
+			<tbody>
+			{{#each clientes}}
+				<tr class="tabla-hover">
+					<td><p style="text-align: center;">{{nombre}}</p></td>
+					<td><p style="text-align: center;">{{numero}}</p></td>
+					<td><p style="text-align: center;">{{direccion}}</p></td>
+					<td><p style="text-align: center;">{{contacto}}</p></td>
+					<td><p style="text-align: center;">{{email}}</p></td>
+					<td><p style="text-align: center;">{{telefono}}</p></td>
+				</tr>
+			{{/each}}
+			</tbody>
+		</table>
+	</div>
+</template>
+
+<!-- Lista de formas de pago -->
+<template name="listaFormasDePago">
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-producto ingreso-presentacion">
+				<span class="negocio-item" style="text-align: center;">Presentaciones</span>
+			</div>		
+			<div class="negocio item-negocio  elegido ingreso-pago almacen-producto">
+				<span class="negocio-item" style="text-align: center;">forma de pagos</span>
+			</div>	
+			<div class="negocio item-negocio ingreso-proveedor almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Proveedores</span>
+			</div>	
+			<div class="negocio item-negocio ingreso-almacen almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Almacenes</span>
+			</div>	
+			<div class="negocio item-negocio ingreso-cliente almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Clientes</span>
+			</div>	
+		</div>
+	</div>
+
+	<div class="cuadro-main">
+		<div class="sub-menu">
+			<div class="stock stock-elegido">
+				<p>Lista de formas de pago</p>
+			</div>
+			<div class="stock ingresar-carga">
+				<p>Nueva forma de pago</p>
+			</div>
+		</div>
+		{{>registroFormasDePago}}
+		<table>
+			<thead>
+				<tr>
+					<th><p style="margin-top: 10px; margin-bottom: 15px;">Formas de pago</p></th>
+					<th><p style="margin-top: 10px; margin-bottom: 15px;">Periodo</p></th>
+					<th><p style="margin-top: 10px; margin-bottom: 15px;">Tipo</p></th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each forma}}
+				<tr class="tabla-hover">
+					<td><p style="text-align: center;">{{descripcion}}</p></td>
+					<td><p style="text-align: center;">{{periodo}}</p></td>
+					<td><p style="text-align: center;">{{tipo}}</p></td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</div>
+</template>
+
+<!-- Lista de cuentas bancarias -->
+<template name="listaCuentasBancarias">
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-producto ingreso-presentacion ">
+				<span class="negocio-item" style="text-align: center;">Presentaciones</span>
+			</div>		
+			<div class="negocio item-negocio ingreso-pago almacen-producto">
+				<span class="negocio-item" style="text-align: center;">forma de pagos</span>
+			</div>	
+			<div class="negocio item-negocio ingreso-proveedor almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Proveedores</span>
+			</div>	
+			<div class="negocio item-negocio ingreso-almacen almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Almacenes</span>
+			</div>	
+			<div class="negocio item-negocio ingreso-cliente almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Clientes</span>
+			</div>	
+		</div>
+	</div>
+
+	<div class="cuadro-main">
+		<div class="sub-menu">
+			<div class="stock stock-elegido">
+				<p>Lista de c. bancarias</p>
+			</div>
+			<div class="stock ingresar-carga">
+				<p>Nueva c. bancaria</p>
+			</div>
+		</div>
+		
+		<table>
+			<thead>
+				<tr>
+					<th><p style="margin-top: 10px; margin-bottom: 15px;">Cuentas Bancarias</p></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="tabla-hover">
+					<td><p style="text-align: center;">Millar</p></td>
+				</tr>
+				<tr  class="tabla-hover">
+					<td><p style="text-align: center;">Docena</p></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<a class="button" href="/dashboard/{{id}}/registros/cuentas-bancarias/nuevo">Registrar una cuenta bancaria</a>
+	</div>
+</template>
+
+
+<!-- Lista de Almacenes -->
+<template name="listaAlmacenes">
+	
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-producto ingreso-presentacion ">
+				<span class="negocio-item" style="text-align: center;">Presentaciones</span>
+			</div>		
+			<div class="negocio item-negocio ingreso-pago almacen-producto">
+				<span class="negocio-item" style="text-align: center;">forma de pagos</span>
+			</div>	
+			<div class="negocio item-negocio ingreso-proveedor almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Proveedores</span>
+			</div>	
+			<div class="negocio item-negocio elegido ingreso-almacen almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Almacenes</span>
+			</div>	
+			<div class="negocio item-negocio ingreso-cliente almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Clientes</span>
+			</div>	
+		</div>
+	</div>
+
+	<div class="cuadro-main">
+	
+		<div class="sub-menu">
+			<div class="stock stock-elegido">
+				<p>Lista de almacenes</p>
+			</div>
+			<div class="stock ingresar-carga">
+				<p>Nuevo almacén</p>
+			</div>
+		</div>
+		{{>registroAlmacen}}
+		<table>
+			<thead>
+				<tr>
+					<th><p style="margin-top: 10px; margin-bottom: 15px;">Almacenes</p></th>
+					<th><p style="margin-top: 10px; margin-bottom: 15px;">Direccion</p></th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each almacen}}
+				<tr class="tabla-hover">
+					<td><p style="text-align: center;">{{nombre}}</p></td>
+					<td><p style="text-align: center;">{{direccion}}</p></td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</div>
+</template>
+
+<!-- Lista de Ingresos -->
+<template name="listaIngresos">
+	<div class="menu-negocios">
+		<a class="button" href="/dashboard/{{id}}/registros/almacenes/ingresos/nuevo">Registrar un ingreso</a>
+	</div>
+</template>
+
+
+<!-- Main de almacen -->
+<template name="Almacen">
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock elegido">
+				<span class="negocio-item" style="text-align: center;">Inventario</span>
+			</div>	
+			<div class="negocio item-negocio almacen-ingreso">
+				<span class="negocio-item" style="text-align: center;">Ingresos</span>
+			</div>	
+			<div class="negocio item-negocio almacen-salida">
+				<span class="negocio-item" style="text-align: center;">Salidas</span>
+			</div>
+			<div class="negocio item-negocio almacen-compra">
+				<span class="negocio-item" style="text-align: center;">Compras</span>
+			</div>		
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Productos</span>
+			</div>	
+		</div>
+	</div>
+
+	<div class="cuadro-main">
+		<div class="sub-menu">
+			<div class="stock stock-elegido">
+				<p>Stock</p>
+			</div>
+			<div class="stock ingresar-carga">
+				<p>Ingresar carga</p>
+			</div>
+			<div class="stock ingresar-merma">
+				<p>Ingresar merma</p>
+			</div>
+		</div>
+		<div class="cuadro-reporte">
+			<div class="cuadro-total">
+				<div class="line"></div>
+				<div class="valor-total">
+					<p>S/. {{gananciaTotal}}</p>
+					<div class="texto">VALOR TOTAL</div>
+				</div>
+			</div>
+			<div class="cuadro-valores">
+				<div class="valor">
+					<p class="valor-total-item">S/. {{utilidadTotal}}</p>
+					<div class="valor-texto">UTILIDAD TOTAL</div>
+				</div>
+				<div class="valor-line"></div>
+				<div class="valor">
+					<p class="valor-total-item">S/. {{costoTotal}}</p>
+					<div class="valor-texto">VALOR COSTO</div>
+				</div>
+				<div class="valor-line"></div>
+				<div class="valor">
+					<p class="valor-total-item">{{cantidad}}</p>
+					<div class="valor-texto" style="margin-left: 1px;">PRODUCTOS</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="buscador">
+				{{> EasySearch.Input index=productosIndex}}
+		</div>
+
+		{{#if Template.subscriptionsReady}}
+
+		<table>
+  			<thead>
+    			<tr>
+     		 		<th><p style="margin-left: 9px; color: #606C76">CODIGÓ</p></th>
+      				<th><p style="margin-left: 9px; color: #606C76">NOMBRE</p></th>
+      				<th><p style="margin-left: 9px; color: #606C76">STOCK</p></th>
+      				<th><p style="margin-left: 9px; color: #606C76">COSTO (S/.)</p></th>
+      				<th><p style="margin-left: 9px; color: #606C76">P. VENTA (S/.)</p></th>
+      				<th><p style="margin-left: 9px; color: #606C76">VALOR (S/.)</p></th>
+      				<th><p style="margin-left: 9px; color: #606C76">UTILIDAD (S/.)</p></th>
+      				<th><p style="margin-left: 9px; color: #606C76">TOTAL (S/.)</p></th>
+    			</tr>
+  			</thead>
+  			<tbody >
+			
+  				{{#EasySearch.Each index=productosIndex }}
+  					
+					<tr class="tabla-hover">
+						<td><p style="margin-left: 20px;">{{codigo}}</p></td>
+						<td><p style="margin-left: 20px;">{{nombre}}</p></td>
+						<td><p style="margin-left: 20px;">{{stock}}</p></td>
+						<td><p style="margin-left: 20px;">S/. {{pcosto}}</p></td>
+						<td><p style="margin-left: 20px;">S/. {{pventa}}</p></td>
+						<td><p style="margin-left: 20px;">S/. {{Valor}}</p></td>
+						<td><p style="margin-left: 20px;">S/. {{Utilidad}}</p></td>
+						<td><p style="margin-left: 20px;">S/. {{Costo}}</p></td>
+					</tr>
+			
+  				{{/EasySearch.Each}}
+  				
+				{{#EasySearch.IfSearching index=productosIndex}}
+ 					<div class="loading">
+  						{{>loader}}
+  					</div>
+				{{/EasySearch.IfSearching}}
+
+  				{{#EasySearch.IfNoResults index=productosIndex}}
+  					<div class="bienvenido">
+				<img src="/presentacion.png" alt="Bienvenido" galleryimg="no">
+				<div class="bienvenido-instrucciones">	
+					{{#each nombres}}
+					<h1>{{profile.nombre}}, No encontre resultados</h1>
+					{{/each}}
+					<blockquote>
+  						<p><em>Una cosa terrible acerca de la búsqueda de la verdad es que se la encuentre.</em></p>
+					</blockquote>
+				</div>
+			</div>
+				{{/EasySearch.IfNoResults}}
+
+  			</tbody>
+		</table>
+		{{else}}
+			<div class="loading" style="width: 150px;">
+  					{{>loaderDos}}
+  			</div>
+		{{/if}}
+	</div>
+
+
+	
+</template>
+
+
+<!-- Main de ingresos al almacen -->
+<template name="ingresosAlmacen">
+
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock">
+				<span class="negocio-item" style="text-align: center;">Inventario</span>
+			</div>	
+			<div class="negocio item-negocio almacen-ingreso elegido">
+				<span class="negocio-item" style="text-align: center;">Ingresos</span>
+			</div>	
+			<div class="negocio item-negocio almacen-salida">
+				<span class="negocio-item" style="text-align: center;">Salidas</span>
+			</div>	
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Productos</span>
+			</div>	
+		</div>
+	</div>
+
+	
+
+
+	<div class="menu-negocios">
+		<div class="container">
+			<div class="row almacen">
+				<div class="column">
+					<div class="wrap-almacen ingreso-masivo">
+					<h2 class="ui icon header" id="set-almacen" style="font-size: 25px;">
+  						<i class="tags icon" style="color: #33C3F0;"></i>
+  						<div class="content" style="color: #33C3F0;">
+    					Registra cargas masiva de productos
+    					<div class="sub header" style="font-size: 16px;"> <strong>Administra tus cargas desde aquí.</strong></div>
+  						</div>
+					</h2>		
+					</div>		
+				</div>
+				<div class="column">
+					<div class="wrap-almacen ingreso-compra">
+						<h2 class="ui icon header" id="set-almacen" style="font-size: 25px;">
+  						<i class="shop icon" style="color: #33C3F0;"></i>
+  						<div class="content" style="color: #33C3F0;">
+    					Registra las Compras realizadas
+    					<div class="sub header" style="font-size: 16px;"> <strong>Administra tus compras desde aquí.</strong></div>
+  						</div>
+						</h2>	
+					</div>
+				</div>
+			</div>
+			<div class="row  almacen">
+				<div class="column">
+					<div class="wrap-almacen lista-masivo">
+					<h2 class="ui icon header" id="set-almacen" style="font-size: 25px;">
+  						<i class="server icon" style="color: #33C3F0;"></i>
+  						<div class="content" style="color: #33C3F0;">
+    					Administra las cargas ingresadas
+    					<div class="sub header" style="font-size: 16px;"> <strong>Administra tus cargas desde aquí.</strong></div>
+  						</div>
+					</h2>		
+					</div>		
+				</div>
+				<div class="column">
+					<div class="wrap-almacen lista-compra">
+						<h2 class="ui icon header" id="set-almacen" style="font-size: 25px;">
+  						<i class="external icon" style="color: #33C3F0;"></i>
+  						<div class="content" style="color: #33C3F0;">
+    					Administra las compras realizadas
+    					<div class="sub header" style="font-size: 16px;"> <strong>Administra tus compras desde aquí.</strong></div>
+  						</div>
+						</h2>	
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+
+<!-- Main de productos -->
+<template name="listaProducto">
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock">
+				<span class="negocio-item" style="text-align: center;">Inventario</span>
+			</div>	
+			<div class="negocio item-negocio almacen-ingreso">
+				<span class="negocio-item" style="text-align: center;">Ingresos</span>
+			</div>	
+			<div class="negocio item-negocio almacen-salida">
+				<span class="negocio-item" style="text-align: center;">Salidas</span>
+			</div>	
+			<div class="negocio item-negocio almacen-compra">
+				<span class="negocio-item" style="text-align: center;">Compras</span>
+			</div>	
+			<div class="negocio item-negocio almacen-producto  elegido">
+				<span class="negocio-item" style="text-align: center;">Productos</span>
+			</div>	
+		</div>
+	</div>
+
+	<div class="cuadro-main">
+	<div class="sub-menu">
+			<div class="stock stock-elegido">
+				<p>Lista de prodcutos</p>
+			</div>
+			<div class="stock ingresar-carga">
+				<p>Ingresar carga</p>
+			</div>
+		</div>
+		{{>registrosProductos}}
+	</div>
+</template>
+
+<!-- Main de Salidas -->
+<template name="listaSalidas">
+	
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock">
+				<span class="negocio-item" style="text-align: center;">Inventario</span>
+			</div>	
+			<div class="negocio item-negocio almacen-ingreso">
+				<span class="negocio-item" style="text-align: center;">Ingresos</span>
+			</div>	
+			<div class="negocio item-negocio almacen-salida elegido">
+				<span class="negocio-item" style="text-align: center;">Salidas</span>
+			</div>
+			<div class="negocio item-negocio almacen-compra">
+				<span class="negocio-item" style="text-align: center;">Compras</span>
+			</div>		
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Productos</span>
+			</div>	
+		</div>
+	</div>
+	
+	<div class="cuadro-main">
+		<div class="sub-menu">
+			<div class="stock stock-elegido">
+				<p>Lista de Merma</p>
+			</div>
+			<div class="stock ingreso-merma">
+				<p>Ingresar merma</p>
+			</div>
+		</div>
+		{{>listaMermas}}
+	</div>
+</template>
+
+<!-- Lista de Mermas -->
+
+<template name="listaMermas">
+		{{#if Template.subscriptionsReady}}
+			<table>
+				<thead>
+					<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 25px;">FECHA</p></th>
+					<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 25px;">DESCRICIÓN</p></th>
+					<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 25px;">PROVEEDOR</p></th>
+					<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 25px;">TOTAL (S/.)</p></th>
+					<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 25px;">DETALLE</p></th>
+				</thead>
+				<tbody>
+					{{#each item}}
+						<tr class="tabla-hover">
+							<td style="text-align: center;">{{fechaSalida}}</td>
+							<td style="text-align: center;">{{descripcion}}</td>
+							<td style="text-align: center;">{{proveedor}}</td>
+							<td style="text-align: center;">S/. {{total}}</td>
+							<td style="text-align: center;">
+								<button class="ver" id="boton-login">Ver</button>
+							</td>
+						</tr>
+					{{else}}
+						<div class="bienvenido">
+							<img src="/presentacion.png" alt="Bienvenido" galleryimg="no">
+							<div class="bienvenido-instrucciones">	
+							{{#with nombre}}
+							<h1>{{profile.nombre}}, No encontre resultados</h1>
+							{{/with}}
+							<blockquote>
+  								<p><em>Una cosa terrible acerca de la búsqueda de la verdad es que se la encuentre.</em></p>
+							</blockquote>
+							</div>
+						</div>
+					{{/each}}
+				</tbody>
+			</table>
+		{{else}}
+			<div class="loading" style="width: 150px;">
+  					{{>loaderDos}}
+  			</div>	
+		{{/if}}
+</template>
+
+
+
+<!-- Main de ventas -->
+<template name="Ventas">
+
+		<div class="contenedor-negocios">
+			<div class="set-lista-negocios">
+				<div class="negocio item-negocio almacen-stock elegido">
+					<span class="negocio-item" style="text-align: center;">Ventas</span>
+				</div>	
+			</div>
+		</div>
+
+
+
+	<div class="cuadro-main">
+	
+		<div class="sub-menu">
+			<div class="stock stock-elegido">
+				<p>Lista de ventas</p>
+			</div>
+			<div class="stock nueva-venta">
+				<p>nueva venta</p>
+			</div>
+		</div>
+		{{>ListaVentas}}
+	
+	</div>
+</template>
+
+
+
+<!-- Main de POS-->
+<template name="POS">
+	<div class="cuadro-main">
+			<p style="margin-left: 210px; font-size: 25px;">Administra tus ventas o realiza una desde aquí</p>
+			<button style="margin-left: 390px;" class="nueva-venta">Nueva venta</button>
+		{{>ListaVentas}}
+	</div>
+</template>
+
+<template name="registrarVenta">
+	
+	<div class="contenedor-negocios">
+			<div class="set-lista-negocios">
+				<div class="negocio item-negocio almacen-stock elegido">
+					<span class="negocio-item" style="text-align: center;">Ventas</span>
+				</div>	
+			</div>
+	</div>
+
+	<div class="cuadro-main">
+	
+		<div class="sub-menu">
+			<div class="stock">
+				<p>Lista de ventas</p>
+			</div>
+			<div class="stock stock-elegido">
+				<p>nueva venta</p>
+			</div>
+		</div>
+
+		<div class="cuadro-reporte" style="height: 185px;">
+			<div class="container">
+			<div class="row" id="formulario-proforma">
+				<div class="column">
+      				<label style="color: white;">Nombre del Cliente</label>
+    				{{>listaClientes}}
+				</div>
+				<div class="column">
+    				<label style="color: white;">Forma de pago</label>
+    				{{>listaFormasPago}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="column" style="padding-left: 20px;">
+					
+					<input class="button-primary guardar" type="button" value="Guardar" name="guardar" id="boton-login">
+					<input class="button-clear cancelar" type="submit" value="Cancelar" name="cancelar" style="color: white; margin-left: 30px;">
+							
+				</div>
+			</div>
+			</div>
+		</div>
+		{{>listaVentaItem}}
+		{{>listaDeProductoVenta}}
+	</div>
+</template>
+
+<template name="listaDeProductoVenta">
+	<div class="buscador" style="padding-top: 13.5px;">
+		{{> EasySearch.Input index=productosIndex }}
+	</div>
+	{{#if Template.subscriptionsReady}}
+	<table>
+		<thead>
+			<tr>
+				<th style="color: #606C76;">CÓDIGO</th>
+				<th style="color: #606C76;">PRODUCTO</th>
+				<th style="color: #606C76;">PRECIO (S/.)</th>
+				<th style="color: #606C76;">DSCTO. (S/.)</th>
+				<th style="color: #606C76;">CANTIDAD</th>
+				<th style="color: #606C76;">AGREGAR</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#EasySearch.Each index=productosIndex }}
+				<tr class="tabla-hover">
+					<td >
+					<p class="codigo" style="margin-left: 55px;">{{codigo}}</p>
+					</td>
+					<td >
+					<p class="nombre" style="margin-left: 55px;">{{nombre}}</p>
+					</td>
+					<td>
+					<p class="costo" style="margin-left: 55px;">S/. {{pventa}}</p>
+					</td>
+					<td>
+						<input type="number" step="0.10" min="0" name="descuento" style="width: 110px; border-bottom: 2.5px solid #5E4AD7;">
+					</td>
+					<td>
+						<input type="number" name="cantidad" min="1" style="width: 110px; border-bottom: 2.5px solid #5E4AD7;">
+					</td>
+					<td>
+						<button class="agregar" id="boton-login">Agregar</button>
+					</td>
+				</tr>
+			{{/EasySearch.Each}}
+
+			{{#EasySearch.IfSearching index=productosIndex}}
+ 					<div class="loading">
+  						{{>loader}}
+  					</div>
+			{{/EasySearch.IfSearching}}
+
+			{{#EasySearch.IfNoResults index=productosIndex}}
+  					<div class="bienvenido">
+				<img src="/presentacion.png" alt="Bienvenido" galleryimg="no">
+				<div class="bienvenido-instrucciones">	
+					
+					<h1>No encontre resultados</h1>
+					
+					<blockquote>
+  						<p><em>Una cosa terrible acerca de la búsqueda de la verdad es que se la encuentre.</em></p>
+					</blockquote>
+				</div>
+			</div>
+				{{/EasySearch.IfNoResults}}
+		</tbody>
+	</table>
+	{{else}}
+		<div class="loading" style="width: 150px;">
+  			{{>loaderDos}}
+  		</div>
+	{{/if}}
+</template>
+
+<template name="listaVentaItem">
+			<table>
+				<thead>
+					<tr>
+						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">CÓDIGO</p></th>
+						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">PRODUCTO</p></th>
+						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">PRECIO (S/.)</p></th>
+						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">DSCTO (S/.)</p></th>
+						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">CANTIDAD</p></th>
+						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">IMPORTE (S/.)</p></th>
+						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">ELIMINAR</p></th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each productos}}
+					<tr>
+						<td><p style="text-align: center;">{{codigo}}</p></td>
+						<td><p style="text-align: center;">{{nombre}}</p></td>
+						<td><p style="text-align: center;">S/. {{pventa}}</p></td>
+						<td><p style="text-align: center;">S/. {{descuento}}</p></td>
+						<td><p style="text-align: center;">{{cantidad}}</p></td>
+						<td><p style="text-align: center;">S/. {{importe}}</p></td>
+						<td>
+							<p>
+								<button class="eliminar" id="boton-login">Eliminar</button>
+							</p>
+						</td>
+					</tr>
+					{{/each}}
+				</tbody>
+				<tfoot class="full-width">
+    				<tr>
+    				{{#each venta}}
+						<th style="color: #606C76; padding-left: 27px;"><strong>TOTAL (S/.) : </strong>{{total}} 
+      					</th>
+      				{{else}}
+      					<th style="color: #606C76;">
+      						<strong>TOTAL (S/.):</strong>S/. 0
+      					</th>
+    				{{/each}}
+
+      					<th></th>
+      					<th></th>
+      					<th></th>
+      					<th></th>
+      					<th></th>	
+      					<th></th>		
+    				</tr>
+  				</tfoot>
+			</table>
+</template>
+
+<template name="ListaVentas">
+			<table>
+				<thead>
+					<tr>
+						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">FECHA</p></th>
+						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">F. PAGO</p></th>
+						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">TOTAL (S/.)</p></th>
+						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">DETALLE</p></th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each ventas}}
+						<tr>
+							<td><p style="text-align: center;">{{fechaVenta}}</p></td>
+							<td><p style="text-align: center;">{{formaPago}}</p></td>
+							<td><p style="text-align: center;">S/. {{total}}</p></td>
+							<td>
+								<p style="text-align: center;">
+									<button class="ver" id="boton-login">Ver</button>
+								</p>	
+							</td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+</template>
+
+<template name="detalleVenta">
+	
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock">
+				<span class="negocio-item" style="text-align: center;">Ventas</span>
+			</div>	
+		</div>
+	</div>
+	<div class="cuadro-main">
+	
+		<div class="sub-menu">
+			<div class="stock lista">
+				<p>Lista de ventas</p>
+			</div>
+			<div class="stock stock-elegido">
+				<p>Detalle de venta</p>
+			</div>
+			<div class="stock  nueva-venta">
+				<p>Nueva venta</p>
+			</div>
+		</div>
+
+		<div class="cuadro-reporte">
+				{{#each venta}}
+					<div class="cuadro-total">
+						<div class="line"></div>
+						<div class="valor-total">
+							<p style="color: white;">S/.{{total}}</p>
+							<div class="texto">
+								IMPORTE (S/.)
+							</div>
+						</div>
+					</div>
+					<div class="cuadro-datos">
+						<div class="valor-dato">
+							<p style="color: white;">{{fechaVenta}}</p>
+							<div class="dato-texto">FECHA</div>
+						</div>
+						<div class="dato-line"></div>
+						<div class="valor-dato">
+							<p style="color: white;">{{formaPago}}</p>
+							<div class="dato-texto">F. PAGO</div>
+						</div>
+						<div class="dato-line"></div>
+						<div class="valor-dato">
+							<p style="color: white;">{{cliente}}</p>
+							<div class="dato-texto">CLIENTE</div>
+						</div>
+					</div>
+				{{/each}}		
+		</div>
+
+		
+				<table>
+					<thead>
+						<th  style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">CÓDIGO</p></th>
+						<th  style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">PRODUCTO</p></th>
+						<th  style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">CANTIDAD</p></th>
+						<th  style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">PRECIO (S/.)</p></th>
+						<th  style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">DSCTO. (S/.)</p></th>
+						<th  style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">IMPORTE (S/.)</p></th>
+					</thead>
+					<tbody>
+						{{#each ventaitem}}
+						<tr class="tabla-hover">
+							<td><p style="text-align: center;">{{codigo}}</p></td>
+							<td><p style="text-align: center;">{{nombre}}</p></td>
+							<td><p style="text-align: center;">{{cantidad}}</p></td>
+							<td><p style="text-align: center;">S/. {{pventa}}</p></td>
+							<td><p style="text-align: center;">S/. {{descuento}}</p></td>
+							<td><p style="text-align: center;">S/. {{importe}}</p></td>
+						</tr>
+						{{/each}}
+					</tbody>
+				</table>
+	</div>	
+</template>
+
+
+
+<!-- Main de Finanzas -->
+<template name="Finanzas">
+	
+		<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock elegido">
+				<span class="negocio-item" style="text-align: center;">Inventario</span>
+			</div>	
+			<div class="negocio item-negocio almacen-ingreso">
+				<span class="negocio-item" style="text-align: center;">Ingresos</span>
+			</div>	
+			<div class="negocio item-negocio almacen-salida">
+				<span class="negocio-item" style="text-align: center;">Salidas</span>
+			</div>
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Compras</span>
+			</div>		
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Productos</span>
+			</div>	
+		</div>
+	</div>
+
+
+
+	<div class="menu-negocios">
+		<div class="container">
+			<div class="row almacen">
+				<div class="column">
+					<div class="wrap-almacen">
+						<h2 class="ui icon header" id="set-almacen" style="font-size: 25px;">
+  						<i class="suitcase icon" style="color: #33C3F0;"></i>
+  						<div class="content" style="color: #33C3F0;">
+    					Configuración de Boletas
+    					<div class="sub header" style="font-size: 16px;"> <strong>Administra tus boletas desde aquí.</strong></div>
+  						</div>
+						</h2>	
+					</div>		
+				</div>
+				<div class="column">
+					<div class="wrap-almacen">
+					<h2 class="ui icon header" id="set-almacen" style="font-size: 25px;">
+  						<i class="book icon" style="color: #33C3F0;"></i>
+  						<div class="content" style="color: #33C3F0;">
+    					Configuración de Facturas
+    					<div class="sub header" style="font-size: 16px;"> <strong>Administra tus facturas desde aquí.</strong></div>
+  						</div>
+					</h2>		
+					</div>
+				</div>
+			</div>
+			<div class="row almacen">
+				<div class="column">
+					<div class="wrap-almacen">
+						<h2 class="ui icon header" id="set-almacen" style="font-size: 25px;">
+  						<i class="money icon" style="color: #33C3F0;"></i>
+  						<div class="content" style="color: #33C3F0;">
+    					Configuración de Pagos
+    					<div class="sub header" style="font-size: 16px;"> <strong>Administra todos tus pagos desde aquí .</strong></div>
+  						</div>
+						</h2>	
+					</div>
+				</div>
+				<div class="column">
+					<div class="wrap-almacen">
+						<h2 class="ui icon header" id="set-almacen" style="font-size: 25px;">
+  						<i class="road icon" style="color: #33C3F0;"></i>
+  						<div class="content" style="color: #33C3F0;">
+    					Configuración de Cuentas
+    					<div class="sub header" style="font-size: 16px;"> <strong>Administra tus cuentas bancarias desde aquí .</strong></div>
+  						</div>
+						</h2>	
+					</div>
+
+					
+				</div>
+			</div>
+			<div class="row almacen">
+				<div class="column">
+					<div class="wrap-almacen">
+						<h2 class="ui icon header" id="set-almacen" style="font-size: 25px;">
+  						<i class="calculator icon" style="color: #33C3F0;"></i>
+  						<div class="content" style="color: #33C3F0;">
+    					Configuración de Cobros
+    					<div class="sub header" style="font-size: 16px;"> <strong>Administra tus cobros desde aquí .</strong></div>
+  						</div>
+						</h2>	
+					</div>
+				</div>
+				<div class="column">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+
+<!-- Main de Consultas -->
+<template name="Consultas">
+
+
+		<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock elegido">
+				<span class="negocio-item" style="text-align: center;">Inventario</span>
+			</div>	
+			<div class="negocio item-negocio almacen-ingreso">
+				<span class="negocio-item" style="text-align: center;">Ingresos</span>
+			</div>	
+			<div class="negocio item-negocio almacen-salida">
+				<span class="negocio-item" style="text-align: center;">Salidas</span>
+			</div>
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Compras</span>
+			</div>		
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Productos</span>
+			</div>	
+		</div>
+	</div>
+
+
+
+	<div class="menu-negocios">
+		<div class="container">
+			<div class="row almacen">
+				<div class="column">
+					<div class="wrap-almacen">
+						<h2 class="ui icon header" id="set-almacen" style="font-size: 25px;">
+  						<i class="chevron circle right icon" style="color: #33C3F0;"></i>
+  						<div class="content" style="color: #33C3F0;">
+    					Consulta de Ventas
+    					<div class="sub header" style="font-size: 16px;"> <strong>Consulta todas tus ventas desde aquí.</strong></div>
+  						</div>
+						</h2>
+					</div>		
+				</div>
+				<div class="column">
+					<div class="wrap-almacen">
+					<h2 class="ui icon header" id="set-almacen" style="font-size: 25px;">
+  						<i class="chevron circle left icon" style="color: #33C3F0;"></i>
+  						<div class="content" style="color: #33C3F0;">
+    					Consulta de Compras
+    					<div class="sub header" style="font-size: 16px;"> <strong>Consulta todas tus compras desde aquí.</strong></div>
+  						</div>
+					</h2>		
+					</div>
+				</div>
+			</div>
+			<div class="row almacen">
+				<div class="column">
+					<div class="wrap-almacen">
+						<h2 class="ui icon header" id="set-almacen" style="font-size: 25px;">
+  						<i class="cube icon" style="color: #33C3F0;"></i>
+  						<div class="content" style="color: #33C3F0;">
+    					Reporte de Utilidad
+    					<div class="sub header" style="font-size: 16px;"> <strong>Consulta las utilidades desde aquí.</strong></div>
+  						</div>
+						</h2>	
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</template>
+
+
+<!-- Main de Configuracion -->
+<template name="Configuracion">
+
+		<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock elegido">
+				<span class="negocio-item" style="text-align: center;">Inventario</span>
+			</div>	
+			<div class="negocio item-negocio almacen-ingreso">
+				<span class="negocio-item" style="text-align: center;">Ingresos</span>
+			</div>	
+			<div class="negocio item-negocio almacen-salida">
+				<span class="negocio-item" style="text-align: center;">Salidas</span>
+			</div>
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Compras</span>
+			</div>		
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Productos</span>
+			</div>	
+		</div>
+	</div>
+
+
+	<div class="menu-negocios">
+		<div class="container">
+			<div class="row almacen">
+				<div class="column">
+					<div class="wrap-almacen">
+						<h2 class="ui icon header" id="set-almacen" style="font-size: 25px;">
+  						<i class="user icon" style="color: #33C3F0;"></i>
+  						<div class="content" style="color: #33C3F0;">
+    					Configuración de Cuenta
+    					<div class="sub header" style="font-size: 16px;"> <strong>Administra tu cuenta desde aquí.</strong></div>
+  						</div>
+						</h2>
+					</div>		
+				</div>
+				<div class="column">
+					<div class="wrap-almacen">
+					<h2 class="ui icon header" id="set-almacen" style="font-size: 25px;">
+  						<i class="users icon" style="color: #33C3F0;"></i>
+  						<div class="content" style="color: #33C3F0;">
+    					Configuración de Usuarios
+    					<div class="sub header" style="font-size: 16px;"> <strong>Administra tus usuarios desde aquí.</strong></div>
+  						</div>
+					</h2>		
+					</div>
+				</div>
+			</div>
+			<div class="row almacen">
+				<div class="column">
+					<div class="wrap-almacen">
+						<h2 class="ui icon header" id="set-almacen" style="font-size: 25px;">
+  						<i class="building icon" style="color: #33C3F0;"></i>
+  						<div class="content" style="color: #33C3F0;">
+    					Configuración de Empresa
+    					<div class="sub header" style="font-size: 16px;"> <strong>Administra tu empresa desde aquí.</strong></div>
+  						</div>
+						</h2>	
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="listaCargasMasivo">
+
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock">
+				<span class="negocio-item" style="text-align: center;">Inventario</span>
+			</div>	
+			<div class="negocio item-negocio almacen-ingreso elegido">
+				<span class="negocio-item" style="text-align: center;">Ingresos</span>
+			</div>	
+			<div class="negocio item-negocio almacen-salida">
+				<span class="negocio-item" style="text-align: center;">Salidas</span>
+			</div>
+			<div class="negocio item-negocio almacen-compra">
+				<span class="negocio-item" style="text-align: center;">Compras</span>
+			</div>		
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Productos</span>
+			</div>	
+		</div>
+	</div>
+
+	<div class="cuadro-main">
+
+		<div class="sub-menu">
+			<div class="stock ingresar-stock">
+				<p>Stock</p>
+			</div>
+			<div class="stock stock-elegido">
+				<p>Lista de ingresos</p>
+			</div>
+			<div class="stock ingresar-carga">
+				<p>Ingresar carga</p>
+			</div>
+			<div class="stock ingresar-merma">
+				<p>Ingresar merma</p>
+			</div>
+		</div>
+
+			<table>
+				<thead>
+					<th style="color: #606C76;"><p style="margin-left: 10px; margin-bottom: 20px;">FECHA</p></th>
+					<th style="color: #606C76;"><p style="margin-left: 10px; margin-bottom: 20px;">ALMACÉN</p></th>
+					<th style="color: #606C76;"><p style="margin-left: 10px; margin-bottom: 20px;">PROVEEDOR</p></th>
+					<th style="color: #606C76;"><p style="margin-left: 10px; margin-bottom: 20px;">F. PAGO</p></th>
+					<th style="color: #606C76;"><p style="margin-left: 10px; margin-bottom: 20px;">TOTAL (S/.)</p></th>
+					<th style="color: #606C76;"><p style="margin-left: 10px; margin-bottom: 20px;">DETALLE</p></th>
+				</thead>
+				<tbody>
+					{{#each item}}
+						<tr class="tabla-hover">
+							<td style="padding-bottom: 0px;"><p style="text-align: center;">{{fechaAlmacenado}}</p></td>
+							<td style="padding-bottom: 0px;"><p style="text-align: center;">{{almacen}}</p></td>
+							<td style="padding-bottom: 0px;"><p style="text-align: center;">{{proveedor}}</p></td>
+							<td style="padding-bottom: 0px;"><p style="text-align: center;">{{formaPago}}</p></td>
+							<td style="padding-bottom: 0px;"><p style="text-align: center;">S/. {{total}}</p></td>
+							<td style="padding-bottom: 0px;">
+								<p style="text-align: center;">
+									<button class="ver" id="boton-login">Ver</button>
+								</p>
+							</td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>	
+	</div>
+</template>
+
+<template name="detalleCarga">
+	
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock">
+				<span class="negocio-item" style="text-align: center;">Inventario</span>
+			</div>	
+			<div class="negocio item-negocio almacen-ingreso">
+				<span class="negocio-item" style="text-align: center;">Ingresos</span>
+			</div>	
+			<div class="negocio item-negocio almacen-salida elegido">
+				<span class="negocio-item" style="text-align: center;">Salidas</span>
+			</div>
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Compras</span>
+			</div>		
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Productos</span>
+			</div>	
+		</div>
+	</div>
+
+	<div class="cuadro-main">
+		
+		<div class="sub-menu">
+			<div class="stock ingreso-stock">
+				<p>Stock</p>
+			</div>
+			<div class="stock lista">
+				<p>Lista de ingresos</p>
+			</div>
+			<div class="stock stock-elegido">
+				<p>Detalle de carga</p>
+			</div>
+			<div class="stock ingreso-compra">
+				<p>Ingresar carga</p>
+			</div>
+		</div>
+		<div class="cuadro-reporte">
+			{{#each carga}}
+				<div class="cuadro-total" style="width: 250px;">
+					<div class="line"></div>
+					<div class="valor-total">
+						<p>S/. {{total}}</p>
+						<div class="texto">MONTO TOTAL</div>
+					</div>
+				</div>
+				<div class="cuadro-datos" style="width: 755px; max-width: 755;">
+					<div class="valor-dato">
+						<p style="color: white;">{{almacen}}</p>
+						<div class="dato-texto">
+							ALMACÉN
+						</div>	
+					</div>
+					<div class="dato-line"></div>
+					<div class="valor-dato">
+						<p style="color: white;">{{fechaIngreso}}</p>
+						<div class="dato-texto">
+							FECHA
+						</div>
+					</div>
+					<div class="dato-line"></div>
+					<div class="valor-dato">
+						<p style="color: white;">{{proveedor}}</p>
+						<div class="dato-texto">
+							PROVEEDOR
+						</div>
+					</div>
+					<div class="dato-line"></div>
+					<div class="valor-dato">
+						<p style="color: white;">{{formaPago}}</p>
+						<div class="dato-texto">
+							F. PAGO
+						</div>
+					</div>
+				</div>
+					
+					{{/each}}			
+		</div>
+		
+				<table>
+					<thead>
+						<th  style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 19px;">CÓDIGO</p></th>
+						<th  style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 19px;">PRODUCTO</p></th>
+						<th  style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 19px;">CANTIDAD</p></th>
+						<th  style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 19px;">COSTO (S/.)</p></th>
+						<th  style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 19px;">IMPORTE (S/.)</p></th>
+						<th  style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 19px;">UTILIDAD (S/.)</p></th>
+						<th  style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 19px;">VALOR (S/.)</p></th>
+					</thead>
+					<tbody>
+						{{#each cargaitem}}
+						<tr class="tabla-hover">
+							<td><p style="margin-bottom: 6px; text-align: center;">{{codigo}}</p></td>
+							<td><p style="margin-bottom: 6px; text-align: center;">{{nombre}}</p></td>
+							<td><p style="margin-bottom: 6px; text-align: center;">{{cantidad}}</p></td>
+							<td><p style="margin-bottom: 6px; text-align: center;">S/. {{pcosto}}</p></td>
+							<td><p style="margin-bottom: 6px; text-align: center;">S/. {{importe}}</p></td>
+							<td><p style="margin-bottom: 6px; text-align: center;">S/. {{valorUtilidad}}</p></td>
+							<td><p style="margin-bottom: 6px; text-align: center;">S/. {{valor}}</p></td>
+						</tr>
+						{{else}}
+							<tr>Sin ingresos...</tr>
+						{{/each}}
+					</tbody>
+				</table>
+	
+	</div>
+</template>
+
+<template name="registrosProductos">
+			<table>
+				<thead>
+					<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">CÓDIGO</p></th>
+					<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">NOMBRE</p></th>
+					<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">P. COSTO (S/.)</p></th>
+					<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">P. VENTA (S/.)</p></th>
+					<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">UTILIDAD (S/.)</p></th>
+					
+				</thead>
+				<tbody>
+					{{#each item}}
+						<tr>
+							<td style="padding-bottom: 0;"><p style="text-align: center;">{{codigo}}</p></td>
+							<td style="padding-bottom: 0;"><p style="text-align: center;">{{nombre}}</p></td>
+							<td style="padding-bottom: 0;"><p style="text-align: center;">S/. {{pcosto}}</p></td>
+							<td style="padding-bottom: 0;"><p style="text-align: center;">S/. {{pventa}}</p></td>
+							<td style="padding-bottom: 0;"><p style="text-align: center;">S/. {{utilidad}}</p></td>
+							
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>	
+</template>
+
+<!-- Lista de stock -->
+<template name="listaStock">
+	<div class="menu-negocios">
+		<div class="container" style="margin-top: 30px;">
+			<h1 style="color: #33C3F0;">Stock.</h1>
+			<table class="ui basic table">
+				<thead>
+					<th style="color: #606C76;">CÓDIGO</th>
+					<th style="color: #606C76;">NOMBRE</th>
+					<th style="color: #606C76;">STOCK</th>
+					<th style="color: #606C76;">P. COSTO (S/.)</th>
+					<th style="color: #606C76;">P. VENTA (S/.)</th>
+					<th style="color: #606C76;">VALOR (S/.)</th>
+					<th style="color: #606C76;">V. UTILIDAD (S/.)</th>
+					<th style="color: #606C76;">V. TOTAL (S/.)</th>
+					
+				</thead>
+				<tbody>
+					{{#each item}}
+						<tr>
+							<td>{{codigo}}</td>
+							<td>{{nombre}}</td>
+							<td>{{stock}}</td>
+							<td>S/. {{pcosto}}</td>
+							<td>S/. {{pventa}}</td>
+							<td>S/. {{valor}}</td>
+							<td>S/. {{valorUtilidad}}</td>
+							<td>S/. {{valorCosto}}</td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>	
+		</div>
+	</div>
+</template>
+
+
+<template name="detalleMerma">
+		
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock">
+				<span class="negocio-item" style="text-align: center;">Inventario</span>
+			</div>	
+			<div class="negocio item-negocio almacen-ingreso">
+				<span class="negocio-item" style="text-align: center;">Ingresos</span>
+			</div>	
+			<div class="negocio item-negocio almacen-salida elegido">
+				<span class="negocio-item" style="text-align: center;">Salidas</span>
+			</div>
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Compras</span>
+			</div>		
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Productos</span>
+			</div>	
+		</div>
+	</div>
+
+	<div class="cuadro-main">
+		
+		<div class="sub-menu">
+			<div class="stock lista">
+				<p>Lista de Merma</p>
+			</div>
+			<div class="stock stock-elegido">
+				<p>Detalle de Merma</p>
+			</div>
+			<div class="stock ingreso-merma">
+				<p>Ingresar merma</p>
+			</div>
+		</div>
+
+		<div class="cuadro-reporte">	
+					{{#each merma}}
+					<div class="cuadro-total">
+						<div class="line"></div>
+						<div class="valor-total">
+							<p>S/. {{total}}</p>
+							<div class="texto">MONTO TOTAL</div>
+						</div>
+					</div>
+					<div class="cuadro-datos">
+						<div class="valor-dato">
+							<p style="color: white;">{{fechaSalida}}</p>
+							<div class="dato-texto">FECHA SALIDA</div>
+						</div>
+						<div class="dato-line"></div>
+						<div class="valor-dato">
+							<p style="color: white;">{{proveedor}}</p>
+							<div class="dato-texto">PROVEEDOR</div>
+						</div>
+						<div class="dato-line"></div>
+						<div class="valor-dato">
+							<p style="color: white;">{{descripcion}}</p>
+							<div class="dato-texto">DESCRIPCIÓN</div>
+						</div>
+					</div>
+					{{/each}}		
+		</div>
+
+				<table>
+					<thead>
+						<th  style="color: #606C76;"><p style="margin-bottom: 15px; margin-top: 10px;">CÓDIGO</p></th>
+						<th  style="color: #606C76;"><p style="margin-bottom: 15px; margin-top: 10px;">PRODUCTO</p></th>
+						<th  style="color: #606C76;"><p style="margin-bottom: 15px; margin-top: 10px;">CANTIDAD</p></th>
+						<th  style="color: #606C76;"><p style="margin-bottom: 15px; margin-top: 10px;">COSTO (S/.)</p></th>
+						<th  style="color: #606C76;"><p style="margin-bottom: 15px; margin-top: 10px;">IMPORTE (S/.)</p></th>
+					</thead>
+					<tbody>
+						{{#each mermaitem}}
+						<tr class="tabla-hover">
+							<td style="text-align: center;"><p style="text-align: center;">{{codigo}}</p></td>
+							<td style="text-align: center;"><p style="text-align: center;">{{producto}}</p></td>
+							<td style="text-align: center;"><p style="text-align: center;">{{cantidad}}</p></td>
+							<td style="text-align: center;"><p style="text-align: center;">S/. {{pcosto}}</p></td>
+							<td style="text-align: center;"><p style="text-align: center;">S/. {{importe}}</p></td>
+						</tr>
+						{{else}}
+							<tr>Sin salidas...</tr>
+						{{/each}}
+					</tbody>
+				</table>
+		
+	</div>
+</template>

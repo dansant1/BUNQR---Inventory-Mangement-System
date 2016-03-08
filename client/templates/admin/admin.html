@@ -1,0 +1,218 @@
+<template name="admin">
+				<div class="contenedor-negocios">
+					<div class="set-lista-negocios">
+						<div class="negocio item-negocio almacen-stock ">
+						<span class="negocio-item" style="text-align: center;">Backoffice</span>
+						</div>	
+					</div>
+				</div>
+
+				<div class="cuadro-main">
+					<div class="bienvenido">
+						<img src="/presentacion.png" alt="Bienvenido" galleryimg="no">
+						<div class="bienvenido-instrucciones">	
+						
+						<h1>Bienvenido Jefe</h1>
+							
+						<blockquote>
+  						<p><em>Si metes la pata no es culpa de tus padres ni de tus profesores, ni de tus hermanos, así que no lloriquees por tus errores y aprende de ellos.
+
+						<strong> Bill Gates.</strong></em></p>
+						</blockquote>
+
+						</div>
+					</div>
+				</div>
+</template>
+
+<template name="distribuidor">
+				<div class="contenedor-negocios">
+					<div class="set-lista-negocios">
+						<div class="negocio item-negocio almacen-stock ">
+						<span class="negocio-item" style="text-align: center;">Backoffice</span>
+						</div>	
+					</div>
+				</div>
+
+				<div class="cuadro-main">
+					<div class="bienvenido">
+						<img src="/presentacion.png" alt="Bienvenido" galleryimg="no">
+						<div class="bienvenido-instrucciones">	
+						
+						<h1>Bienvenido Distribuidor</h1>
+							
+						<blockquote>
+  						<p><em>Si metes la pata no es culpa de tus padres ni de tus profesores, ni de tus hermanos, así que no lloriquees por tus errores y aprende de ellos.
+
+						<strong> Bill Gates.</strong></em></p>
+						</blockquote>
+
+						</div>
+					</div>
+				</div>
+</template>
+
+<template name="clientesDeDistribuidores">
+
+	{{#if isInRole 'distribuidor'}}
+	<div class="topbar">
+				<img src="/logo-opcional2.png" alt="BUNQR" style="margin-top: 18.5px; margin-left: 30px;">
+				<div class="linea-logo"></div>
+				<h5 style="color: black; position: relative; top: -69.6px; left: 185px; font-weight: bold; font-size: 15px;">NETWORK</h5>
+	</div>
+	{{>menuDistribuidor}}
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock ">
+				<span class="negocio-item" style="text-align: center;">Clientes</span>
+			</div>	
+		</div>
+	</div>
+	<div class="cuadro-main">
+		<div class="sub-menu">
+				<div class="stock stock-elegido">
+					<p>Lista de clientes</p>
+				</div>
+				<div class="stock usuarios-cancelado">
+					<p>Lista de usuarios cancelados</p>
+				</div>
+			</div>
+		{{>crearCliente}}
+		{{>ListaDeReferidos}}
+	</div>
+	{{/if}}
+</template>
+
+
+<template name="clientesCanceladosDeDistribuidores">
+
+	{{#if isInRole 'distribuidor'}}
+	<div class="topbar">
+				<img src="/logo-opcional2.png" alt="BUNQR" style="margin-top: 18.5px; margin-left: 30px;">
+				<div class="linea-logo"></div>
+				<h5 style="color: black; position: relative; top: -69.6px; left: 185px; font-weight: bold; font-size: 15px;">NETWORK</h5>
+	</div>
+	{{>menuDistribuidor}}
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock ">
+				<span class="negocio-item" style="text-align: center;">Clientes</span>
+			</div>	
+		</div>
+	</div>
+	<div class="cuadro-main">
+		<div class="sub-menu">
+				<div class="stock lista">
+					<p>Lista de clientes</p>
+				</div>
+				<div class="stock  stock-elegido">
+					<p>Lista de usuarios cancelados</p>
+				</div>
+			</div>
+		{{>ListaDeReferidosCancelados}}
+	</div>
+	{{/if}}
+</template>
+
+<template name="adminDistribuidores">
+
+	{{#if isInRole 'fundador'}}
+	<div class="topbar">
+				<img src="/logo-opcional2.png" alt="BUNQR" style="margin-top: 18.5px; margin-left: 30px;">
+				<div class="linea-logo"></div>
+				<h5 style="color: black; position: relative; top: -69.6px; left: 185px; font-weight: bold; font-size: 15px;">GROUP</h5>
+	</div>
+	{{>menuAdmin}}
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock ">
+				<span class="negocio-item" style="text-align: center;">Distribuidores</span>
+			</div>	
+		</div>
+	</div>
+	<div class="cuadro-main">
+		<div class="sub-menu">
+				<div class="stock stock-elegido">
+					<p>Lista de Distribuidores</p>
+				</div>
+				<div class="stock usuarios-cancelado">
+					<p>Lista de distribuidores cancelados</p>
+				</div>
+			</div>
+		{{>crearDistribuidor}}
+		{{>ListaDeDistribuidores}}
+	</div>
+	{{/if}}
+</template>
+
+
+<template name="detalleDistribuidor">
+
+	{{#if isInRole 'fundador'}}
+	<div class="topbar">
+				<img src="/logo-opcional2.png" alt="BUNQR" style="margin-top: 18.5px; margin-left: 30px;">
+				<div class="linea-logo"></div>
+				<h5 style="color: black; position: relative; top: -69.6px; left: 185px; font-weight: bold; font-size: 15px;">GROUP</h5>
+	</div>
+	{{>menuAdmin}}
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock ">
+				<span class="negocio-item" style="text-align: center;">Distribuidores</span>
+			</div>	
+		</div>
+	</div>
+	<div class="cuadro-main">
+		<div class="sub-menu">
+				<div class="stock stock-elegido">
+					<p>Lista de clientes</p>
+				</div>
+				<div class="stock usuarios-cancelado">
+					<p>Lista de clientes cancelados</p>
+				</div>
+			</div>
+		
+		<div class="cuadro-reporte">
+			
+		</div>
+		{{>ListaDeClientesDeUnDistribuidor}}
+	</div>
+	{{/if}}
+</template>
+
+
+<template name="detalleDistribuidorCancelado">
+
+	{{#if isInRole 'fundador'}}
+	<div class="topbar">
+				<img src="/logo-opcional2.png" alt="BUNQR" style="margin-top: 18.5px; margin-left: 30px;">
+				<div class="linea-logo"></div>
+				<h5 style="color: black; position: relative; top: -69.6px; left: 185px; font-weight: bold; font-size: 15px;">GROUP</h5>
+	</div>
+	{{>menuAdmin}}
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock ">
+				<span class="negocio-item" style="text-align: center;">Distribuidores</span>
+			</div>	
+		</div>
+	</div>
+	<div class="cuadro-main">
+		<div class="sub-menu">
+				<div class="stock stock-elegido">
+					<p>Lista de clientes</p>
+				</div>
+				<div class="stock usuarios-cancelado">
+					<p>Lista de clientes cancelados</p>
+				</div>
+			</div>
+		
+		<div class="cuadro-reporte">
+			
+		</div>
+		{{>ListaDeClientesDeUnDistribuidorCancelado}}
+	</div>
+	{{/if}}
+</template>
+
+

@@ -1,0 +1,38 @@
+<template name="dashboard">
+	{{#if currentUser}}
+		{{#if isInRole 'administrador'}}
+		<div class="topbar">
+			{{>topbar}}
+		</div>
+		<div class="contenido">
+			{{>menuPrincipal}}
+			{{>Template.dynamic template=content}}
+		</div>
+
+		{{else}}
+			{{#if isInRole 'fundador'}}
+			<div class="topbar">
+				<img src="/logo-opcional2.png" alt="BUNQR" style="margin-top: 18.5px; margin-left: 30px;">
+				<div class="linea-logo"></div>
+						<h5 style="color: black; position: relative; top: -69.6px; left: 185px; font-weight: bold; font-size: 15px;">GROUP</h5>
+			</div>
+			<div class="contenido">
+				{{>menuAdmin}}
+				
+				{{>admin}}
+			</div>
+				{{else}}
+
+				{{#if isInRole 'cancelado'}}
+					<div class="contenido">
+						{{>cancelado}}
+					</div>
+				{{/if}}
+
+
+			{{/if}}
+		{{/if}}
+	{{else}}
+		{{>login}}
+	{{/if}}
+</template>

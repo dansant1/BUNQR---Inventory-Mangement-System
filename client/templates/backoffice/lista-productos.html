@@ -1,0 +1,222 @@
+<!-- Lista de productos -->
+<template name="listaProductos">
+	<select id="productos">
+		{{#each productos}}
+		<option value="{{_id}}">{{nombre}}</option>
+		{{else}}
+		<option value="">Sin productos</option>
+		{{/each}}	
+	</select>
+	
+</template>
+
+<!-- Lista de almacenes -->
+<template name="listaAlmacen">
+	<select id="almacenes" class="seleccion">
+		{{#each almacenes}}
+		<option value="{{_id}}">{{nombre}}</option>
+		{{else}}
+		<option value="">Sin almacen</option>
+		{{/each}}	
+	</select>
+	
+</template>
+
+<!-- Lista de unidades de productos -->
+<template name="listaUnidad">
+	<select id="unidades" style="width: 104px;">
+		{{#each unidades}}
+		<option value="{{_id}}">{{nombre}}</option>
+		{{/each}}	
+		<option value="unidad">UNIDAD</option>
+	</select>
+</template>
+
+<!-- Lista de unidades de productos -->
+<template name="listaUnidadTwo">
+	<select id="unidad" style="width: 104px;">
+		<option value="opcion" selected="selected">OPCIÓN</option>
+		{{#each unidades}}
+		<option value="{{nombre}}">{{nombre}}</option>
+		{{/each}}	
+		<option value="UNIDAD">UNIDAD</option>
+		
+	</select>
+</template>
+
+<!-- Lista de cuentas bancarias -->
+<template name="listaCuentas">
+	<select id="cuentas">
+		{{#each cuentas}}
+		<option value="{{_id}}">{{numero}} - {{banco}}</option>
+		{{/each}}	
+		<option value="sinid">No colocar</option>
+		
+	</select>
+</template>
+
+<!-- Lista de clientes -->
+<template name="listaClientes">
+	<select id="clientes">
+		{{#each clientes}}
+		<option value="{{_id}}}">{{nombre}}</option>
+		{{else}}
+		<option value="--">Sin clientes registrado</option>
+		{{/each}}
+		<option value="--">No colocar</option>	
+	</select>
+</template>
+
+<!-- Lista de formas de pago -->
+<template name="listaFormasPago">
+	<select id="formas-pago" class="seleccion">
+		{{#each formas}}
+		<option value="{{_id}}}">{{descripcion}}</option>
+		{{else}}
+		<option value="--">Sin formas de pago registrado</option>
+		{{/each}}
+		<option value="--">Contado</option>	
+	</select>
+</template>
+
+<!-- Lista de proveedores -->
+<template name="listaProveedores">
+	<select id="proveedores" class="seleccion">
+		{{#each proveedor}}
+		<option value="{{_id}}}">{{nombre}}</option>
+		{{else}}
+		<option value="">Sin proveedores registrados</option>
+		{{/each}}
+		<option value="--">No colocar</option>	
+	</select>
+</template>
+
+
+
+
+<!-- Lista de de item de la carga -->
+<template name="ListaCargaItem">
+	<table>
+		<thead>
+			<tr>
+				<th ><p style="margin-left: 3px; color: #606C76">CODIGÓ</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">PRODUCTO</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">MEDIDA</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">COSTO (S/.)</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">CANTIDAD</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">IMPORTE</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">ELIMINAR</p></th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each items}}
+				<tr class="tabla-hover">
+					<td>
+					<p class="codigo" style="margin-left: 50px;">{{codigo}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{nombre}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{medida}}</p>	
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">S/. {{pcosto}}</p></td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{cantidad}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">S/. {{importe}}</p>
+					</td>
+					<td>
+						<button class="eliminar" id="boton-login">Eliminar</button>
+					</td>
+				</tr>
+			
+			{{/each}}
+		</tbody>
+		<tfoot class="full-width">
+    		<tr>
+    			{{#each carga}}
+      			<th style="color: #606C76; padding-left: 30px;" ><strong>TOTAL (S/.) : </strong> {{total}}</th>   		
+      			{{/each}}
+      			<th></th>
+      			<th></th>
+      			<th></th>
+      			<th></th>
+      			<th></th>
+      			<th></th>				      			
+    		</tr>
+  		</tfoot>
+	</table>
+</template>
+
+<!-- Lista de productos -->
+<template name="ListaDeProductos">
+	<div class="buscador">
+				{{> EasySearch.Input index=productosIndex placeholder="Hola..." }}
+	</div>
+	<table>
+		<thead>
+			<tr>
+				<th><p style="margin-left: 9px; color: #606C76">CODIGÓ</p></th>
+				<th><p style="margin-left: 9px; color: #606C76">PRODUCTO</p></th>
+				<th><p style="margin-left: 9px; color: #606C76">MEDIDA</p></th>
+				<th><p style="margin-left: 9px; color: #606C76">COSTO (S/.)</p></th>
+				<th><p style="margin-left: 9px; color: #606C76">CANTIDAD</p></th>
+				<th><p style="margin-left: 9px; color: #606C76">AGREGAR</p></th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#EasySearch.Each index=productosIndex }}
+				<tr class="tabla-hover">
+					<td >
+					<p class="codigo" style="margin-left: 55px;">{{codigo}}</p>
+					</td>
+					<td >
+					<p class="nombre" style="margin-left: 55px;">{{nombre}}</p>
+					</td>
+					<td>
+						<p style="margin-left: 55px; margin-top: 20px;">{{>listaUnidadTwo}}</p>
+					</td>
+					<td>
+					<p class="costo" style="margin-left: 55px;">S/. {{pcosto}}</p>
+					</td>
+					<td>
+						<p style="margin-left: 55px; margin-top: 20px;">
+							<input type="number" name="cantidad" step="0.10" style="width: 110px; border-bottom: 2.5px solid #5E4AD7;" min="1" >	
+						</p>
+						
+					</td>
+					<td>
+						<p style="margin-left: 55px; margin-top: 20px; min-width: 70px;">
+							<button class="agregar" id="boton-login">Agregar</button>
+						</p>
+					</td>
+				</tr>
+			{{/EasySearch.Each}}
+
+			{{#EasySearch.IfSearching index=productosIndex}}
+ 					<div class="loading">
+  						{{>loader}}
+  					</div>
+			{{/EasySearch.IfSearching}}
+
+			{{#EasySearch.IfNoResults index=productosIndex}}
+  					<div class="bienvenido">
+				<img src="/presentacion.png" alt="Bienvenido" galleryimg="no">
+				<div class="bienvenido-instrucciones">	
+					{{#each nombres}}
+					<h1>{{profile.nombre}}, No encontre resultados</h1>
+					{{/each}}
+					<blockquote>
+  						<p><em>Una cosa terrible acerca de la búsqueda de la verdad es que se la encuentre.</em></p>
+					</blockquote>
+				</div>
+			</div>
+				{{/EasySearch.IfNoResults}}
+
+		</tbody>
+	</table>
+</template>
+

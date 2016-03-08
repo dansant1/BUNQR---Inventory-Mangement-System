@@ -1,0 +1,67 @@
+<template name="reportes">
+	{{>menuPrincipal}}
+
+
+
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio elegido">
+				<span class="negocio-item" style="text-align: center;">Reportes</span>
+			</div>	
+			<div class="negocio item-negocio ingreso-ventas">
+				<span class="negocio-item" style="text-align: center;">Ventas</span>
+			</div>	
+			<div class="negocio item-negocio ingreso-carga">
+				<span class="negocio-item" style="text-align: center;">Ingresos</span>
+			</div>	
+		</div>
+	</div>
+
+
+	<div class="cuadro-main">
+
+		<div class="sub-menu">
+			<div class="stock stock-elegido">
+				<p>Reporte de Hoy</p>
+			</div>
+			<div class="stock ingresar-carga">
+				<p>Ingresar carga</p>
+			</div>
+			<div class="stock ingresar-merma">
+				<p>Ingresar merma</p>
+			</div>
+		</div>
+		
+		<div class="dia"><h1>HOY</h1></div>
+		{{>reporteDiario}}
+
+		<table>
+			<thead>
+				<tr>
+					<th><p style="margin-left: 9px; color: #606C76">DÍA</p></th>
+      				<th><p style="margin-left: 9px; color: #606C76">VENTAS (S/.)</p></th>
+      				<th><p style="margin-left: 9px; color: #606C76">COMPRAS (S/.)</p></th>
+      				<th><p style="margin-left: 9px; color: #606C76">MERMA (S/.)</p></th>
+      				<th><p style="margin-left: 9px; color: #606C76">COSTOS (S/.)</p></th>
+      				<th><p style="margin-left: 9px; color: #606C76">UTILIDAD (S/.)</p></th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each todosreportes }}
+				<tr class="tabla-hover">
+						<td><p style="margin-left: 20px;">{{fechaAux}}</p></td>
+						<td><p style="margin-left: 20px;">S/. {{venta}}</p></td>
+						<td><p style="margin-left: 20px;">S/. {{compra}}</p></td>
+						<td><p style="margin-left: 20px;">S/. {{merma}}</p></td>
+						<td><p style="margin-left: 20px;">S/. {{costo}}</p></td>
+						<td><p style="margin-left: 20px;">S/. {{utilidad}}</p></td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+		<input class="button-primary boton-formulario" type="button" value="Cargar más" name="mas" id="boton-login" style="width: 90%; margin: 0 auto; margin-bottom: 20px;">
+	</div>
+
+
+	
+</template>

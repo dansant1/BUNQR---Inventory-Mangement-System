@@ -1,0 +1,53 @@
+<template name="registros">
+	{{>menuPrincipal}}
+	
+
+		<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-producto ingreso-presentacion elegido">
+				<span class="negocio-item" style="text-align: center;">Presentaciones</span>
+			</div>		
+			<div class="negocio item-negocio ingreso-pago almacen-producto">
+				<span class="negocio-item" style="text-align: center;">forma de pagos</span>
+			</div>	
+			<div class="negocio item-negocio ingreso-proveedor almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Proveedores</span>
+			</div>	
+			<div class="negocio item-negocio ingreso-almacen almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Almacenes</span>
+			</div>	
+			<div class="negocio item-negocio ingreso-cliente almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Clientes</span>
+			</div>	
+		</div>
+	</div>
+
+
+
+	<div class="cuadro-main">
+		<div class="sub-menu">
+			<div class="stock stock-elegido">
+				<p>Lista de presentaciones</p>
+			</div>
+			<div class="stock ingresar-carga">
+				<p>Nueva presentacion</p>
+			</div>
+		</div>
+		{{>registroPresentacion}}
+		<table>
+			<thead>
+				<tr>
+					<th><p style="margin-top: 10px; margin-bottom: 15px;">Presentaciones</p></th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each presentaciones}}
+				<tr class="tabla-hover">
+					<td><p style="text-align: center;">{{nombre}}</p></td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+
+	</div>
+</template>

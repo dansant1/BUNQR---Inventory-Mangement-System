@@ -1,0 +1,1 @@
+Ingresos = new Mongo.Collection('ingresos');

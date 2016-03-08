@@ -1,0 +1,47 @@
+
+<template name="default">
+	
+	{{#if currentUser}}
+		<div class="topbar">
+			{{>topbar}}
+		</div>
+		{{>menuNegocios}}
+		
+		<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock ">
+				<span class="negocio-item" style="text-align: center;">Dashboard</span>
+			</div>	
+		</div>
+		</div>
+		<div class="cuadro-main">
+			<div class="bienvenido">
+				<img src="/presentacion.png" alt="Bienvenido" galleryimg="no">
+				<div class="bienvenido-instrucciones">	
+					
+					<h1>Ya iniciaste sesion</h1>
+					
+					<blockquote>
+  						<p><em>Hay tantas cosas para gozar y nuestro paso por la tierra es tan corto, que sufrir es una pérdida de tiempo. Tenemos para gozar la nieve del invierno y las flores de la primavera.
+
+						<strong> Facundo Cabral.</strong></em></p>
+					</blockquote>
+
+					<a class="button" id="boton-login" href="/dashboard">Vuelve al dashboard</a>
+				</div>
+			</div>
+			
+		</div>
+
+	{{else}}
+	
+		
+			<main>
+				{{>Template.dynamic template=content}}
+			</main>
+		
+
+	{{/if}}
+
+	
+</template>

@@ -1,0 +1,979 @@
+<!-- Formulario de marcas -->
+<template name="registroMarca">
+	<div class="menu-negocios">
+		<div class="set-item">
+			<div class="container">
+				<div class="row">
+					<div class="column">
+						<form>
+  							<fieldset>
+   								<label>Nombre de la marca</label>
+    							<input type="text" placeholder="Nombre" name="nombre">
+    							<label>Descripcion de la marca</label>
+    							<input type="text" placeholder="Descripcion" name="descripcion">
+    							<input class="button-primary" type="submit" value="Guardar">
+  							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<!-- Formulario de lineas de productos -->
+<template name="registroLinea">
+	<div class="menu-negocios">
+		<div class="set-item">
+			<div class="container">
+				<div class="row">
+					<div class="column">
+						<form>
+  							<fieldset>
+   								<label>Nombre de la linea de productos</label>
+    							<input type="text" placeholder="Nombre" name="linea">
+    							<label>Descripcion de la linea de productos</label>
+    							<input type="text" placeholder="Descripcion" name="descripcion">
+    							<input class="button-primary" type="submit" value="Guardar">
+  							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<!-- Formulario de categorias -->
+<template name="registroCategoria">
+	<div class="menu-negocios">
+		<div class="set-item">
+			<div class="container">
+				<div class="row">
+					<div class="column">
+						<form>
+  							<fieldset>
+   								<label>Nombre de la categoria</label>
+    							<input type="text" placeholder="Nombre" name="categoria">
+    							<label>Descripcion de la categoria</label>
+    							<input type="text" placeholder="Descripcion" name="descripcion">
+    							<input class="button-primary" type="submit" value="Guardar">
+  							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<!-- Formulario de presentacion -->
+<template name="registroPresentacion">
+
+	<div class="cuadro-reporte" style="height: 195px;">
+	<div class="container">
+		<div class="row" style="margin-top: 40px;">
+			<div class="column">
+				<label style="color: white;">Nombre de la presentacion</label>
+    			<input type="text" placeholder="Nombre" name="nombre">
+			</div>		
+		</div>
+		<div class="row">
+			<div class="column">
+				<input type="button" class="agregar" id="boton-login" value="guardar">
+			</div>
+		</div>
+	</div>
+</div>
+</template>
+
+<!-- Formulario de productos -->
+<template name="registroProducto">
+	<div class="menu-negocios">
+		<div class="set-item">
+			<div class="container">
+				<div class="row">
+					<div class="column">
+						<form>
+  							<fieldset>
+  								<label>Codigo de producto</label>
+    							<input type="text" placeholder="Codigo" name="codigo">
+   								<label>Nombre de producto</label>
+    							<input type="text" placeholder="Nombre" name="nombre">
+    							<label>Descripcion de producto</label>
+    							<input type="text" placeholder="Descripcion" name="descripcion">
+    							<label>Marca</label>
+      							<select id="marca">
+      								<option value="sinid">Sin marca</option>
+      								{{#each marcas}}
+      								<option value="{{_id}}">{{nombre}}</option>
+      								{{else}}
+      								<option value="sin marca">No hay marcas</option>
+									{{/each}}
+      							</select>
+      							<label>Categoria</label>
+      							<select id="categoria">
+      								<option value="sinid">Sin categoria</option>
+        							{{#each categorias}}
+      								<option value="{{_id}}">{{nombre}}</option>
+      								{{else}}
+      								<option value="sin marca">No hay categorias</option>
+									{{/each}}
+      							</select>
+      							<label>Linea</label>
+      							<select id="linea">
+      								<option value="sinid">Sin linea</option>
+        							{{#each lineas}}
+      								<option value="{{_id}}">{{nombre}}</option>
+      								{{else}}
+      								<option value="sin marca">No hay lineas</option>
+									{{/each}}
+      							</select>
+      							<label>Costo de producto</label>
+      							<input type="number" name="costo" min="1" step="0.10">
+      							<label>Precio</label>
+      							<input type="number" name="precio" min="1" step="0.10">
+      							<label>Precio por mayor</label>
+      							<input type="number" name="pmayor" min="1" step="0.10">
+      							<label>Stock minimo</label>
+      							<input type="number" name="minimo" min="0">
+      							<label>Stock maximo</label>
+      							<input type="number" name="maximo" min="0">
+    							<input class="button-primary" type="submit" value="Guardar">
+  							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<!-- Formulario de servicio -->
+<template name="registroServicio">
+	<div class="menu-negocios">
+		<div class="set-item">
+			<div class="container">
+				<div class="row">
+					<div class="column">
+						<form>
+  							<fieldset>
+   								<label>Nombre de servicio</label>
+    							<input type="text" placeholder="Nombre" name="nombre">
+    							<label>Descripcion de servicio</label>
+    							<input type="text" placeholder="Descripcion" name="descripcion">
+    							<label>Costo de servicio</label>
+      							<input type="number" min="0" name="costo" id="costo">
+    							<input class="button-primary" type="submit" value="Guardar">
+  							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<!-- Formulario de proveedor -->
+<template name="registroProveedor">
+<div class="cuadro-reporte" style="height: 195px;">
+	<div class="container">
+		<div class="row" style="margin-top: 40px;">
+			<div class="column">
+				<label style="color: white;">Nombre de proveedor</label>
+    		<input type="text" placeholder="Nombre" name="empresa">
+	
+			</div>
+  			<div class="column">
+  				   		<label style="color: white;">Descripcion de proveedor</label>
+    		<input type="text" placeholder="Descripcion" name="descripcion">
+  			</div> 			
+		</div>
+		<div class="row">
+			<div class="column">
+				   		<input type="button" class="agregar" id="boton-login" value="guardar">
+			</div>
+		</div>
+	</div>
+</div>
+</template>
+
+<!-- Formulario de cliente -->
+<template name="registroCliente">
+	
+	<div class="cuadro-reporte" style="height: 365px;">
+	<div class="container">
+		<div class="row" style="margin-top: 40px;">
+			<div class="column">
+				<label style="color: white;">Nombre / Raz. social</label>
+    		<input type="text" placeholder="Nombre" name="nombre">
+	
+			</div>
+  			<div class="column">
+  				   		<label style="color: white;">Numero de RUC/DNI </label>
+    		<input type="number" placeholder="Ingresa el numero de RUC o DNI" name="numero">
+  			</div> 			
+		</div>
+		<div class="row">
+			<div class="column">
+				<label>Direccion</label>
+    			<input type="text" placeholder="Ingrese la direccion del cliente" name="direccion">
+			</div>
+			<div class="column">
+				<label>Contacto</label>
+    			<input type="text" placeholder="Ingrese el contacto del cliente" name="contacto">
+			</div>
+			
+		</div>
+		<div class="row">
+			<div class="column">
+				<label>Numero de telefono</label>
+    			<input type="text" placeholder="Ingrese el telefono del cliente" name="telefono">
+			</div>
+			<div class="column">
+				<label>Email</label>
+    			<input type="email" placeholder="Ingrese el email del cliente" name="email">
+			</div>
+		</div>
+		<div class="row">
+			<div class="column">
+			<input type="button" class="agregar" id="boton-login" value="guardar">
+			</div>
+		</div>
+	</div>
+</div>
+</template>
+
+
+<!-- Formulario de formas de pago -->
+<template name="registroFormasDePago">
+
+	<div class="cuadro-reporte" style="height: 285px;">
+	<div class="container">
+		<div class="row" style="margin-top: 40px;">
+			<div class="column">
+			<label style="color: white;">Descripción</label>
+    		<input type="text" placeholder="Descripción" name="descripcion">
+    		<label style="color: white;">Periodo</label>
+    			<select id="periodo">
+      								<option value="Dia">Día</option>
+      								<option value="Mes">Mes</option>
+      								<option value="Semanas">Semanas</option>
+									<option value="Anio">Año</option>
+      			</select>
+			</div>
+  			<div class="column">
+  				<label style="color: white;">Numero de dias</label>
+    			<input type="number" placeholder="Periodo" name="periodo" min="1">
+  			</div> 			
+		</div>
+		<div class="row">
+			<div class="column">
+				<input type="button" class="agregar" id="boton-login" value="guardar">
+			</div>
+		</div>
+	</div>
+</div>
+</template>
+
+<!-- Formulario de cuentas bancarias -->
+<template name="registroCuentaBancaria">
+	<div class="menu-negocios">
+		<div class="set-item">
+			<div class="container">
+				<div class="row">
+					<div class="column">
+						<form>
+  							<fieldset>
+   								<label>Número de cuenta</label>
+    							<input type="text" placeholder="Ingresa el número de cuenta" name="numero">
+    							<label>Banco</label>
+    							<input type="text" placeholder="Ingresa el nombre del banco" name="banco">
+    							<label>Moneda</label>
+      							<select id="moneda">
+      								<option value="Soles">Soles</option>
+      								<option value="Dolares">Dolares</option>
+      							</select>
+      							<label>Saldo inicial</label>
+    							<input type="number" placeholder="Ingresa el saldo inicial (opcional)" name="saldo" min="0">
+    							<input class="button-primary" type="submit" value="Guardar">
+  							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<!-- Formulario de almacenes -->
+<template name="registroAlmacen">
+	
+	<div class="cuadro-reporte" style="height: 195px;">
+	<div class="container">
+		<div class="row" style="margin-top: 40px;">
+			<div class="column">
+				<label style="color: white;">Nombre del almacen</label>
+    			<input type="text" placeholder="Ingrese el nombre del almacen" name="almacen">
+	
+			</div>
+  			<div class="column">
+  				<label style="color: white;">Dirección</label>
+    			<input type="text" placeholder="Ingrese la ubicación del almacen" name="direccion">
+  			</div> 			
+		</div>
+		<div class="row">
+			<div class="column">
+				   		<input type="button" class="agregar" id="boton-login" value="guardar">
+			</div>
+		</div>
+	</div>
+</div>
+</template>
+
+<!-- Formulario de ingresos a almacenes -->
+<template name="registroIngresos">
+	<div class="menu-negocios">
+		<div class="set-item">
+			<div class="container">
+				<div class="row">
+					<div class="column">
+						<form>
+  							<fieldset>
+   								<label>Proveedor</label>
+    							<select id="proveedores">
+      								<option value="123">proveedor 1</option>
+      								<option value="55554">proveedor 2</option>
+      							</select>
+      							<label>Tipo</label>
+    							<select id="tipo">
+      								<option value="123">Guia interna</option>
+      								<option value="55554">Guia de remision</option>
+      							</select>
+      							<label>Almacen</label>
+    							{{>listaAlmacen}}
+      							<label>Fecha</label>
+      							<input type="date" name="fecha">
+      							<label>Hora</label>
+      							<input type="number" name="hora" min="0">
+      							<label>Minuto</label>
+								<input type="number" name="minuto" min="0">
+								<label>Concepto</label>
+								<select id="conceptos">
+      								<option>Inventario</option>
+      								<option>Compra</option>
+      							</select>
+								<label>Numero</label>
+								<input type="text" placeholder="Ingrese el numero de documento" name="numero">
+								<label>Producto</label>
+								{{>listaProductos}}
+								<label>Unidad de medida / Presentacion</label>
+								{{>listaUnidad}}
+								<label>Cantidad</label>
+								<input type="number" name="cantidad" min="0">
+   								<input class="button-primary" type="submit" value="Guardar">
+
+  							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<!-- Formulario de salidad de almacenes -->
+<template name="registroSalidas">
+	<div class="menu-negocios">
+		<div class="set-item">
+			<div class="container">
+				<div class="row">
+					<div class="column">
+						<form>
+  							<fieldset>
+   								<label>Nombre del almacen</label>
+    							<input type="text" placeholder="Ingrese el nombre del almacen" name="almacen">
+    							<label>Direccion</label>
+    							<input type="text" placeholder="Ingrese la ubicacion del almacen" name="direccion">
+    							<input class="button-primary" type="submit" value="Guardar">
+  							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+
+<!-- Formulario para agregar producto durante carga masiva -->
+<template name="FormularioCargaMasiva">
+	
+	<div class="container">
+		<div class="row" id="formulario-proforma">
+							<div class="column">
+
+								<label>Codigo</label>
+    							<input type="text" name="codigo">
+    							
+      							<label>P. Venta</label>
+      							<input type="number" step="0.10" min="0" name="pventa">
+      							
+							</div>
+							<div class="column">
+								<label>Nombre</label>
+      							<input type="text" name="nombre">
+      							<label>P. Costo</label>
+    							<input type="number" step="0.10" min="0" name="pcosto">
+      							
+							</div>
+							<div class="column">
+								<label>Cantidad</label>
+								<input type="number" step="0.10" min="0" name="cantidad">
+								<label>Medidad</label>
+    							{{>listaUnidadTwo}}
+    							
+							</div>	
+							<div class="column">
+      							<label>Lugar</label>
+    							<select id="almacen">
+    								<option value="1">Almacén</option>
+    								<option value="2">Tienda</option>
+    							</select>
+								
+							</div>
+				</div>
+				<div class="row">
+					<div class="column">
+						<input class="button-primary boton-formulario agregar" type="submit" value="Agregar producto" name="guardar" id="boton-login" style="width: 200px; margin-left: 10px; margin-right: 32px;">	
+					</div>
+				</div>
+	</div>
+</template>
+
+
+<!-- Formulario de carga masiva -->
+<template name="ingresoMasivo">
+
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock ">
+				<span class="negocio-item" style="text-align: center;">Inventario</span>
+			</div>	
+			<div class="negocio item-negocio almacen-ingreso elegido">
+				<span class="negocio-item" style="text-align: center;">Ingresos</span>
+			</div>	
+			<div class="negocio item-negocio almacen-salida">
+				<span class="negocio-item" style="text-align: center;">Salidas</span>
+			</div>
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Compras</span>
+			</div>		
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Productos</span>
+			</div>	
+		</div>
+	</div>
+
+	<div class="cuadro-main">
+		<div class="sub-menu">
+			<div class="stock">
+				<p>Stock</p>
+			</div>
+			<div class="stock stock-elegido ingresar-carga">
+				<p>Ingresar carga</p>
+			</div>
+			<div class="stock ingresar-merma">
+				<p>Ingresar merma</p>
+			</div>
+		</div>
+
+		<div class="cuadro-reporte">
+			<div class="container">
+					<div class="row" id="formulario-proforma">
+							<div class="column">
+
+								<label style="color: white;">Almacén</label>
+    							{{>listaAlmacen}}
+    							
+      							<label style="color: white;">Fecha</label>
+      							<input type="date" name="fecha">
+      							
+							</div>
+							<div class="column">
+    							<label style="color: white;">Proveedor</label>
+    							{{>listaProveedores}}
+      							
+      							<label style="color: white;">Moneda</label>
+    							<select id="moneda" class="seleccion">
+      								<option value="soles">Soles</option>
+      								<option value="dolares">Dolares</option>
+      							</select>
+      							
+							</div>
+							<div class="column">
+								<label style="color: white;">Forma de pago</label>
+    							{{>listaFormasPago}}
+							</div>		
+					</div>
+					<div class="row">
+						<div class="column">
+							<input class="button-primary boton-formulario agregar-masivo" type="submit" value="Guardar" name="guardar" id="boton-login" style="width: 200px; margin-left: 10px; margin-right: 32px;">	
+							<input class="button button-clear cancelar-masivo" type="submit" value="Cancelar" name="cancelar" style="color: white;">	
+						</div>
+					</div>
+			</div>
+		</div>
+		
+		{{>ListaCargaItem}}
+		<div class="cuadro-reporte-2">
+			{{>FormularioCargaMasiva}}	
+		</div>
+		{{>ListaDeProductos}}	
+	</div>
+</template>
+
+
+<!-- Formulario para agregar compra -->
+<template name="registrarCompra">
+	
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock ">
+				<span class="negocio-item" style="text-align: center;">Inventario</span>
+			</div>	
+			<div class="negocio item-negocio almacen-ingreso elegido">
+				<span class="negocio-item" style="text-align: center;">Ingresos</span>
+			</div>	
+			<div class="negocio item-negocio almacen-salida">
+				<span class="negocio-item" style="text-align: center;">Salidas</span>
+			</div>
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Compras</span>
+			</div>		
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Productos</span>
+			</div>	
+		</div>
+	</div>
+
+	<div class="cuadro-main">
+
+			<div class="sub-menu">
+				<div class="stock lista-compras">
+					<p>Lista de compras</p>
+				</div>
+				<div class="stock stock-elegido ingresar-compra">
+					<p>Ingresar compra</p>
+				</div>
+			</div>
+
+			<div class="cuadro-reporte" style="height: 177.5px">
+				<div class="container">
+					<div class="row" id="formulario-proforma">
+						<div class="column">
+      						<label style="color: white;">Fecha de compra</label>
+      						<input type="date" name="fecha">
+						</div>
+						<div class="column">
+							<label style="color: white;">Cuenta bancaria</label>
+    						{{>listaCuentas}}
+						</div>
+					</div>
+					<div class="row">
+						<div class="column">
+							<input class="button-primary guardar boton-formulario" type="button" value="Guardar" name="guardar" id="boton-login" style="width: 200px; margin-left: 10px; margin-right: 32px;">
+							<input class="button-clear cancelar" type="submit" value="Cancelar" name="cancelar" style="color: white;">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			{{>listaCompraItem}}
+					
+			{{>FormularioCompraItem}}
+	
+		
+	</div>
+</template>
+
+
+<template name="FormularioCompraItem">
+	<div class="cuadro-reporte-2" style="height: 202px;">
+		<div class="container">
+			<div class="row" id="formulario-proforma">
+				<div class="column">
+      				<label style="color: white;">Descripción</label>
+      				<input type="text" name="descripcion" placeholder="Escribe algo mas detallado sobre la compra">
+				</div>
+				<div class="column">
+					<label style="color: white;">Monto (S/.)</label>
+    				<input type="number" name="importe" style="width: 135px;" step="0.10">
+				</div>
+			</div>
+			<div class="row">
+				<div class="column" style="padding-left: 20px;">
+					<button class="agregar" id="boton-login">Agregar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+
+<!-- Lista de de item de compras -->
+<template name="listaCompraItem">
+	<table>
+		<thead>
+			<tr>
+				<th style="color: #606C76;"><p style="margin-bottom: 20px; margin-top: 10px;">DESCRIPCIÓN</p></th>
+				<th style="color: #606C76;"><p style="margin-bottom: 20px; margin-top: 10px;">IMPORTE (S/.)</p></th>
+				<th style="color: #606C76;"><p style="margin-bottom: 20px; margin-top: 10px;">ELIMINAR</p></th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each items}}
+				<tr class="tabla-hover">
+					<td style="padding-bottom: 0;"><p style="text-align: center; margin-bottom: 6px;">{{descripcion}}</p></td>
+					<td style="padding-bottom: 0;"><p style="text-align: center; margin-bottom: 6px;">S/. {{importe}}</p></td>
+					<td style="padding-bottom: 0;">
+						<p style="text-align: center; margin-bottom: 6px;">
+							<button class="eliminar button-clear" style="color: black;">Eliminar</button>
+						</p>
+					</td>
+				</tr>
+			{{/each}}
+		</tbody>
+		<tfoot class="full-width">
+    		<tr>
+    			{{#each compra}}
+      			<th style="color: #606C76;"><strong>TOTAL (S/.) :</strong> {{total}}</th>
+      			{{/each}}
+      			<th></th>
+      			<th></th>			
+    		</tr>
+  		</tfoot>
+	</table>
+</template>
+
+
+<!-- Lista de Compras para administrar -->
+<template name="listaComprasTwo">
+	
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock">
+				<span class="negocio-item" style="text-align: center;">Inventario</span>
+			</div>	
+			<div class="negocio item-negocio almacen-ingreso">
+				<span class="negocio-item" style="text-align: center;">Ingresos</span>
+			</div>	
+			<div class="negocio item-negocio almacen-salida">
+				<span class="negocio-item" style="text-align: center;">Salidas</span>
+			</div>
+			<div class="negocio item-negocio almacen-compra  elegido">
+				<span class="negocio-item" style="text-align: center;">Compras</span>
+			</div>		
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Productos</span>
+			</div>	
+		</div>
+	</div>
+
+	<div class="cuadro-main">
+
+		<div class="sub-menu">
+			<div class="stock stock-elegido lista-compra">
+				<p>Lista de compras</p>
+			</div>
+			<div class="stock ingresar-compra">
+				<p>Registrar Compra</p>
+			</div>
+		</div>
+				<table>
+					<thead>
+						<tr>
+							<th style="color: #606C76;"><p style="margin-bottom: 20px; margin-top: 10px;">FECHA</p></th>
+							<th style="color: #606C76;"><p style="margin-bottom: 20px; margin-top: 10px;">C. BANCARIA</p></th>
+							<th style="color: #606C76;"><p style="margin-bottom: 20px; margin-top: 10px;">IMPORTE (S/.)</p></th>
+							<th style="color: #606C76;"><p style="margin-bottom: 20px; margin-top: 10px;">VER</p></th>
+						</tr>
+				</thead>
+				<tbody>
+			{{#each compras}}
+				<tr class="tabla-hover">
+					<td style="padding-bottom: 0;"><p>{{fechaComprado}}</p></td>
+					<td style="padding-bottom: 0;"><p>{{cuentaBancaria}}</p></td>
+					<td style="padding-bottom: 0;"><p>S/. {{total}}</p></td>
+					<td style="padding-bottom: 0;">
+						<p>
+							<button class="ver" id="boton-login">Ver</button>
+						</p>
+					</td>
+				</tr>
+			{{/each}}
+				</tbody>
+		</table>
+	</div>
+	
+</template>
+
+
+
+<template name="detalleCompra">
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock">
+				<span class="negocio-item" style="text-align: center;">Inventario</span>
+			</div>	
+			<div class="negocio item-negocio almacen-ingreso">
+				<span class="negocio-item" style="text-align: center;">Ingresos</span>
+			</div>	
+			<div class="negocio item-negocio almacen-salida">
+				<span class="negocio-item" style="text-align: center;">Salidas</span>
+			</div>
+			<div class="negocio item-negocio almacen-compra  elegido">
+				<span class="negocio-item" style="text-align: center;">Compras</span>
+			</div>		
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Productos</span>
+			</div>	
+		</div>
+	</div>
+
+	<div class="cuadro-main">
+		<div class="sub-menu">
+			<div class="stock lista">
+				<p>Lista de compras</p>
+			</div>
+			<div class="stock stock-elegido">
+				<p>Detalle de compra</p>
+			</div>
+			<div class="stock ingreso-compra">
+				<p>Ingresar compra</p>
+			</div>
+		</div>
+
+		<div class="cuadro-reporte">
+			{{#each compras}}
+				<div class="cuadro-total">
+					<div class="line"></div>
+					<div class="valor-total">
+						<p>S/. {{total}}</p>
+						<div class="texto">
+							IMPORTE TOTAL
+						</div>
+					</div>
+				</div>
+
+				<div class="cuadro-datos">
+					<div class="valor-dato">
+						<p style="color: white;">{{fechaComprado}}</p>
+						<div class="dato-texto">FECHA</div>
+					</div>
+					<div class="dato-line"></div>
+					<div class="valor-dato">
+						<p style="color: white;">{{cuentaBancaria}}</p>
+						<div class="dato-texto">C. BANCARIA</div>
+					</div>
+				</div>
+			{{/each}}
+		</div>
+
+		<table>
+			<thead>
+				<th  style="color: #606C76;"><p style="margin-bottom: 20px; margin-top: 10px;">DESCRIPCIÓN</p></th>
+				<th  style="color: #606C76;"><p style="margin-bottom: 20px; margin-top: 10px;">IMPORTE (S/.)</p></th>
+			</thead>
+			<tbody>
+				{{#each compraitem}}
+				<tr class="tabla-hover">
+				<td><p style="text-align: center; margin-bottom: 7.5px;">{{descripcion}}</p></td>
+				<td><p style="text-align: center; margin-bottom: 7.5px;">S/. {{importe}}</p></td>
+				</tr>
+				{{else}}
+				<tr><p style="text-align: center;margin-bottom: 7.5px;">Sin compras...</p></tr>
+				{{/each}}
+			</tbody>
+		</table>
+	
+	</div>
+</template>
+
+<!-- Main de merma -->
+<template name="registroMerma">
+
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock">
+				<span class="negocio-item" style="text-align: center;">Inventario</span>
+			</div>	
+			<div class="negocio item-negocio almacen-ingreso">
+				<span class="negocio-item" style="text-align: center;">Ingresos</span>
+			</div>	
+			<div class="negocio item-negocio almacen-salida elegido">
+				<span class="negocio-item" style="text-align: center;">Salidas</span>
+			</div>
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Compras</span>
+			</div>		
+			<div class="negocio item-negocio almacen-producto">
+				<span class="negocio-item" style="text-align: center;">Productos</span>
+			</div>	
+		</div>
+	</div>
+
+	<div class="cuadro-main">
+	
+		<div class="sub-menu">
+			<div class="stock">
+				<p>Stock</p>
+			</div>
+			<div class="stock ingresar-carga">
+				<p>Ingresar carga</p>
+			</div>
+			<div class="stock  stock-elegido ingresar-merma">
+				<p>Ingresar merma</p>
+			</div>
+		</div>
+		
+		<div class="cuadro-reporte">
+			<div class="container">
+				<div class="row" id="formulario-proforma">
+					<div class="column">
+      					<label>Fecha</label>
+      					<input type="date" name="fecha">
+      					<label >Descripción</label>
+      					<input type="text" name="descripcion" placeholder="Detalleme un poco más...">
+						</div>
+					<div class="column">
+    				<label>Proveedor</label>
+    				{{>listaProveedores}}
+					</div>
+				</div>
+				<div class="row">
+					<div class="column">
+					
+						<input class="button-primary boton-formulario guardar" id="boton-login" style="width: 200px; margin-left: 10px; margin-right: 32px;" type="button" value="Guardar" name="guardar">
+						<input class="button-clear cancelar" type="submit" value="Cancelar" name="cancelar" style="color: white;">
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		{{>listaMermaItem}}
+		{{>ListaProductosMerma}}
+	</div>
+</template>
+
+<template name="ListaProductosMerma">
+	<div class="buscador" style="padding-top: 13.5px;">
+				{{> EasySearch.Input index=productosIndex }}
+	</div>
+	{{#if Template.subscriptionsReady}}
+	<table>
+		<thead>
+			<tr>
+				<th style="margin-left: 9px; color: #606C76"><p>CÓDIGO</p></th>
+				<th style="margin-left: 9px; color: #606C76"><p>PRODUCTO</p></th>
+				<th style="margin-left: 9px; color: #606C76"><p>MEDIDA</p></th>
+				<th style="margin-left: 9px; color: #606C76"><p>COSTO (S/.)</p></th>
+				<th style="margin-left: 9px; color: #606C76"><p>CANTIDAD</p></th>
+				<th style="margin-left: 9px; color: #606C76"><p>AGREGAR</p></th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#EasySearch.Each index=productosIndex }}
+				<tr class="tabla-hover">
+					<td >
+					<p class="codigo" style="margin-left: 55px;">{{codigo}}</p>
+					</td>
+					<td >
+					<p class="nombre" style="margin-left: 55px;">{{nombre}}</p>
+					</td>
+					<td>
+						<p style="margin-left: 55px; margin-top: 20px;">{{>listaUnidadTwo}}</p>
+					</td>
+					<td>
+					<p class="costo" style="margin-left: 55px;">S/. {{pcosto}}</p>
+					</td>
+					<td>
+						<p style="margin-left: 55px; margin-top: 20px;"><input type="number" name="cantidad" step="0.10" style="width: 110px; border-bottom: 2.5px solid #5E4AD7;" min="1"></p>
+					</td>
+					<td>
+						<p style="margin-left: 55px; margin-top: 20px; min-width: 70px;">
+							<button class="agregar" id="boton-login">Agregar</button>
+						</p>
+					</td>
+				</tr>
+			{{/EasySearch.Each}}
+
+
+			{{#EasySearch.IfSearching index=productosIndex}}
+ 					<div class="loading">
+  						{{>loader}}
+  					</div>
+			{{/EasySearch.IfSearching}}
+
+  				{{#EasySearch.IfNoResults index=productosIndex}}
+  					<div class="bienvenido">
+				<img src="/presentacion.png" alt="Bienvenido" galleryimg="no">
+				<div class="bienvenido-instrucciones">	
+					{{#with nombres}}
+					<h1>{{profile.nombre}}, No encontre resultados</h1>
+					{{/with}}
+					<blockquote>
+  						<p><em>Una cosa terrible acerca de la búsqueda de la verdad es que se la encuentre.</em></p>
+					</blockquote>
+				</div>
+			</div>
+				{{/EasySearch.IfNoResults}}
+		</tbody>
+	</table>
+	{{else}}
+			<div class="loading" style="width: 150px;">
+  					{{>loaderDos}}
+  			</div>
+	{{/if}}
+</template>
+
+<template name="listaMermaItem">
+	<table   style="margin-bottom: -2px;">
+		<thead>
+			<tr>
+				<th><p style="margin-left: 3px; color: #606C76">CÓDIGO</p></th>
+				<th><p style="margin-left: 3px; color: #606C76">PRODUCTO</p></th>
+				<th><p style="margin-left: 3px; color: #606C76">COSTO (S/.)</p></th>
+				<th><p style="margin-left: 3px; color: #606C76">CANTIDAD</p></th>
+				<th><p style="margin-left: 3px; color: #606C76">IMPORTE (S/.)</p></th>
+				<th><p style="margin-left: 3px; color: #606C76">ELIMINAR</p></th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each items}}
+				<tr class="tabla-hover">
+					<td><p class="codigo" style="margin-left: 50px;">{{codigo}}</p></td>
+					<td><p class="codigo" style="margin-left: 100px;">{{producto}}</p></td>
+					<td><p class="codigo" style="margin-left: 100px;">{{pcosto}}</p></td>
+					<td><p class="codigo" style="margin-left: 100px;">{{cantidad}}</p></td>
+					<td><p class="codigo" style="margin-left: 100px;">S/. {{importe}}</p></td>
+					<td>
+						<button class="eliminar" id="boton-login">Eliminar</button>
+					</td>
+				</tr>
+			{{/each}}
+		</tbody>
+		<tfoot class="full-width">
+    		<tr>
+    			{{#each merma}}
+      			<th style="color: #606C76; padding-left: 30px;"><strong>TOTAL (S/.) :</strong> {{total}}</th>
+      			{{/each}}
+      			<th></th>
+      			<th></th>	
+      			<th></th>
+      			<th></th>
+      			<th></th>		
+    		</tr>
+  		</tfoot>
+	</table>
+</template>

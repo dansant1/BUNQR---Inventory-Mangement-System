@@ -1,0 +1,242 @@
+<template name="ListaDeUsuarios">
+	<table>
+		<thead>
+			<tr>
+				<th ><p style="margin-left: 3px; color: #606C76">NOMBRE</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">APELLIDO</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">EMAIL</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">DESDE</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">CANCELAR</p></th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each usuarios}}
+				<tr class="tabla-hover">
+					<td>
+					<p class="codigo" style="margin-left: 50px;">{{nombre}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{apellido}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{email}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{fecha}}</p>
+					</td>
+					<td>
+						<button class="cambiar" id="boton-login">Cancelar</button>
+					</td>
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</template>
+
+<template name="ListaDeUsuariosCancelados">
+	<table>
+		<thead>
+			<tr>
+				<th ><p style="margin-left: 3px; color: #606C76">NOMBRE</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">APELLIDO</p></th>
+				
+				<th ><p style="margin-left: 3px; color: #606C76">DESDE</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">AGREGAR</p></th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each usuarios}}
+				<tr class="tabla-hover">
+					<td>
+					<p class="codigo" style="margin-left: 50px;">{{nombre}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{apellido}}</p>
+					</td>
+					
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{fecha}}</p>
+					</td>
+					<td>
+						<button class="cambiar" id="boton-login">Agregar</button>
+					</td>
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</template>
+
+
+<template name="ListaDeReferidos">
+	<table>
+		<thead>
+			<tr>
+				<th ><p style="margin-left: 3px; color: #606C76">NOMBRE</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">APELLIDO</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">EMAIL</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">DESDE</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">CANCELAR</p></th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each referidos}}
+				<tr class="tabla-hover">
+					<td>
+					<p class="codigo" style="margin-left: 50px;">{{nombre}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{apellido}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{email}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{fecha}}</p>
+					</td>
+					<td>
+						<button class="cambiar" id="boton-login">Cancelar</button>
+					</td>
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</template>
+
+
+<template name="ListaDeReferidosCancelados">
+	<table>
+		<thead>
+			<tr>
+				<th ><p style="margin-left: 3px; color: #606C76">NOMBRE</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">APELLIDO</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">EMAIL</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">DESDE</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">AGREGAR</p></th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each cancelados}}
+				<tr class="tabla-hover">
+					<td>
+					<p class="codigo" style="margin-left: 50px;">{{nombre}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{apellido}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{email}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{fecha}}</p>
+					</td>
+					<td>
+						<button class="cambiar" id="boton-login">AGREGAR</button>
+					</td>
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</template>
+
+
+<template name="ListaDeDistribuidores">
+	<table>
+		<thead>
+			<tr>
+				<th ><p style="margin-left: 3px; color: #606C76">NOMBRE</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">APELLIDO</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">EMAIL</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">DESDE</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">AGREGAR</p></th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each distribuidores}}
+				<tr class="tabla-hover">
+					<td>
+					<p class="codigo" style="margin-left: 50px;">{{nombre}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{apellido}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{email}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{fecha}}</p>
+					</td>
+					<td>
+						<button class="cambiar" id="boton-login">DETALLES</button>
+					</td>
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</template>
+
+
+<template name="ListaDeClientesDeUnDistribuidor">
+	<table>
+		<thead>
+			<tr>
+				<th ><p style="margin-left: 3px; color: #606C76">NOMBRE</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">APELLIDO</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">EMAIL</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">DESDE</p></th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			{{#each clientes}}
+				<tr class="tabla-hover">
+					<td>
+					<p class="codigo" style="margin-left: 50px;">{{nombre}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{apellido}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{email}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{fecha}}</p>
+					</td>
+					
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</template>
+
+<template name="ListaDeClientesDeUnDistribuidorCancelado">
+	<table>
+		<thead>
+			<tr>
+				<th ><p style="margin-left: 3px; color: #606C76">NOMBRE</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">APELLIDO</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">EMAIL</p></th>
+				<th ><p style="margin-left: 3px; color: #606C76">DESDE</p></th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			{{#each clientes}}
+				<tr class="tabla-hover">
+					<td>
+					<p class="codigo" style="margin-left: 50px;">{{nombre}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{apellido}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{email}}</p>
+					</td>
+					<td>
+					<p class="codigo" style="margin-left: 45px;">{{fecha}}</p>
+					</td>
+					
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</template>

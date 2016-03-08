@@ -1,0 +1,1 @@
+ClientesDistribuidores = new Mongo.Collection('clientesdistribuidores');
