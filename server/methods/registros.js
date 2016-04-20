@@ -275,7 +275,8 @@ Meteor.methods({
 				valor: datos.valor,
 				valorCosto: datos.valorCosto,
 				valorUtilidad: datos.valorUtilidad,
-				userId: userId
+				userId: userId,
+				medida: datos.medida
 			});
 
 			CargaItem.update({_id: cargaItemId}, {$set: {
@@ -449,8 +450,8 @@ Meteor.methods({
 
 		if (userId) {
 
-			datos.cantidad = parseInt(datos.cantidad);
-			//datos.cantidad.toFixed(2);
+			datos.cantidad = parseFloat(datos.cantidad);
+			datos.cantidad.toFixed(3);
 
 			//var producto = Productos.findOne({_id: datos.productoId});
 			
@@ -916,7 +917,8 @@ Meteor.methods({
 		if (this.userId) {
 			
 			datos.pcosto 	= parseFloat(datos.pcosto);
-			datos.cantidad 	= parseInt(datos.cantidad);
+			datos.cantidad 	= parseFloat(datos.cantidad);
+			datos.cantidad.toFixed(3);
 			datos.importe 	= datos.pcosto * datos.cantidad;
 			datos.importe.toFixed(2);
 			
@@ -931,6 +933,7 @@ Meteor.methods({
 			let MermasItemId = MermasItem.insert(datos);
 
 			var cantidad = datos.cantidad * -1;
+			cantidad.toFixed(2);
 
 			Productos.update({_id: datos.productoId}, {
 				$inc: {

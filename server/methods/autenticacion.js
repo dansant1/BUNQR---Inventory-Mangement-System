@@ -13,6 +13,9 @@ Meteor.methods({
 
 		let userId = Accounts.createUser(opciones);
 
+		// Acutalizacion
+		Accounts.sendVerificationEmail( userId );
+
 		ClientesDistribuidores.insert({
 			nombre: opciones.profile.nombre,
 			apellido: opciones.profile.apellido,

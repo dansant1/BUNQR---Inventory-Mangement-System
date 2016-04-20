@@ -139,7 +139,8 @@ Template.ListaDeProductos.events({
 			pventa: this.pventa,
 			pcosto: this.pcosto,
 			nombre: this.nombre,
-			codigo: this.codigo
+			codigo: this.codigo,
+			medida: this.medida
 		};
 
 		console.log(datos.productoId);
@@ -150,14 +151,7 @@ Template.ListaDeProductos.events({
       			val.value = "";
       		} 
 		});
-		// Medidas
-		$('tr>td>p>#unidad').each(function(key,val){
-      		 
-      		if (val.value !== "opcion") {
-      			datos.medida = val.value;
-      			val.value = "opcion"	
-      		} 
-		});
+		
 
 		// Fin de medidas
 		

@@ -859,7 +859,7 @@ Template.listaMermas.onCreated(function () {
 
 Template.listaMermas.helpers({
 	item: function () {
-		return Mermas.find({});
+		return Mermas.find({}, {sort: {createdAt: -1}});
 	},
 	fechaSalida: function () {
 		let meses = [

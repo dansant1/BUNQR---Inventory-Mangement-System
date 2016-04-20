@@ -5,8 +5,33 @@
 			{{>topbar}}
 		</div>
 		<div class="contenido">
-			{{>menuPrincipal}}
-			{{>Template.dynamic template=content}}
+			
+
+			{{#unless currentUser.emails.[0].verified}}
+				{{>menuPrincipal}}
+   		 		<div class="contenedor-negocios">
+					<div class="set-lista-negocios">
+						<div class="negocio">
+							<span class="negocio-item" style="text-align: center;">Verifica tu email
+							</span>
+						</div>	
+					</div>
+				</div>
+				<div class="cuadro-main">
+					<div class="bienvenido">
+						<img src="/presentacion.png" alt="Bienvenido" galleryimg="no">
+						<div class="bienvenido-instrucciones">
+						<blockquote>
+  						<p><em>De vez en cuando aparece un producto revolucionario que lo cambia todo. Uno es muy afortunado si puede trabajar en sólo uno de estos en su carrera. <strong>Steve Jobs.</strong></em></p>
+						</blockquote>
+						<button id="boton-login">Verifica tu email</button>
+						</div>
+					</div>
+				</div>
+  			{{else}}
+    			{{>menuPrincipal}}
+				{{>Template.dynamic template=content}}
+  			{{/unless}}
 		</div>
 
 		{{else}}

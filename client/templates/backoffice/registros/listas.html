@@ -385,14 +385,14 @@
 		<table>
   			<thead>
     			<tr>
-     		 		<th><p style="margin-left: 9px; color: #606C76">CODIGÓ</p></th>
-      				<th><p style="margin-left: 9px; color: #606C76">NOMBRE</p></th>
-      				<th><p style="margin-left: 9px; color: #606C76">STOCK</p></th>
-      				<th><p style="margin-left: 9px; color: #606C76">COSTO (S/.)</p></th>
-      				<th><p style="margin-left: 9px; color: #606C76">P. VENTA (S/.)</p></th>
-      				<th><p style="margin-left: 9px; color: #606C76">VALOR (S/.)</p></th>
-      				<th><p style="margin-left: 9px; color: #606C76">UTILIDAD (S/.)</p></th>
-      				<th><p style="margin-left: 9px; color: #606C76">TOTAL (S/.)</p></th>
+     		 		<th><p style="text-align: center; color: #606C76">CODIGÓ</p></th>
+      				<th><p style="text-align: center; color: #606C76">NOMBRE</p></th>
+      				<th><p style="text-align: center; color: #606C76">STOCK</p></th>
+      				<th><p style="text-align: center; color: #606C76">COSTO (S/.)</p></th>
+      				<th><p style="text-align: center; color: #606C76">P. VENTA (S/.)</p></th>
+      				<th><p style="text-align: center; color: #606C76">VALOR (S/.)</p></th>
+      				<th><p style="text-align: center; color: #606C76">UTILIDAD (S/.)</p></th>
+      				<th><p style="text-align: center; color: #606C76">TOTAL (S/.)</p></th>
     			</tr>
   			</thead>
   			<tbody >
@@ -400,14 +400,18 @@
   				{{#EasySearch.Each index=productosIndex }}
   					
 					<tr class="tabla-hover">
-						<td><p style="margin-left: 20px;">{{codigo}}</p></td>
-						<td><p style="margin-left: 20px;">{{nombre}}</p></td>
-						<td><p style="margin-left: 20px;">{{stock}}</p></td>
-						<td><p style="margin-left: 20px;">S/. {{pcosto}}</p></td>
-						<td><p style="margin-left: 20px;">S/. {{pventa}}</p></td>
-						<td><p style="margin-left: 20px;">S/. {{Valor}}</p></td>
-						<td><p style="margin-left: 20px;">S/. {{Utilidad}}</p></td>
-						<td><p style="margin-left: 20px;">S/. {{Costo}}</p></td>
+						<td><p style="text-align: center;">{{codigo}}</p></td>
+						<td><p style="text-align: center;">{{nombre}}</p></td>
+						<td><p style="text-align: center;">{{stock}}</p></td>
+						<td><p style="text-align: center;">S/. {{pcosto}}</p></td>
+						<td><p style="text-align: center;">S/. {{pventa}}</p></td>
+						<td><p style="text-align: center;">S/. {{Valor}}</p></td>
+						<td>
+							<p style="text-align: center;">S/. {{Utilidad}}</p>
+						</td>
+						<td>
+							<p style="text-align: center;">S/. {{Costo}}</p>
+						</td>
 					</tr>
 			
   				{{/EasySearch.Each}}

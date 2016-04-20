@@ -1,0 +1,1 @@
+Suscripcion = new SubsManager();

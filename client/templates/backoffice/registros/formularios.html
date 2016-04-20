@@ -74,8 +74,8 @@
 	<div class="container">
 		<div class="row" style="margin-top: 40px;">
 			<div class="column">
-				<label style="color: white;">Nombre de la presentacion</label>
-    			<input type="text" placeholder="Nombre" name="nombre">
+				<label style="color: white;">Nombre de medida</label>
+    			<input type="text" placeholder="Ejemplo: kg, g, docena, etc." name="nombre">
 			</div>		
 		</div>
 		<div class="row">
@@ -253,7 +253,7 @@
 		<div class="row" style="margin-top: 40px;">
 			<div class="column">
 			<label style="color: white;">Descripción</label>
-    		<input type="text" placeholder="Descripción" name="descripcion">
+    		<input type="text" placeholder="Ejemplo: Visa, Mastercard, etc." name="descripcion">
     		<label style="color: white;">Periodo</label>
     			<select id="periodo">
       								<option value="Dia">Día</option>
@@ -430,7 +430,7 @@
 							<div class="column">
 								<label>Cantidad</label>
 								<input type="number" step="0.10" min="0" name="cantidad">
-								<label>Medidad</label>
+								<label>Medida</label>
     							{{>listaUnidadTwo}}
     							
 							</div>	
@@ -892,7 +892,7 @@
 					<p class="nombre" style="margin-left: 55px;">{{nombre}}</p>
 					</td>
 					<td>
-						<p style="margin-left: 55px; margin-top: 20px;">{{>listaUnidadTwo}}</p>
+						<p style="margin-left: 55px; ">{{medida}}</p>
 					</td>
 					<td>
 					<p class="costo" style="margin-left: 55px;">S/. {{pcosto}}</p>
@@ -941,24 +941,28 @@
 	<table   style="margin-bottom: -2px;">
 		<thead>
 			<tr>
-				<th><p style="margin-left: 3px; color: #606C76">CÓDIGO</p></th>
-				<th><p style="margin-left: 3px; color: #606C76">PRODUCTO</p></th>
-				<th><p style="margin-left: 3px; color: #606C76">COSTO (S/.)</p></th>
-				<th><p style="margin-left: 3px; color: #606C76">CANTIDAD</p></th>
-				<th><p style="margin-left: 3px; color: #606C76">IMPORTE (S/.)</p></th>
-				<th><p style="margin-left: 3px; color: #606C76">ELIMINAR</p></th>
+				<th><p style=" color: #606C76; text-align: center;">CÓDIGO</p></th>
+				<th><p style="color: #606C76; text-align: center;">PRODUCTO</p></th>
+				<th><p style="color: #606C76; text-align: center;">MEDIDA</p></th>
+				<th><p style="color: #606C76; text-align: center;">COSTO (S/.)</p></th>
+				<th><p style="color: #606C76; text-align: center;">CANTIDAD</p></th>
+				<th><p style="color: #606C76; text-align: center;">IMPORTE (S/.)</p></th>
+				<th><p style="color: #606C76; text-align: center;">ELIMINAR</p></th>
 			</tr>
 		</thead>
 		<tbody>
 			{{#each items}}
 				<tr class="tabla-hover">
-					<td><p class="codigo" style="margin-left: 50px;">{{codigo}}</p></td>
-					<td><p class="codigo" style="margin-left: 100px;">{{producto}}</p></td>
-					<td><p class="codigo" style="margin-left: 100px;">{{pcosto}}</p></td>
-					<td><p class="codigo" style="margin-left: 100px;">{{cantidad}}</p></td>
-					<td><p class="codigo" style="margin-left: 100px;">S/. {{importe}}</p></td>
+					<td><p  style="text-align: center;">{{codigo}}</p></td>
+					<td><p  style="text-align: center;">{{producto}}</p></td>
+					<td><p  style="text-align: center;" >{{medida}}</p></td>
+					<td><p  style="text-align: center;">S/. {{pcosto}}</p></td>
+					<td><p  style="text-align: center;">{{cantidad}}</p></td>
+					<td><p  style="text-align: center;">S/. {{importe}}</p></td>
 					<td>
-						<button class="eliminar" id="boton-login">Eliminar</button>
+						<p style="text-align: center;">
+							<button class="eliminar" id="boton-login">Eliminar</button>
+						</p>
 					</td>
 				</tr>
 			{{/each}}

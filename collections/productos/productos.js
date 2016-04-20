@@ -69,7 +69,8 @@ ProductosSchema = new SimpleSchema({
 	},
 	stock: {
 		type: Number,
-		optional: true
+		optional: true,
+		decimal: true
 	},
 	utilidad: {
 		type: Number,
@@ -93,6 +94,9 @@ ProductosSchema = new SimpleSchema({
 		decimal: true
 	},
 	userId: {
+		type: String
+	},
+	medida: {
 		type: String
 	}
 });

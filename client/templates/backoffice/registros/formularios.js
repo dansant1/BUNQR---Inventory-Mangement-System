@@ -409,11 +409,12 @@ Template.FormularioCargaMasiva.events({
       var datos = {
          codigo: template.find( '[name="codigo"]' ).value,
          nombre: template.find( '[name="nombre"]' ).value,
-         medida: $('#unidades>option:selected').text(),
+         medida: $('#unidad>option:selected').text(),
          almacen: $('#almacen>option:selected').val(),
          pcosto: template.find( '[name="pcosto"]' ).value,
          pventa: template.find( '[name="pventa"]' ).value
       };
+
 
       datos.reporteId = FlowRouter.getParam('reporteid');
 
@@ -759,7 +760,8 @@ Template.ListaProductosMerma.events({
          codigo: this.codigo,
          producto: this.nombre,
          pventa: this.pventa,
-         utilidad: this.utilidad
+         utilidad: this.utilidad,
+         medida: this.medida
       };
 
       $('input[name="cantidad"]').each(function(key,val){
@@ -770,15 +772,15 @@ Template.ListaProductosMerma.events({
       });
 
       // Medidas
-      $('tr>td>p>#unidad').each(function(key,val){
+      /*$('tr>td>p>#unidad').each(function(key,val){
              
             if (val.value !== "opcion") {
                datos.medida = val.value;
                val.value = "opcion" 
             } 
-      });
+      });*/
 
-    console.log(datos.medida);
+    //console.log(datos.medida);
       // Fin de medidas
       
       datos.mermaId     = FlowRouter.getParam('mermaid');
