@@ -183,6 +183,12 @@ Template.ListaCargaItem.helpers({
 	},
 	carga: function () {
 		return Cargas.find();
+	},
+	importereal: function () {
+		return this.importe.toFixed(1);
+	},
+	totalreal: function () {
+		return this.total.toFixed(2);
 	}
 });
 

@@ -80,6 +80,9 @@ Template.registrosProductos.onCreated(function () {
 Template.registrosProductos.helpers({
 	item: function () {
 		return Productos.find({}, {sort: {createdAt: -1}});
+	},
+	utilidadReal() {
+		return this.utilidad.toFixed(1);
 	}
 });
 
@@ -566,7 +569,10 @@ Template.Almacen.helpers({
                 revenues.map( ( revenue ) => total += revenue.total );
             }
 
-            return  total.toLocaleString();
+
+
+            //return  total.toLocaleString();
+            return total.toFixed(1);
 	},
 	utilidadTotal: function () {
 		let revenues = Template.instance().utilidadTotal.get(),
@@ -576,7 +582,8 @@ Template.Almacen.helpers({
                 revenues.map( ( revenue ) => total += revenue.total );
             }
 
-            return  total.toLocaleString();
+            //return  total.toLocaleString();
+			return total.toFixed(1);
 	},
 	cantidad: function () {
 		let revenues = Template.instance().utilidadTotal.get(),
@@ -596,7 +603,8 @@ Template.Almacen.helpers({
                 revenues.map( ( revenue ) => total += revenue.total );
             }
 
-            return  total.toLocaleString();
+            //return  total.toLocaleString();
+            return total.toFixed(1);
 	},
 	productosIndex: function () {
 		
@@ -610,15 +618,18 @@ Template.Almacen.helpers({
 		}
 	},
 	Valor: function () {
-		let valor = this.valor.toLocaleString();
+		//let valor = this.valor.toLocaleString();
+		let valor = this.valor.toFixed(1);
 		return valor;
 	},
 	Utilidad: function () {
-		let utilidad = this.valorUtilidad.toLocaleString();
+		//let utilidad = this.valorUtilidad.toLocaleString();
+		let utilidad = this.valorUtilidad.toFixed(1);
 		return utilidad;
 	},
 	Costo: function () {
-		let costo = this.valorCosto.toLocaleString();
+		//let costo = this.valorCosto.toLocaleString();
+		let costo = this.valorCosto.toFixed(1);
 		return costo;
 	},
 	nombres: function () {
@@ -754,6 +765,9 @@ Template.listaCargasMasivo.helpers({
 		let anio = fecha.getFullYear();
 
 		return dia + ' de ' + meses[mes] + ' de ' + anio;
+	},
+	totalreal() {
+		return this.total.toFixed(1);
 	}
 });
 
@@ -815,6 +829,15 @@ Template.detalleCarga.onCreated(function () {
   	});
 });
 
+Template.detalleCarga.events({
+	'click .lista': function () {
+		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/ingresos/masivo');
+	},
+	'click .ingreso-stock': function () {
+		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/almacenes');	
+	}
+});
+
 Template.detalleCarga.helpers({
 	carga: function () {
 		let cargaId = FlowRouter.getParam('cargaid');
@@ -842,6 +865,33 @@ Template.detalleCarga.helpers({
 	cargaitem: function () {
 		let cargaId = FlowRouter.getParam('cargaid');
 		return CargaItem.find({cargaId: cargaId});
+	},
+	totalreal() {
+		return this.total.toFixed(1);
+	},
+	importereal() {
+		return this.importe.toFixed(1);
+	},
+	valorUtilidadreal() {
+		return this.valorUtilidad.toFixed(1);
+	},
+	utilidadtotal() {
+		var utilidad = 0;
+		CargaItem.find().forEach(function (index) {
+			utilidad = utilidad + index.valorUtilidad;
+		});
+		
+		return utilidad.toFixed(1);
+	},
+	valorreal() {
+		return this.valor.toFixed(1);
+	},
+	hayProveedor() {
+		if (this.proveedor === "Sin proveedores registrados") {
+			return false;
+		} else {
+			return true;
+		}
 	}
 });
 
@@ -1063,6 +1113,12 @@ Template.listaVentaItem.helpers({
 	},
 	venta: function () {
 		return Ventas.find();
+	},
+	importeReal() {
+		return this.importe.toFixed(1);
+	},
+	totalReal() {
+		return this.total.toFixed(1);
 	}
 });
 

@@ -610,18 +610,7 @@
 								<button class="ver" id="boton-login">Ver</button>
 							</td>
 						</tr>
-					{{else}}
-						<div class="bienvenido">
-							<img src="/presentacion.png" alt="Bienvenido" galleryimg="no">
-							<div class="bienvenido-instrucciones">	
-							{{#with nombre}}
-							<h1>{{profile.nombre}}, No encontre resultados</h1>
-							{{/with}}
-							<blockquote>
-  								<p><em>Una cosa terrible acerca de la búsqueda de la verdad es que se la encuentre.</em></p>
-							</blockquote>
-							</div>
-						</div>
+					
 					{{/each}}
 				</tbody>
 			</table>
@@ -767,19 +756,7 @@
   					</div>
 			{{/EasySearch.IfSearching}}
 
-			{{#EasySearch.IfNoResults index=productosIndex}}
-  					<div class="bienvenido">
-				<img src="/presentacion.png" alt="Bienvenido" galleryimg="no">
-				<div class="bienvenido-instrucciones">	
-					
-					<h1>No encontre resultados</h1>
-					
-					<blockquote>
-  						<p><em>Una cosa terrible acerca de la búsqueda de la verdad es que se la encuentre.</em></p>
-					</blockquote>
-				</div>
-			</div>
-				{{/EasySearch.IfNoResults}}
+			
 		</tbody>
 	</table>
 	{{else}}
@@ -810,7 +787,7 @@
 						<td><p style="text-align: center;">S/. {{pventa}}</p></td>
 						<td><p style="text-align: center;">S/. {{descuento}}</p></td>
 						<td><p style="text-align: center;">{{cantidad}}</p></td>
-						<td><p style="text-align: center;">S/. {{importe}}</p></td>
+						<td><p style="text-align: center;">S/. {{importeReal}}</p></td>
 						<td>
 							<p>
 								<button class="eliminar" id="boton-login">Eliminar</button>
@@ -822,11 +799,11 @@
 				<tfoot class="full-width">
     				<tr>
     				{{#each venta}}
-						<th style="color: #606C76; padding-left: 27px;"><strong>TOTAL (S/.) : </strong>{{total}} 
+						<th style="color: #606C76; padding-left: 27px;"><strong>TOTAL (S/.)  </strong>: {{totalReal}} 
       					</th>
       				{{else}}
       					<th style="color: #606C76;">
-      						<strong>TOTAL (S/.):</strong>S/. 0
+      						<strong>TOTAL (S/.)</strong>: S/. 0
       					</th>
     				{{/each}}
 
@@ -1241,7 +1218,7 @@
 							<td style="padding-bottom: 0px;"><p style="text-align: center;">{{almacen}}</p></td>
 							<td style="padding-bottom: 0px;"><p style="text-align: center;">{{proveedor}}</p></td>
 							<td style="padding-bottom: 0px;"><p style="text-align: center;">{{formaPago}}</p></td>
-							<td style="padding-bottom: 0px;"><p style="text-align: center;">S/. {{total}}</p></td>
+							<td style="padding-bottom: 0px;"><p style="text-align: center;">S/. {{totalreal}}</p></td>
 							<td style="padding-bottom: 0px;">
 								<p style="text-align: center;">
 									<button class="ver" id="boton-login">Ver</button>
@@ -1294,10 +1271,10 @@
 		</div>
 		<div class="cuadro-reporte">
 			{{#each carga}}
-				<div class="cuadro-total" style="width: 250px;">
+				<div class="cuadro-total" style="width: 250px; margin-left: 29px; margin-right: 12px;">
 					<div class="line"></div>
 					<div class="valor-total">
-						<p>S/. {{total}}</p>
+						<p>S/. {{totalreal}}</p>
 						<div class="texto">MONTO TOTAL</div>
 					</div>
 				</div>
@@ -1315,6 +1292,8 @@
 							FECHA
 						</div>
 					</div>
+					
+					{{#if hayProveedor}}
 					<div class="dato-line"></div>
 					<div class="valor-dato">
 						<p style="color: white;">{{proveedor}}</p>
@@ -1322,11 +1301,12 @@
 							PROVEEDOR
 						</div>
 					</div>
+					{{/if}}
 					<div class="dato-line"></div>
 					<div class="valor-dato">
-						<p style="color: white;">{{formaPago}}</p>
-						<div class="dato-texto">
-							F. PAGO
+						<p style="color: white; font-size: 18px;">S/. {{utilidadtotal}}</p>
+						<div class="dato-texto" style="text-transform: uppercase;">
+							Utilidad total
 						</div>
 					</div>
 				</div>
@@ -1349,14 +1329,13 @@
 						<tr class="tabla-hover">
 							<td><p style="margin-bottom: 6px; text-align: center;">{{codigo}}</p></td>
 							<td><p style="margin-bottom: 6px; text-align: center;">{{nombre}}</p></td>
-							<td><p style="margin-bottom: 6px; text-align: center;">{{cantidad}}</p></td>
+							<td><p style="margin-bottom: 6px; text-align: center;">{{cantidad}} {{medida}}</p></td>
 							<td><p style="margin-bottom: 6px; text-align: center;">S/. {{pcosto}}</p></td>
-							<td><p style="margin-bottom: 6px; text-align: center;">S/. {{importe}}</p></td>
-							<td><p style="margin-bottom: 6px; text-align: center;">S/. {{valorUtilidad}}</p></td>
-							<td><p style="margin-bottom: 6px; text-align: center;">S/. {{valor}}</p></td>
+							<td><p style="margin-bottom: 6px; text-align: center;">S/. {{importereal}}</p></td>
+							<td><p style="margin-bottom: 6px; text-align: center;">S/. {{valorUtilidadreal}}</p></td>
+							<td><p style="margin-bottom: 6px; text-align: center;">S/. {{valorreal}}</p></td>
 						</tr>
-						{{else}}
-							<tr>Sin ingresos...</tr>
+						
 						{{/each}}
 					</tbody>
 				</table>
@@ -1381,7 +1360,7 @@
 							<td style="padding-bottom: 0;"><p style="text-align: center;">{{nombre}}</p></td>
 							<td style="padding-bottom: 0;"><p style="text-align: center;">S/. {{pcosto}}</p></td>
 							<td style="padding-bottom: 0;"><p style="text-align: center;">S/. {{pventa}}</p></td>
-							<td style="padding-bottom: 0;"><p style="text-align: center;">S/. {{utilidad}}</p></td>
+							<td style="padding-bottom: 0;"><p style="text-align: center;">S/. {{utilidadReal}}</p></td>
 							
 						</tr>
 					{{/each}}

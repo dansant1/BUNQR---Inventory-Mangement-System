@@ -931,14 +931,13 @@ div.opcion-main:hover {
 	width: 375px;
 	height: 150px;
 	margin-top: 50px;
-	margin-left: 60px;
+	margin-left: 19px;
 	
 	background-color: #20272F;
 }
 
 .cuadro-valores	{
-	max-width: 650px;
-	min-width: 100px;
+	
 	width: 650px;
 	height: 150px;
 	margin-top: 50px;

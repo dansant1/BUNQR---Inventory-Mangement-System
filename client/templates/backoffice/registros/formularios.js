@@ -608,6 +608,9 @@ Template.registrarCompra.events({
             FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/ingresos/compras');
          }
       });
+   },
+   'click .lista-compras': function () {
+      FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/ingresos/compras');
    }
 });
 
@@ -843,6 +846,12 @@ Template.listaMermaItem.helpers({
    },
    merma: function () {
       return Mermas.find();
+   },
+   totalreal() {
+      return this.total.toFixed(1);
+   },
+   importeReal() {
+      return this.importe.toFixed(1);
    }
 });
 

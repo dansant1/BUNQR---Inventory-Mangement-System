@@ -22,35 +22,40 @@ Template.reporteDiario.helpers({
 		if (this.valorMerma === undefined) {
 			return 0;
 		} else {
-			return this.valorMerma.toLocaleString();
+			//return this.valorMerma.toLocaleString();
+			return this.valorMerma.toFixed(1);
 		}
 	},
 	venta: function () {
 		if (this.valorVenta === undefined) {
 			return 0;
 		} else {
-			return this.valorVenta.toLocaleString();
+			//return this.valorVenta.toLocaleString();
+			return this.valorVenta.toFixed(1);
 		}
 	},
 	costo: function () {
 		if (this.valorCosto === undefined) {
 			return 0;
 		} else {
-			return this.valorCosto.toLocaleString();
+			//return this.valorCosto.toLocaleString();
+			return this.valorCosto.toFixed(1);
 		}
 	},
 	utilidad: function () {
 		if (this.valorutilidadVenta === undefined) {
 			return 0;
 		} else {
-			return this.valorutilidadVenta.toLocaleString();
+			//return this.valorutilidadVenta.toLocaleString();
+			return this.valorutilidadVenta.toFixed(1);
 		}
 	},
 	compra: function () {
 		if (this.valorCompras === undefined) {
 			return 0;
 		} else {
-			return this.valorCompras.toLocaleString();
+			//return this.valorCompras.toLocaleString();
+			return this.valorCompras.toFixed(1);
 		}	
 	}
 });
@@ -72,35 +77,40 @@ Template.reportes.helpers({
 		if (this.valorMerma === undefined) {
 			return 0;
 		} else {
-			return this.valorMerma.toLocaleString();
+			//return this.valorMerma.toLocaleString();
+			return this.valorMerma.toFixed(1);
 		}
 	},
 	venta: function () {
 		if (this.valorVenta === undefined) {
 			return 0;
 		} else {
-			return this.valorVenta.toLocaleString();
+			//return this.valorVenta.toLocaleString();
+			return this.valorVenta.toFixed(1);
 		}
 	},
 	costo: function () {
 		if (this.valorCosto === undefined) {
 			return 0;
 		} else {
-			return this.valorCosto.toLocaleString();
+			//return this.valorCosto.toLocaleString();
+			return this.valorCosto.toFixed(1);
 		}
 	},
 	utilidad: function () {
 		if (this.valorutilidadTotal === undefined) {
 			return 0;
 		} else {
-			return this.valorutilidadTotal.toLocaleString();
+			//return this.valorutilidadTotal.toLocaleString();
+			return this.valorutilidadTotal.toFixed(1);
 		}
 	},
 	compra: function () {
 		if (this.valorCompras === undefined) {
 			return 0;
 		} else {
-			return this.valorCompras.toLocaleString();
+			//return this.valorCompras.toLocaleString();
+			return this.valorCompras.toFixed(1);
 		}	
 	}
 });

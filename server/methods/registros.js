@@ -225,26 +225,27 @@ Meteor.methods({
 				datos.almacen = false;
 			}
 
-			datos.pcosto = parseFloat(datos.pcosto);
-			datos.pcosto.toFixed(2);
-			datos.pventa = parseFloat(datos.pventa);
-			datos.pventa.toFixed(2);
-			cantidad = parseInt(cantidad);
-			var importe = datos.pcosto * cantidad;
+			//datos.pcosto = parseFloat(datos.pcosto);
+			//datos.pcosto.toFixed(1);
+			//datos.pventa = parseFloat(datos.pventa);
+			//datos.pventa.toFixed(1);
+			//cantidad = parseFloat(cantidad);
+			//cantidad.toFixed(2);
 			datos.createdAt = new Date;
-			importe.toFixed(2);
+			var importe = datos.pcosto * cantidad;
+			importe.toFixed(1);
 
 			datos.utilidad = datos.pventa - datos.pcosto;
-			datos.utilidad.toFixed(2);
+			datos.utilidad.toFixed(1);
 
 			datos.valorCosto = datos.pcosto * cantidad;
-			datos.valorCosto.toFixed(2);
+			datos.valorCosto.toFixed(1);
 
 			datos.valorUtilidad = datos.utilidad * cantidad;
-			datos.valorUtilidad.toFixed(2);
+			datos.valorUtilidad.toFixed(1);
 
 			datos.valor = datos.pventa * cantidad;
-			datos.valor.toFixed(2);
+			datos.valor.toFixed(1);
 
 			let utilidad =  (datos.utilidad * cantidad);
 
@@ -1064,7 +1065,7 @@ Meteor.methods({
 			datos.descuento = parseFloat(datos.descuento);
 
 			datos.pventa.toFixed(2);
-			datos.cantidad = parseInt(datos.cantidad);
+			//datos.cantidad = parseInt(datos.cantidad);
 			datos.importe = (datos.pventa - datos.descuento) * datos.cantidad;
 			datos.importe.toFixed(2);
 
@@ -1112,7 +1113,7 @@ Meteor.methods({
 			importe: Number,
 			itemId: String,
 			ventaId: String,
-			cantidad: Number,
+			cantidad: String,
 			productoId: String,
 			pcosto: Number,
 			utilidad: Number,
