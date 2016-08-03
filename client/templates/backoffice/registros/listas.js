@@ -1208,6 +1208,9 @@ Template.ListaVentas.helpers({
 		let anio = fecha.getFullYear();
 
 		return dia + ' de ' + meses[mes] + ' de ' + anio;
+	},
+	totalReal() {
+		return this.total.toFixed(1);
 	}
 });
 
@@ -1277,5 +1280,8 @@ Template.detalleVenta.helpers({
 	ventaitem: function () {
 		let ventaId = FlowRouter.getParam('ventaid');
 		return VentasItem.find({ventaId: ventaId});
+	},
+	totalReal() {
+		return this.total.toFixed(1);
 	}
 });
