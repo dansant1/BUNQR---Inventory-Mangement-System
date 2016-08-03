@@ -334,7 +334,7 @@ Meteor.methods({
 
 		if (this.userId) {
 			
-			datos.fecha = new Date(datos.fecha);
+			datos.fecha = new Date(datos.fecha + " GMT-0500");
 			
 			var cargaId = Cargas.update({_id: datos.cargaId}, {
 				$set: {
@@ -712,7 +712,7 @@ Meteor.methods({
 			console.log(cantidad)
 			datos.importe = costoProducto * cantidad; 
 			console.log(datos.importe);
-			datos.fecha = new Date(datos.fecha + 'T' + datos.hora + ':' + datos.minuto + '00');
+			datos.fecha = new Date(datos.fecha + 'T' + datos.hora + ':' + datos.minuto + ':00');
 			
 			let ingresoId = Ingresos.insert(datos);
 		} else {
@@ -734,7 +734,7 @@ Meteor.methods({
 
 		if (userId) {
 
-			datos.fecha = new Date(datos.fecha);
+			datos.fecha = new Date(datos.fecha + " GMT-0500");
 
 			let compraId = Compras.update({_id: datos.compraId}, {
 				$set: {
@@ -877,7 +877,7 @@ Meteor.methods({
 
 		if (userId) {
 
-			datos.fecha = new Date(datos.fecha);
+			datos.fecha = new Date(datos.fecha + " GMT-0500");
 
 
 			let mermaId = Mermas.update({_id: datos.mermaId}, {
@@ -1030,7 +1030,7 @@ Meteor.methods({
 
 		MermasItem.remove({mermaId: MermaId});
 		Mermas.remove({_id: MermaId});
-	},  // POS
+	},  
 	nuevaVenta: function (negocioId) {
 		check(negocioId, String);
 
@@ -1076,7 +1076,6 @@ Meteor.methods({
 
 			datos.valor = datos.pventa * datos.cantidad;
 			datos.valorCosto = datos.pcosto * datos.cantidad;
-			//datos.valorUtilidad = datos.utilidad * datos.cantidad;
 			datos.valorUtilidad = ( (datos.pventa - datos.descuento) * datos.cantidad ) - ( datos.pcosto * datos.cantidad )
 			Productos.update({_id: datos.productoId}, {
 				$inc: {

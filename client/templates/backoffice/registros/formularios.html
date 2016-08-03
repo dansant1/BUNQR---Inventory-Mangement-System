@@ -477,7 +477,7 @@
 
 	<div class="cuadro-main">
 		<div class="sub-menu">
-			<div class="stock">
+			<div class="stock ir-stock">
 				<p>Stock</p>
 			</div>
 			<div class="stock stock-elegido ingresar-carga">
@@ -826,7 +826,7 @@
 	<div class="cuadro-main">
 	
 		<div class="sub-menu">
-			<div class="stock">
+			<div class="stock ir-stock">
 				<p>Stock</p>
 			</div>
 			<div class="stock ingresar-carga">
@@ -844,7 +844,7 @@
       					<label>Fecha</label>
       					<input type="date" name="fecha">
       					<label >Descripción</label>
-      					<input type="text" name="descripcion" placeholder="Detalleme un poco más...">
+      					<input type="text" name="descripcion" placeholder="Descripción">
 						</div>
 					<div class="column">
     				<label>Proveedor</label>
@@ -915,19 +915,7 @@
   					</div>
 			{{/EasySearch.IfSearching}}
 
-  				{{#EasySearch.IfNoResults index=productosIndex}}
-  					<div class="bienvenido">
-				<img src="/presentacion.png" alt="Bienvenido" galleryimg="no">
-				<div class="bienvenido-instrucciones">	
-					{{#with nombres}}
-					<h1>{{profile.nombre}}, No encontre resultados</h1>
-					{{/with}}
-					<blockquote>
-  						<p><em>Una cosa terrible acerca de la búsqueda de la verdad es que se la encuentre.</em></p>
-					</blockquote>
-				</div>
-			</div>
-				{{/EasySearch.IfNoResults}}
+  				
 		</tbody>
 	</table>
 	{{else}}

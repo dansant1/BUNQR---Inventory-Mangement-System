@@ -486,7 +486,22 @@ Template.ingresoMasivo.events({
             FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/almacenes');
          }
       });
-   }
+   },
+   'click .ingresar-merma': function () {
+      let negocioId = FlowRouter.getParam('negocioid');
+      Meteor.call('crearMerma',  negocioId, function (error, result) {
+         if (error) {
+            console.log('Hubo un error');
+         } else {
+            var mermaId = result.mermaId
+            FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/merma/' +  mermaId + '/nuevo');
+         }
+      });
+   },
+   'click .ir-stock': function () {
+      FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/almacenes');
+   },
+
 });
 
 Template.FormularioCompraItem.events({
@@ -727,6 +742,21 @@ Template.registroMerma.events({
          } else {
             Bert.alert('Cancelaste el registro de merma', 'warning');  
             FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/salidas');
+         }
+      });
+   },
+   'click .ir-stock': function () {
+      FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/almacenes');
+   },
+    'click .ingresar-carga': function () {
+
+      Meteor.call('nuevoIngresoMasivo', function (err, result) {
+         if (err) {
+            console.log('Hubo un error');
+         } else {
+            var cargaId = result.cargaId;
+            FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/' + cargaId + '/ingresos/masivo/nuevo');
+            Bert.alert( 'Agregaste una carga nueva', 'success' ); 
          }
       });
    }

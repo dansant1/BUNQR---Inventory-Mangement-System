@@ -1,0 +1,8 @@
+{ 
+	"galaxy.meteor.com": 
+		{ "env": 
+			{ 	"ROOT_URL": "https://www.bunqr.pw", 
+				"MONGO_URL": "mongodb://danieldelgadilloh:developer24@aws-us-east-1-portal.14.dblayer.com:10566/bunqr-oficial?ssl=true" 
+			} 
+		}
+}

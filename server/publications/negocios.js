@@ -246,10 +246,6 @@ Meteor.publish('ventaTotal', function (ventaId) {
 Meteor.publish('ventasDelDia', function (negocioId) {
 	check(negocioId, String);
 
-	// Establecemos el inicio y fin del dia
-	
-	let inicio = moment().startOf('day'); ;
-	let final =  moment().endOf('day');
 
 	// Filtramos las ventas de hoy dia 
 	return Ventas.find({negocioId: negocioId, guardado: true});

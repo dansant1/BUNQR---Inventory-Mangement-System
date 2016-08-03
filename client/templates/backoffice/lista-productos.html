@@ -201,20 +201,7 @@
   					</div>
 			{{/EasySearch.IfSearching}}
 
-			{{#EasySearch.IfNoResults index=productosIndex}}
-  					<div class="bienvenido">
-				<img src="/presentacion.png" alt="Bienvenido" galleryimg="no">
-				<div class="bienvenido-instrucciones">	
-					{{#each nombres}}
-					<h1>{{profile.nombre}}, No encontre resultados</h1>
-					{{/each}}
-					<blockquote>
-  						<p><em>Una cosa terrible acerca de la búsqueda de la verdad es que se la encuentre.</em></p>
-					</blockquote>
-				</div>
-			</div>
-				{{/EasySearch.IfNoResults}}
-
+			
 		</tbody>
 	</table>
 </template>

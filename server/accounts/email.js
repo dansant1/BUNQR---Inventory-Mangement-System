@@ -1,15 +1,15 @@
-Accounts.emailTemplates.siteName = "GoDunk";
-Accounts.emailTemplates.from     = "GoDunk <admin@godunk.com>";
+Accounts.emailTemplates.siteName = "BUNQR Inventory";
+Accounts.emailTemplates.from     = "BUNQR <daniel@grupoddv.com>";
 
 Accounts.emailTemplates.verifyEmail = {
   subject() {
-    return "[GoDunk] Verifica tu dirección de correo electronico";
+    return "Verifica tu dirección de correo electronico";
   },
   text( user, url ) {
     let emailAddress   = user.emails[0].address,
         urlWithoutHash = url.replace( '#/', '' ),
-        supportEmail   = "support@godunk.com",
-        emailBody      = `To verify your email address (${emailAddress}) visit the following link:\n\n${urlWithoutHash}\n\n If you did not request this verification, please ignore this email. If you feel something is wrong, please contact our support team: ${supportEmail}.`;
+        supportEmail   = "daniel@grupoddv.com",
+        emailBody      = `Para verificar tu dirección de correo electronico (${emailAddress}) visita el siguiente link:\n\n${urlWithoutHash}\n\n Si no solicitaste esta verificación, por favor ignora este email. Si sientes que hubo un error, por favor contactate con nuestro equipo de soporte: ${supportEmail}.`;
 
     return emailBody;
   }

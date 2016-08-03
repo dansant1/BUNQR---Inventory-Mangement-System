@@ -44,7 +44,6 @@ ProductosSchema = new SimpleSchema({
 	},
 	linea: {
 		type: String,
-		optional: true,
 		optional: true
 	},
 	lineaid: {
