@@ -7,6 +7,25 @@ Meteor.publish('listaDeUsuarios', function () {
 	}
 });
 
+Meteor.publish('listaDeUsuariosPorDistribuidor', function () {
+	if ( Roles.userIsInRole(this.userId, ['distribuidor']) ) {
+		return ClientesDistribuidores.find({distribuidorId: this.userId});
+	} else {
+		this.stop();
+   		return;
+	}
+});
+
+Meteor.publish('listaDeUsuariosPorDistribuidorAdmin', function (distribuidorId) {
+	check(distribuidorId, String);
+	if ( Roles.userIsInRole(this.userId, ['distribuidor']) ) {
+		return ClientesDistribuidores.find({distribuidorId: distribuidorId});
+	} else {
+		this.stop();
+   		return;
+	}
+});
+
 Meteor.publish('listaDeUsuariosCancelados', function () {
 	if ( Roles.userIsInRole(this.userId, ['fundador']) ) {
 		return ClientesDistribuidores.find({cancelado: true});

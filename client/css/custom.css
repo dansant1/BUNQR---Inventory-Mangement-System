@@ -572,6 +572,7 @@ table {
 th>p {
 	margin-top: 30px;
 	margin-left: 25px;
+	text-align: center;
 }
 
 .contenedor-logo {
@@ -1161,7 +1162,7 @@ h2.titulo-2-2 {
 }
 .linea-logo {
 	position: relative;
-	top: -41px;
+	top: -35px;
 	left: 170px;
 	background-color: black;
 	height: 36px;

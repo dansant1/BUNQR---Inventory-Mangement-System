@@ -7,11 +7,12 @@ Template.crearUsuario.events({
         password: template.find( '[name="password"]' ).value,
         profile: {
           nombre: template.find( '[name="nombre"]' ).value,
-          apellido: template.find( '[name="apellido"]' ).value
+          apellido: template.find( '[name="apellido"]' ).value,
+          distribuidorId: Meteor.userId()
         }
       };
 
-      Meteor.call('crearUsuario', user, function (err, result) {
+      Meteor.call('crearUsuarioReferido', user, function (err, result) {
         if ( err ) {
             Bert.alert( err.reason, 'warning' );
           } else {

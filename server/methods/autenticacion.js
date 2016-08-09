@@ -87,7 +87,12 @@ Meteor.methods({
 			}
 		});
 
+		opciones.profile.empresa = "Mi empresa";
+
 		let userId = Accounts.createUser(opciones);
+
+		// Acutalizacion
+		Accounts.sendVerificationEmail( userId );
 
 		ClientesDistribuidores.insert({
 			nombre: opciones.profile.nombre,
@@ -99,7 +104,11 @@ Meteor.methods({
 			cancelado: false
 		});
 
-		
+		let negocioId = Negocios.insert({
+				userId: userId,
+				nombre: opciones.profile.empresa,
+				createdAt: new Date()
+			});		
 		
 		Roles.addUsersToRoles(userId, ['administrador']);
 	}

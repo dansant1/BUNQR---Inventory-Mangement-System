@@ -39,7 +39,7 @@
 			<div class="topbar">
 				<img src="/logo-opcional2.png" alt="BUNQR" style="margin-top: 18.5px; margin-left: 30px;">
 				<div class="linea-logo"></div>
-						<h5 style="color: black; position: relative; top: -69.6px; left: 185px; font-weight: bold; font-size: 15px;">GROUP</h5>
+						<h5 style="color: black; position: relative; top: -63px; left: 185px; font-weight: bold; font-size: 15px;">GROUP</h5>
 			</div>
 			<div class="contenido">
 				{{>menuAdmin}}
@@ -54,10 +54,77 @@
 					</div>
 				{{/if}}
 
+				{{#if isInRole 'distribuidor'}}
+					<div class="topbar">
+						<img src="/logo-opcional2.png" alt="BUNQR" style="margin-top: 18.5px; margin-left: 30px;">
+						<div class="linea-logo"></div>
+						<h5 style="color: black; position: relative; top: -63px; left: 185px; font-weight: bold; font-size: 15px;">NETWORK</h5>
+					</div>
+					{{>menuDistribuidor}}
+					<div class="contenedor-negocios">
+						<div class="set-lista-negocios">
+							<div class="negocio item-negocio almacen-stock ">
+								<span class="negocio-item" style="text-align: center;">Backoffice</span>
+							</div>	
+						</div>
+					</div>
+					
+						
+				
+					
+
+				<div class="cuadro-main">
+				{{>resporteDistribuidor}}	
+					<div class="bienvenido">
+						<img src="/presentacion.png" alt="Bienvenido" galleryimg="no">
+						<div class="bienvenido-instrucciones">	
+						
+						<h1>Bienvenido.</h1>
+							
+						<blockquote>
+  						<p><em>Si metes la pata no es culpa de tus padres ni de tus profesores, ni de tus hermanos, así que no lloriquees por tus errores y aprende de ellos.
+
+						<strong> Bill Gates.</strong></em></p>
+						</blockquote>
+
+						</div>
+					</div>
+				</div>
+				{{/if}}
+
 
 			{{/if}}
 		{{/if}}
 	{{else}}
 		{{>login}}
 	{{/if}}
+</template>
+
+<template name="resporteDistribuidor">
+		<div class="cuadro-reporte">
+			<div class="cuadro-total">
+				<div class="line" style="margin-left: 60px;"></div>
+				<div class="valor-total">
+					<p>S/. {{pagado}}</p>
+					<div class="texto" style="text-align: center; text-transform: uppercase;">Utilidad total</div>
+				</div>
+			</div>
+			<div class="cuadro-valores">
+				<div class="valor">
+					<p class="valor-total-item">S/. {{pendiente}}</p>
+					<div class="valor-texto" style="text-align: center; text-transform: uppercase;">P. pendiente</div>
+				</div>
+				<div class="valor-line"></div>
+				<div class="valor">
+					<p class="valor-total-item">{{activos}}</p>
+					<div class="valor-texto" style="text-align: center; text-transform: uppercase;">U. activos</div>
+				</div>
+				<div class="valor-line"></div>
+				<div class="valor">
+					<p class="valor-total-item">{{cancelados}}</p>
+					<div class="valor-texto" style="margin-left: 1px; text-align: center; text-transform: uppercase;">U. cancelados</div>
+				</div>
+				
+			</div>
+		</div>
 </template>

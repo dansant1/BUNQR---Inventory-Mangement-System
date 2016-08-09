@@ -58,7 +58,7 @@
 	<div class="topbar">
 				<img src="/logo-opcional2.png" alt="BUNQR" style="margin-top: 18.5px; margin-left: 30px;">
 				<div class="linea-logo"></div>
-				<h5 style="color: black; position: relative; top: -69.6px; left: 185px; font-weight: bold; font-size: 15px;">NETWORK</h5>
+				<h5 style="color: black; position: relative; top: -63px; left: 185px; font-weight: bold; font-size: 15px;">NETWORK</h5>
 	</div>
 	{{>menuDistribuidor}}
 	<div class="contenedor-negocios">
@@ -152,7 +152,7 @@
 	<div class="topbar">
 				<img src="/logo-opcional2.png" alt="BUNQR" style="margin-top: 18.5px; margin-left: 30px;">
 				<div class="linea-logo"></div>
-				<h5 style="color: black; position: relative; top: -69.6px; left: 185px; font-weight: bold; font-size: 15px;">GROUP</h5>
+				<h5 style="color: black; position: relative; top: -63px; left: 185px; font-weight: bold; font-size: 15px;">GROUP</h5>
 	</div>
 	{{>menuAdmin}}
 	<div class="contenedor-negocios">
@@ -173,7 +173,30 @@
 			</div>
 		
 		<div class="cuadro-reporte">
-			
+			<div class="cuadro-total">
+				<div class="line" style="margin-left: 60px;"></div>
+				<div class="valor-total">
+					<p>S/. {{pagado}}</p>
+					<div class="texto" style="text-align: center; text-transform: uppercase;">Utilidad total</div>
+				</div>
+			</div>
+			<div class="cuadro-valores">
+				<div class="valor">
+					<p class="valor-total-item">S/. {{pendiente}}</p>
+					<div class="valor-texto" style="text-align: center; text-transform: uppercase;">P. pendiente</div>
+				</div>
+				<div class="valor-line"></div>
+				<div class="valor">
+					<p class="valor-total-item">{{activos}}</p>
+					<div class="valor-texto" style="text-align: center; text-transform: uppercase;">U. activos</div>
+				</div>
+				<div class="valor-line"></div>
+				<div class="valor">
+					<p class="valor-total-item">{{cancelados}}</p>
+					<div class="valor-texto" style="margin-left: 1px; text-align: center; text-transform: uppercase;">U. cancelados</div>
+				</div>
+				
+			</div>
 		</div>
 		{{>ListaDeClientesDeUnDistribuidor}}
 	</div>
