@@ -37,3 +37,9 @@ miro:mailchimp
 email
 standard-minifier-css
 standard-minifier-js
+dfischer:phantomjs
+meteorhacks:ssr
+meteorhacks:npm
+
+
+npm-container
