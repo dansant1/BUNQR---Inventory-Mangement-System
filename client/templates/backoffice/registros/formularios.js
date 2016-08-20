@@ -235,7 +235,7 @@ Template.registroCliente.events({
 
       let datos = {
          nombre: template.find( '[name="nombre"]' ).value,
-         numero: template.find( '[name="numero"]' ).value,
+         ruc: template.find( '[name="numero"]' ).value,
          direccion: template.find( '[name="direccion"]' ).value,
          contacto: template.find( '[name="contacto"]' ).value,
          email: template.find( '[name="email"]' ).value,

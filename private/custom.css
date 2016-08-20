@@ -1,0 +1,57 @@
+h3, h2 {
+	font-size: 16px;
+	margin-top: 0;
+}
+
+hr {
+	margin: 10px 0;
+	border-color: black;
+}
+
+h2 > span {
+	display: inline-block;
+	margin-left: 100px;
+}
+
+.cuadro {
+	border: 1px solid black;
+}
+
+.cuadro h3 {
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.cuadro h5 {
+	text-transform: uppercase;
+}
+
+.datos {
+	margin: 25px;
+	padding: 7.5px;
+}
+
+.datos h3 {
+	text-align: center;
+}
+
+.empresa {
+	margin: 25px 0px;
+	padding-top: 15px;
+}
+
+.total {
+	margin: 0;
+	padding: 5px;
+	border: 1px solid black;
+
+}
+
+.total-cuadro {
+	margin-bottom: 10px;
+}
+
+.container {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}

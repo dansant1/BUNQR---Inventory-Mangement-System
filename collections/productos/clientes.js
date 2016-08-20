@@ -3,10 +3,16 @@ Clientes = new Mongo.Collection('clientes');
 ClientesSchema = new SimpleSchema({
 	email: {
 		type: String,
-		regEx: SimpleSchema.RegEx.Email
+		regEx: SimpleSchema.RegEx.Email,
+		optional: true
 	},
 	numero: {
-		type: Number
+		type: Number,
+		optional: true
+	},
+	ruc: {
+		type: String,
+		optional: true
 	},
 	direccion: {
 		type: String,

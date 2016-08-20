@@ -36,5 +36,25 @@ Meteor.methods({
 				proformaid: proformaId
 			};
 		}
+	},
+	actualizarNegocio: function (datos, negocioId) {
+		check(datos, Object);
+		check(negocioId, String);
+
+		if (this.userId) {
+			Negocios.update({_id: negocioId}, {
+				$set: {
+					nombre: datos.nombre,
+					ruc: datos.ruc,
+					direccion: datos.direccion,
+					provincia: datos.provincia,
+					departamento: datos.departamento,
+					codigo: datos.codigo
+				}
+			});
+		} else {
+			return;
+		}
 	}
+
 });

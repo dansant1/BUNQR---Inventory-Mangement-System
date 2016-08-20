@@ -691,7 +691,7 @@ div.cuadro-main {
 	z-index: -2;
 	flex-direction: column;
 
-	box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 7px, rgba(0, 0, 0, 0.2) 0px 3px 7px;
+	
 }
 
 div.opcion-main {
@@ -1198,4 +1198,25 @@ h2.titulo-2-2 {
 	left: 0;
 	width: 100%;
 	height: 100%;
+}
+
+.mostrar {
+	display: block;
+}
+
+.no-mostrar {
+	display: none;
+}
+
+th {
+	text-align: center;
+	padding: 15px;
+}
+
+th > p {
+	margin:0;
+}
+
+td > p {
+	margin: 0;
 }

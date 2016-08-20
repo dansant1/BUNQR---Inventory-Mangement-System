@@ -1084,7 +1084,7 @@ Template.listaDeProductoVenta.events({
 
 		datos.ventaId = FlowRouter.getParam('ventaid');
 
-		console.log(datos.ventaId);
+		//console.log(datos.ventaId);
 
 		if (datos.cantidad === undefined) {
 			Bert.alert( 'Ingresa la cantidad, porfavor vuelve a intentarlo', 'warning' );
@@ -1146,6 +1146,10 @@ Template.listaVentaItem.events({
 	}
 });
 
+Template.registrarVenta.onRendered(function () {
+	Session.set('mostrar', 'no-mostrar');
+});
+
 Template.registrarVenta.events({
 	'click .guardar': function () {
 		let ventaId = FlowRouter.getParam('ventaid');
@@ -1177,6 +1181,92 @@ Template.registrarVenta.events({
 				FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/ventas/');
 			}
 		});
+	},
+	'click .facturar': function () {
+		
+		if (Session.get('mostrar') === "mostrar") {
+			Session.set('mostrar', 'no-mostrar');
+		} else {
+			Session.set('mostrar', 'mostrar');
+		}
+
+	}
+});
+
+Template.generarFacturaModal.onRendered(function () {
+	var picker = new Pikaday({ field: document.getElementById('datepicker') });
+	var picker2 = new Pikaday({ field: document.getElementById('datepicker2') });
+});
+
+Template.generarFacturaModal.helpers({
+	mostrar: function () {
+		return Session.get('mostrar');
+	}
+});
+
+Template.generarFacturaModal.events({
+	'submit form': function (event, template) {
+		event.preventDefault();
+		let ventaId 	= FlowRouter.getParam('ventaid');
+
+		template.find("[name='factura']").value = "Generando factura..."
+
+		let datos = {
+			ventaId: ventaId,
+			ruc: template.find("[name='ruc']").value,
+			cliente: template.find("[name='cliente']").value,
+			emision: template.find("[name='emision']").value,
+			vence: template.find("[name='vence']").value,
+			numero: template.find("[name='numero']").value,
+			observaciones: template.find("[name='observaciones']").value
+		}
+
+		if (datos.emision === "") {
+        	var rightNow = new Date();
+        	var res = rightNow.toISOString().slice(0,10).replace(/-/g,"");
+        	datos.emision = res;
+    	}
+
+		if (datos.ruc !== "" && datos.cliente !== "") {
+			Meteor.call('crearFactura', datos, function (err, res) {
+				if (err) {
+					console.error(err);
+      			} else if (res) {
+      				template.find("[name='ruc']").value = "";
+					template.find("[name='cliente']").value = "";
+					template.find("[name='emision']").value = "";
+					template.find("[name='vence']").value = "";
+					template.find("[name='numero']").value = "";
+					template.find("[name='observaciones']").value = "";
+					window.open("data:application/pdf;base64, " + res);
+					if (Session.get('mostrar') === "mostrar") {
+						Session.set('mostrar', 'no-mostrar');
+					} else {
+						Session.set('mostrar', 'mostrar');
+					}
+      			}
+			});
+		} else {
+			Bert.alert('Ingrese los datos correctamente', 'warning');
+			
+		}
+
+		
+	},
+	'click .cerrar': function (e, template) {
+
+		template.find("[name='ruc']").value = "";
+		template.find("[name='cliente']").value = "";
+		template.find("[name='emision']").value = "";
+		template.find("[name='vence']").value = "";
+		template.find("[name='numero']").value = "";
+		template.find("[name='observaciones']").value = "";
+
+		if (Session.get('mostrar') === "mostrar") {
+			Session.set('mostrar', 'no-mostrar');
+		} else {
+			Session.set('mostrar', 'mostrar');
+		}
 	}
 });
 
@@ -1248,6 +1338,18 @@ Template.detalleVenta.events({
 			} else {
 				let ventaId = result.ventaId;
 				FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' +  FlowRouter.getParam('negocioid') + '/ventas/' + ventaId + '/nuevo');
+			}
+		});
+	},
+	'click .facturar': function (e, template) {
+		let ventaId = FlowRouter.getParam('ventaid');
+
+		Meteor.call('exportarFactura', ventaId, function (error, res) {
+			if (error) {
+				Bert.alert('Hubo un error, vuelve a intentarlo', 'warning');
+			} else {
+				Bert.alert('¡Listo!', 'success');
+				window.open("data:application/pdf;base64, " + res);
 			}
 		});
 	}

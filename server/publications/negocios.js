@@ -1,8 +1,11 @@
 Meteor.publish('negocios', function () {
-	var userId = this.userId;
 
-	return Negocios.find({userId: userId});
+	return Negocios.find({_id: Meteor.users.findOne({_id: this.userId}).profile.negocioId});
 
+});
+
+Meteor.publish('MiEmpresa', function () {
+	return Negocios.find({_id: Meteor.users.findOne({_id: this.userId}).profile.negocioId});
 });
 
 Meteor.publish('listaMarcas', function (negocioId) {

@@ -610,7 +610,7 @@ Meteor.methods({
 		check(datos, {
 			nombre: String,
 			contacto: String,
-			numero: String,
+			ruc: String,
 			direccion: String,
 			telefono: String,
 			email: String,
@@ -621,8 +621,6 @@ Meteor.methods({
 
 		
 		if (userId) {
-			datos.numero = parseInt(datos.numero);
-			datos.telefono = parseInt(datos.telefono);
 
 			var clienteId = Clientes.insert(datos);
 			return clienteId;
@@ -1069,16 +1067,18 @@ Meteor.methods({
 			datos.importe = (datos.pventa - datos.descuento) * datos.cantidad;
 			datos.importe.toFixed(2);
 
-			var descontarStock = datos.cantidad * -1;
-
+			// Estos datos es para productos
+			/*let descontarStock = datos.cantidad * -1;
 			let menosValor = datos.pventa * datos.cantidad * -1;
 			let menosValorCosto = datos.pcosto * datos.cantidad * -1;
-			let menosValorUtilidad = datos.utilidad * datos.cantidad * -1;
+			let menosValorUtilidad = datos.utilidad * datos.cantidad * -1;*/
+			// fin
 
 			datos.valor = datos.pventa * datos.cantidad;
 			datos.valorCosto = datos.pcosto * datos.cantidad;
 			datos.valorUtilidad = ( (datos.pventa - datos.descuento) * datos.cantidad ) - ( datos.pcosto * datos.cantidad )
-			Productos.update({_id: datos.productoId}, {
+			
+			/*Productos.update({_id: datos.productoId}, {
 				$inc: {
 					stock: descontarStock,
 					valor: menosValor,
@@ -1086,7 +1086,8 @@ Meteor.methods({
 					valorUtilidad: menosValorUtilidad
 				}
 			});
-
+			*/
+			
 			datos.userId = this.userId;
 
 			let ventaItemId = VentasItem.insert(datos);
@@ -1096,12 +1097,12 @@ Meteor.methods({
 				}
 			});
 
-			Reportes.update({_id: datos.reporteId}, {
+			/*Reportes.update({_id: datos.reporteId}, {
 				$inc: {
 					valorVenta: datos.importe,
 					valorutilidadVenta: datos.valorUtilidad
 				}
-			});
+			});*/
 
 		} else {
 			throw new Meteor.Error('No dijiste la palabra magica ;)');
@@ -1135,7 +1136,7 @@ Meteor.methods({
 
 		VentasItem.remove({_id: datos.itemId});
 
-		Productos.update({_id: datos.productoId}, {
+		/*Productos.update({_id: datos.productoId}, {
 				$inc: {
 					stock: datos.cantidad,
 					valor: datos.valor,
@@ -1152,7 +1153,7 @@ Meteor.methods({
 				valorVenta: menosVenta,
 				valorutilidadVenta: menosVentaUtilidad
 			}
-		});
+		});*/
 
 	},
 	guardarVenta: function (datos) {
@@ -1164,45 +1165,72 @@ Meteor.methods({
 			ventaId: String
 		});
 
-		Ventas.update({_id: datos.ventaId}, {
-			$set: {
-				cliente: datos.cliente,
-				clienteId: datos.clienteId,
-				formaPago: datos.formaPago,
-				formaPagoId: datos.formaPagoId,
-				pagado: new Date(),
-				guardado: true
-			}
+		let items = VentasItem.find({ventaId: datos.ventaId});
+
+		items.forEach(function (index) {
+		
+			Productos.update({_id: index.productoId}, {
+				$inc: {
+					stock: index.cantidad * -1,
+					valor: index.pventa * index.cantidad * -1,
+					valorCosto: index.pcosto * index.cantidad * -1,
+					valorUtilidad: index.utilidad * index.cantidad * -1
+				}
+			});
+
+			Reportes.update({_id: index.reporteId}, {
+				$inc: {
+					valorVenta: index.importe,
+					valorutilidadVenta: index.valorUtilidad
+				}
+			});
+			
 		});
+
+		function getFormattedDate(date) {
+  			var year = date.getFullYear();
+  			var month = (1 + date.getMonth()).toString();
+  			month = month.length > 1 ? month : '0' + month;
+  			var day = date.getDate().toString();
+  			day = day.length > 1 ? day : '0' + day;
+  			return month + '/' + day + '/' + year;
+		}
+
+		if ( Ventas.findOne({_id: datos.ventaId}).emision === undefined ) {
+			Ventas.update({_id: datos.ventaId}, {
+				$set: {
+					cliente: datos.cliente,
+					clienteId: datos.clienteId,
+					formaPago: datos.formaPago,
+					formaPagoId: datos.formaPagoId,
+					pagado: new Date(),
+					guardado: true,
+					emision: getFormattedDate(new Date()),
+					vence: "-",
+					observaciones: ""
+				}
+			});
+		} else {
+			Ventas.update({_id: datos.ventaId}, {
+				$set: {
+					cliente: datos.cliente,
+					clienteId: datos.clienteId,
+					formaPago: datos.formaPago,
+					formaPagoId: datos.formaPagoId,
+					pagado: new Date(),
+					guardado: true
+				}
+			});
+		}
+
+		
+
+
 
 	},
 	eliminarVenta: function (ventaId, reporteId) {
 		check(ventaId, String);
 		check(reporteId, String);
-
-		var ventas = VentasItem.find({ventaId: ventaId});
-
-		ventas.forEach(function (item) {
-			
-			Productos.update({_id: item.productoId}, {
-				$inc: {
-					stock: item.cantidad,
-					valor: item.valor,
-					valorCosto: item.valorCosto,
-					valorUtilidad: item.valorUtilidad
-				}
-			});
-
-			item.valor = item.valor * -1;
-			item.valorUtilidad = item.valorUtilidad * -1;
-
-			Reportes.update({_id: reporteId}, {
-				$inc: {
-					valorVenta: item.valor,
-					valorutilidadVenta: item.valorUtilidad
-				}
-			});
-		});
 
 		VentasItem.remove({ventaId: ventaId});
 		Ventas.remove({_id: ventaId});

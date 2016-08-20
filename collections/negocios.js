@@ -11,8 +11,25 @@ NegociosSchema = new SimpleSchema({
 	createdAt: {
 		type: Date
 	},
-	userId: {
-		type: String
+	ruc: {
+		type: String,
+		optional: true
+	},
+	direccion: {
+		type: String,
+		optional: true
+	},
+	provincia: {
+		type: String,
+		optional: true
+	},
+	departamento: {
+		type: String,
+		optional: true
+	},
+	codigo: {
+		type: String,
+		optional: true
 	}
 });
 

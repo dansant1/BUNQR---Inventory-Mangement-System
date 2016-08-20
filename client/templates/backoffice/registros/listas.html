@@ -73,8 +73,8 @@
 		<table>
 			<thead>
 				<tr>
-					<th><p style="margin-top: 10px; margin-bottom: 15px;">Proveedores</p></th>
-					<th><p style="margin-top: 10px; margin-bottom: 15px;">Descripcion</p></th>
+					<th><p>Proveedores</p></th>
+					<th><p>Descripcion</p></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -125,19 +125,19 @@
 		<table>
 			<thead>
 				<tr>
-					<th><p style="margin-top: 10px; margin-bottom: 15px;">Nombre</p></th>
-					<th><p style="margin-top: 10px; margin-bottom: 15px;">N. DNI/RUC</p></th>
-					<th><p style="margin-top: 10px; margin-bottom: 15px;">Dirección</p></th>
-					<th><p style="margin-top: 10px; margin-bottom: 15px;">Contacto</p></th>
-					<th><p style="margin-top: 10px; margin-bottom: 15px;">Email</p></th>
-					<th><p style="margin-top: 10px; margin-bottom: 15px;">Teléfono</p></th>
+					<th><p>Nombre</p></th>
+					<th><p>N. DNI/RUC</p></th>
+					<th><p>Dirección</p></th>
+					<th><p>Contacto</p></th>
+					<th><p>Email</p></th>
+					<th><p>Teléfono</p></th>
 				</tr>
 			</thead>
 			<tbody>
 			{{#each clientes}}
 				<tr class="tabla-hover">
 					<td><p style="text-align: center;">{{nombre}}</p></td>
-					<td><p style="text-align: center;">{{numero}}</p></td>
+					<td><p style="text-align: center;">{{ruc}}</p></td>
 					<td><p style="text-align: center;">{{direccion}}</p></td>
 					<td><p style="text-align: center;">{{contacto}}</p></td>
 					<td><p style="text-align: center;">{{email}}</p></td>
@@ -184,9 +184,9 @@
 		<table>
 			<thead>
 				<tr>
-					<th><p style="margin-top: 10px; margin-bottom: 15px;">Formas de pago</p></th>
-					<th><p style="margin-top: 10px; margin-bottom: 15px;">Periodo</p></th>
-					<th><p style="margin-top: 10px; margin-bottom: 15px;">Tipo</p></th>
+					<th><p>Formas de pago</p></th>
+					<th><p>Periodo</p></th>
+					<th><p>Tipo</p></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -292,8 +292,8 @@
 		<table>
 			<thead>
 				<tr>
-					<th><p style="margin-top: 10px; margin-bottom: 15px;">Almacenes</p></th>
-					<th><p style="margin-top: 10px; margin-bottom: 15px;">Direccion</p></th>
+					<th><p>Almacenes</p></th>
+					<th><p>Direccion</p></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -700,14 +700,88 @@
 					
 					<input class="button-primary guardar" type="button" value="Guardar" name="guardar" id="boton-login">
 					<input class="button-clear cancelar" type="submit" value="Cancelar" name="cancelar" style="color: white; margin-left: 30px;">
+
+					<input class="button-primary facturar" type="button" value="Generar factura" name="factura" id="boton-login" style="margin-left: 30px;">
 							
 				</div>
 			</div>
 			</div>
+		
+			{{>generarFacturaModal}}
+
 		</div>
 		{{>listaVentaItem}}
 		{{>listaDeProductoVenta}}
 	</div>
+</template>
+
+<template name="generarFacturaModal">
+    <div class="modal {{mostrar}}" id="facturaModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            	 <div class="modal-header">
+          			<h4 class="modal-title">Generar factura</h4>
+        		</div>
+
+                <div class="modal-body">
+                    <div class="container">
+  						
+  						<form>
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+      								<label for="cliente">Nombre del cliente</label>
+      								<input type="text" name="cliente" class="form-control" placeholder="Escribe el nombre del cliente">
+    						    </div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+      								<label for="ruc">RUC del cliente</label>
+      								<input type="text" name="ruc" class="form-control" placeholder="Escribe el RUC del cliente">
+    							</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+      								<label for="emision">Fecha de emisión</label>
+      								<input type="text" id="datepicker" name="emision" class="form-control" placeholder="Ingrese la fecha de emisión">
+    							</div>
+							</div>
+						</div>
+    					
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+      								<label for="vence">Fecha de vencimiento</label>
+      								<input type="text" id="datepicker2" name="vence" class="form-control" placeholder="Opcional">
+    							</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+      								<label for="numero">Número de factura</label>
+      								<input type="text" name="numero" class="form-control" placeholder="Ingrese el número de la factura">
+    							</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+      								<label for="observaciones">Observaciones </label>
+      								<input type="text" name="observaciones" class="form-control" placeholder="Opcional">
+    							</div>
+							</div>
+						</div>
+
+    					<button type="submit" id="boton-login" name="factura" class="btn btn-default">Generar factura</button>
+  						
+  						</form>
+					</div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" id="boton-login" class="btn btn-default cerrar" data-dismiss="modal" style="background-color: #7f8c8d; color: #ecf0f1;">Cancelar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </template>
 
 <template name="listaDeProductoVenta">
@@ -770,13 +844,13 @@
 			<table>
 				<thead>
 					<tr>
-						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">CÓDIGO</p></th>
-						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">PRODUCTO</p></th>
-						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">PRECIO (S/.)</p></th>
-						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">DSCTO (S/.)</p></th>
-						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">CANTIDAD</p></th>
-						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">IMPORTE (S/.)</p></th>
-						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">ELIMINAR</p></th>
+						<th style="color: #606C76;"><p>CÓDIGO</p></th>
+						<th style="color: #606C76;"><p>PRODUCTO</p></th>
+						<th style="color: #606C76;"><p>PRECIO (S/.)</p></th>
+						<th style="color: #606C76;"><p>DSCTO (S/.)</p></th>
+						<th style="color: #606C76;"><p>CANTIDAD</p></th>
+						<th style="color: #606C76;"><p>IMPORTE (S/.)</p></th>
+						<th style="color: #606C76;"><p>ELIMINAR</p></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -895,18 +969,21 @@
 							<div class="dato-texto">CLIENTE</div>
 						</div>
 					</div>
-				{{/each}}		
+				{{/each}}	
+				<div style="display: block; position: absolute; top:410px; left: 180px;">
+					<input class="button-primary facturar" type="button" value="Generar factura" name="factura" id="boton-login" style="margin-left: 30px;">	
+				</div>
 		</div>
 
 		
 				<table>
 					<thead>
-						<th  style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">CÓDIGO</p></th>
-						<th  style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">PRODUCTO</p></th>
-						<th  style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">CANTIDAD</p></th>
-						<th  style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">PRECIO (S/.)</p></th>
-						<th  style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">DSCTO. (S/.)</p></th>
-						<th  style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">IMPORTE (S/.)</p></th>
+						<th  style="color: #606C76;"><p>CÓDIGO</p></th>
+						<th  style="color: #606C76;"><p>PRODUCTO</p></th>
+						<th  style="color: #606C76;"><p>CANTIDAD</p></th>
+						<th  style="color: #606C76;"><p>PRECIO (S/.)</p></th>
+						<th  style="color: #606C76;"><p>DSCTO. (S/.)</p></th>
+						<th  style="color: #606C76;"><p>IMPORTE (S/.)</p></th>
 					</thead>
 					<tbody>
 						{{#each ventaitem}}

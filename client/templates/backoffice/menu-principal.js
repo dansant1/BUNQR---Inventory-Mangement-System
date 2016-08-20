@@ -5,6 +5,7 @@ Template.menuPrincipal.helpers({
 	}
 });
 
+
 Template.menuPrincipal.events({
 	'click .i-1': function () {
 		
@@ -28,8 +29,71 @@ Template.menuPrincipal.events({
 	'click .i-7': function () {
 		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/configuracion' );
 	},
+	'click .i-8': function () {
+		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/configuracion/negocio' );
+	},
 	'click .logout': function () {
 		Meteor.logout();
 		Bert.alert( 'Nos vemos luego :=)', 'success' );
+	},
+	
+});
+
+Template.ConfiguracionNegocio.onCreated(function () {
+	var self = this;
+  	self.autorun(function() {
+    	
+    	self.subscribe('MiEmpresa');  
+  	});
+});
+
+Template.ConfiguracionNegocio.helpers({
+	nombre() {
+		return Negocios.findOne({_id: FlowRouter.getParam('negocioid')}).nombre;
+	},
+	ruc() {
+		return Negocios.findOne({_id: FlowRouter.getParam('negocioid')}).ruc;
+	},
+	direccion() {
+		return Negocios.findOne({_id: FlowRouter.getParam('negocioid')}).direccion;
+	},
+	provincia() {
+		return Negocios.findOne({_id: FlowRouter.getParam('negocioid')}).provincia;
+	},
+	departamento() {
+		return Negocios.findOne({_id: FlowRouter.getParam('negocioid')}).departamento;
+	},
+	codigo() {
+		return Negocios.findOne({_id: FlowRouter.getParam('negocioid')}).codigo;
+	}
+});
+
+Template.ConfiguracionNegocio.events({
+	'submit form': function (event, template) {
+
+		event.preventDefault();
+
+		let datos = {
+			nombre: template.find("[name='empresa']").value,
+			ruc: template.find("[name='ruc']").value,
+			direccion: template.find("[name='direccion']").value,
+			provincia: template.find("[name='provincia']").value,
+			departamento: template.find("[name='departamento']").value,
+			codigo: template.find("[name='codigo']").value
+		}
+
+		if (datos.nombre !== "") {
+			Meteor.call('actualizarNegocio', datos, FlowRouter.getParam('negocioid'), function (err) {
+				if (err) {
+					Bert.alert('Hubo un error vuelva a intentarlo', 'warning');
+				} else {
+					Bert.alert('Actualizaste la información', 'success');
+				}
+			});
+		} else {
+			Berta.lert('Ingrese los datos correctamente', 'warning');
+		}
+
+		
 	}
 });

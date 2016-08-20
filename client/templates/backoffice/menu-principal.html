@@ -1,14 +1,73 @@
 <template name="menuPrincipal">
 	<div class="menu">
 		<ul class="menu-main">
-			<li class="menu-item i-1"><a href="" class="menu-a"><i class="align left icon" style="color: white;"></i> REPORTES</a></li>
+			<li class="menu-item i-1"><a href="" class="menu-a"><i class="align left icon" style="color: white;"></i> Reportes</a></li>
 			<li class="menu-item i-2"><a href="" class="menu-a"><i class="shipping icon" style="color: white;"></i> Almacén</a></li>
 			<li class="menu-item i-3"><a href="" class="menu-a"><i class="shop icon" style="color: white;"></i> Ventas</a></li>
 			
 			<li class="menu-item i-6"><a class="menu-a"><i class="laptop icon" style="color: white;"></i> Registros</a></li>
-			
+
+			<li class="menu-item i-8"><a class="menu-a"><i class="laptop icon" style="color: white;"></i> Configuración</a></li>
 		</ul>
 		
 		{{>logout}}
+	</div>
+</template>
+
+<template name="ConfiguracionNegocio">
+	<div class="cuadro-main">
+		<div class="container" style="margin-top: 80px;">
+			<div class="row">
+				<div class="col-md-12">
+					<h1>Configura los datos de tu negocio</h1>
+					<form>
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+      								<label for="empresa">Nombre de la empresa</label>
+      								<input type="text" value="{{nombre}}" name="empresa" class="form-control">
+    						    </div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+      								<label for="ruc">RUC de la empresa</label>
+      								<input type="text" value="{{ruc}}" name="ruc" class="form-control">
+    							</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+      								<label for="direccion">Dirección</label>
+      								<input type="text" value="{{direccion}}" name="direccion" class="form-control">
+    							</div>
+							</div>
+						</div>
+    					
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+      								<label for="provincia">Provincia</label>
+      								<input type="text" value="{{provincia}}" name="provincia" class="form-control">
+    							</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+      								<label for="departamento">Departamento</label>
+      								<input type="text" value="{{departamento}}" name="departamento" class="form-control">
+    							</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+      								<label for="codigo">Código de facturación</label>
+      								<input type="text" value="{{codigo}}" name="codigo" class="form-control">
+    							</div>
+							</div>
+						</div>
+
+    					<button type="submit" id="boton-login" class="btn btn-default">Generar Guardar cambios</button>
+  						
+  						</form>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
