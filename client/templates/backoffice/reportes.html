@@ -69,28 +69,57 @@
 </template>
 
 <template name="reporteDiario">
-	<div class="cuadro-reporte">
+	<div class="cuadro-reporte" style="padding-bottom: 10px;">
 		<div class="container">
+		
 		<div class="row">
-			<div class="column column-50" style="text-align: center">
-				<span class="turquesa reporte-texto-span"></span>
-				<h2 class="reporte-texto">
-					
-					Ventas
-				</h2>
+			
+		<div class="column column-50">
+			<div class="row">
+				<div class="column column-50" style="text-align: center">
+					<span class="turquesa reporte-texto-span"></span>
+					<h2 class="reporte-texto">
+						Ventas
+					</h2>
+				</div>
+				<div class="column column-50" style="text-align: center">
+					<span class="azul reporte-texto-span"></span>
+					<h2 class="reporte-texto">
+						Costos
+					</h2>				
+				</div>
 			</div>
-			<div class="column column-50" style="text-align: center">
-				<span class="azul reporte-texto-span"></span>
-				<h2 class="reporte-texto">
-					
-					Costos
-				</h2>				
+			<div class="row">
+				<div class="column" style="text-align: center;">
+					<canvas id="reporte"></canvas>
+				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="column column-100" style="text-align: center;">
-				<canvas id="reporte"></canvas>
+
+		<div class="column column-50">
+			<div class="row">
+				<div class="column column-50" style="text-align: center">
+					<span class="turquesa reporte-texto-span"></span>
+					<h2 class="reporte-texto">
+						Ventas
+					</h2>
+				</div>
+				<div class="column column-50" style="text-align: center">
+					<span class="verde reporte-texto-span"></span>
+					<h2 class="reporte-texto">
+						Merma
+					</h2>				
+				</div>
 			</div>
+			
+			<div class="row">
+				<div class="column" style="text-align: center;">
+					<canvas id="reporteVM"></canvas>
+				</div>
+			</div>
+
+		</div>
+			
 		</div>
 		</div>	
 	</div>

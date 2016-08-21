@@ -1245,16 +1245,18 @@ li a.menu-a:hover {
 }
 
 #reporte {
-	display: block;
-	margin: 0 auto;
-	width: 90% !important;
-	height: 350px !important;
+	display: inline-block;
+	margin-right: 10px;
 }
 
 .reporte-texto {
 	font-size: 18px;
 	color: white;
 	display: inline-block;
+}
+
+.verde {
+	background-color: rgba(39, 174, 96,1.0);
 }
 
 .reporte-texto-span{

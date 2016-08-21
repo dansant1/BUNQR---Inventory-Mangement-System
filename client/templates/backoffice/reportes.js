@@ -14,9 +14,82 @@ Template.reporteDiario.onCreated(function () {
 	});
 });
 
-Template.reporteDiario.onRendered(function () {
+
+/*	let mes = new Date()
+	hoy.setHours(0,0,0,0);
+
+	let mañana = new Date();
+	mañana.setDate(mañana.getDate()+1)
+	mañana.setHours(0,0,0,0)
+*/
 	
-	function drawChart(){
+
+Template.reporteDiario.onRendered(function () {
+
+	
+	
+	function reporteVC () {
+
+		var obtenerVentas = function  () {
+
+		var ventas = [];
+
+		// Obtenemos el total de cada mes
+		for (var mes = 0; mes <= 11; mes++) {
+
+			
+			var date = new Date();
+			var firstDay = new Date(date.getFullYear(), mes, 1);
+			var lastDay = new Date(date.getFullYear(), mes + 1, 0);
+
+			var ventaTotalMes = 0;
+
+			Reportes.find({ fecha: { $gte: firstDay, $lt: lastDay } }).forEach( function (index) {
+
+				if (index.valorVenta === undefined) {
+					ventaTotalMes += 0;
+				} else {
+					ventaTotalMes += index.valorVenta;
+				}
+				
+			});
+			
+			ventas.push(ventaTotalMes);
+		}
+
+		return ventas;
+	}
+
+	var obtenerCostos = function () {
+
+		var costos = [];
+
+		// Obtenemos el total de cada mes
+		for (var mes = 0; mes <= 11; mes++) {
+
+			
+			var date = new Date();
+			var firstDay = new Date(date.getFullYear(), mes, 1);
+			var lastDay = new Date(date.getFullYear(), mes + 1, 0);
+
+			var costoTotalMes = 0;
+
+			Reportes.find({ fecha: { $gte: firstDay, $lt: lastDay } }).forEach( function (index) {
+
+				if (index.valorCosto === undefined) {
+					costoTotalMes += 0;
+				} else {
+					costoTotalMes += index.valorCosto;
+				}
+				
+			});
+			
+			costos.push(costoTotalMes);
+		}
+
+		return costos;
+	}
+
   		var data = {
     		labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre"],
     		datasets: 
@@ -26,15 +99,15 @@ Template.reporteDiario.onRendered(function () {
         			strokeColor : "rgba(52, 152, 219,1.0)",
         			pointColor : "rgba(220,220,220,1)",
         			pointStrokeColor : "#fff",
-        			data : [25, 39, 40, 11, 46, 75, 50, 54, 77, 89, 45, 58]
+        			data : obtenerCostos()
     			},
     			{
        		 		fillColor : "rgba(142, 68, 173,1.0)",
         			strokeColor : "rgba(142, 68, 173,1.0)",
         			pointColor : "rgba(151,187,205,1)",
         			pointStrokeColor : "#fff",
-        			data: [45, 49, 70, 81, 56, 55, 40, 48, 55, 38, 42, 70],
-    			}  
+        			data: obtenerVentas()
+    			} 
     		]
 		};
 
@@ -42,12 +115,156 @@ Template.reporteDiario.onRendered(function () {
 
   		var ctx = $("#reporte").get(0).getContext("2d");
 
-  		var myNewChart = new Chart(ctx);
-
-  		new Chart(ctx).Line(data);
+  		var reporteChart = new Chart(ctx).Line(data);
 	}
 
-	drawChart();
+	// Reporte Ventas vs Merma
+
+	function reporteVM () {
+
+		var obtenerVentas = function  () {
+
+		var ventas = [];
+
+		// Obtenemos el total de cada mes
+		for (var mes = 0; mes <= 11; mes++) {
+
+			
+			var date = new Date();
+			var firstDay = new Date(date.getFullYear(), mes, 1);
+			var lastDay = new Date(date.getFullYear(), mes + 1, 0);
+
+			var ventaTotalMes = 0;
+
+			Reportes.find({ fecha: { $gte: firstDay, $lt: lastDay } }).forEach( function (index) {
+
+				if (index.valorVenta === undefined) {
+					ventaTotalMes += 0;
+				} else {
+					ventaTotalMes += index.valorVenta;
+				}
+				
+			});
+			
+			ventas.push(ventaTotalMes);
+		}
+
+		return ventas;
+	}
+
+	var obtenerMerma = function () {
+
+		var mermas = [];
+
+		// Obtenemos el total de cada mes
+		for (var mes = 0; mes <= 11; mes++) {
+
+			
+			var date = new Date();
+			var firstDay = new Date(date.getFullYear(), mes, 1);
+			var lastDay = new Date(date.getFullYear(), mes + 1, 0);
+
+			var mermaTotalMes = 0;
+
+			Reportes.find({ fecha: { $gte: firstDay, $lt: lastDay } }).forEach( function (index) {
+
+				if (index.valorMerma === undefined) {
+					mermaTotalMes += 0;
+				} else {
+					mermaTotalMes += index.valorMerma;
+				}
+				
+			});
+			
+			mermas.push(mermaTotalMes);
+		}
+
+		return mermas;
+	}
+
+		var options = {
+
+			///Boolean - Whether grid lines are shown across the chart
+			scaleShowGridLines: true,
+
+			//String - Colour of the grid lines
+			scaleGridLineColor: "rgba(0,0,0,.05)",
+
+			//Number - Width of the grid lines
+			scaleGridLineWidth: 1,
+
+			//Boolean - Whether to show horizontal lines (except X axis)
+			scaleShowHorizontalLines: true,
+
+			//Boolean - Whether to show vertical lines (except Y axis)
+			scaleShowVerticalLines: true,
+
+			//Boolean - Whether the line is curved between points
+			bezierCurve: true,
+
+			//Number - Tension of the bezier curve between points
+			bezierCurveTension: 0.4,
+
+			//Boolean - Whether to show a dot for each point
+			pointDot: true,
+
+			//Number - Radius of each point dot in pixels
+			pointDotRadius: 4,
+
+			//Number - Pixel width of point dot stroke
+			pointDotStrokeWidth: 1,
+
+			//Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+			pointHitDetectionRadius: 20,
+
+			//Boolean - Whether to show a stroke for datasets
+			datasetStroke: true,
+
+			//Number - Pixel width of dataset stroke
+			datasetStrokeWidth: 2,
+
+			//Boolean - Whether to fill the dataset with a colour
+			datasetFill: true,
+
+			display:true,
+
+			//String - A legend template
+			legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+
+		};
+
+  		var data = {
+    		labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre"],
+    		datasets: 
+    		[
+    			{
+        			fillColor : "rgba(39, 174, 96,1.0)",
+        			pointHighlightStroke: "rgba(39, 174, 96,1.0)",
+        			data : obtenerMerma()
+    			},
+    			{
+       		 		fillColor : "rgba(142, 68, 173,1.0)",
+        			pointHighlightStroke: "rgba(39, 174, 96,1.0)",
+        			data: obtenerVentas()
+    			} 
+    		]
+		};
+
+  		//Chart.defaults.global.responsive = true;
+
+  		var ctx = $("#reporteVM").get(0).getContext("2d");
+
+  		var reporteChart = new Chart(ctx).Bar(data, options);
+	}
+
+	setTimeout(function () {
+
+		Tracker.autorun(reporteVC);
+		Tracker.autorun(reporteVM);
+	
+	}, 1000)
+
+	
 });
 
 Template.reporteDiario.helpers({
