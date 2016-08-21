@@ -330,3 +330,13 @@ Meteor.publish('todosLosReportes', function (negocioId) {
 	}
 });
 
+Meteor.publish('ProductosReporte', function (negocioId) {
+	check(negocioId, String);
+
+	if (Roles.userIsInRole(this.userId, ['administrador'])) {
+		return Productos.find({negocioId: negocioId});
+	} else {
+		return this.ready();
+	}
+});
+
