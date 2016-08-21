@@ -134,6 +134,25 @@ Meteor.publish('ListaCargaitem', function (cargaId) {
 	}
 });
 
+Meteor.publish('listaInventarioFinalItem', function (inventarioFinalId) {
+	check(inventarioFinalId, String);
+
+	if (Roles.userIsInRole(this.userId, ['administrador'])) {
+		return InventarioFinalItem.find({inventarioId: inventarioFinalId});
+	} else {
+		return this.ready();	
+	}
+});
+
+Meteor.publish('inventarioTotal', function (inventarioFinalId) {
+	check(inventarioFinalId, String);
+	if (Roles.userIsInRole(this.userId, ['administrador'])) {
+		return InventarioFinal.find({_id: inventarioFinalId});
+	} else {
+		return this.ready();	
+	}
+});
+
 Meteor.publish('ListaProductosItem', function (negocioId) {
 	check(negocioId, String);
 

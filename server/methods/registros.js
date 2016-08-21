@@ -1063,30 +1063,14 @@ Meteor.methods({
 			datos.descuento = parseFloat(datos.descuento);
 
 			datos.pventa.toFixed(2);
-			//datos.cantidad = parseInt(datos.cantidad);
 			datos.importe = (datos.pventa - datos.descuento) * datos.cantidad;
 			datos.importe.toFixed(2);
 
-			// Estos datos es para productos
-			/*let descontarStock = datos.cantidad * -1;
-			let menosValor = datos.pventa * datos.cantidad * -1;
-			let menosValorCosto = datos.pcosto * datos.cantidad * -1;
-			let menosValorUtilidad = datos.utilidad * datos.cantidad * -1;*/
-			// fin
-
+		
 			datos.valor = datos.pventa * datos.cantidad;
 			datos.valorCosto = datos.pcosto * datos.cantidad;
 			datos.valorUtilidad = ( (datos.pventa - datos.descuento) * datos.cantidad ) - ( datos.pcosto * datos.cantidad )
 			
-			/*Productos.update({_id: datos.productoId}, {
-				$inc: {
-					stock: descontarStock,
-					valor: menosValor,
-					valorCosto: menosValorCosto,
-					valorUtilidad: menosValorUtilidad
-				}
-			});
-			*/
 			
 			datos.userId = this.userId;
 
@@ -1096,13 +1080,6 @@ Meteor.methods({
 					total: datos.importe
 				}
 			});
-
-			/*Reportes.update({_id: datos.reporteId}, {
-				$inc: {
-					valorVenta: datos.importe,
-					valorutilidadVenta: datos.valorUtilidad
-				}
-			});*/
 
 		} else {
 			throw new Meteor.Error('No dijiste la palabra magica ;)');
@@ -1136,25 +1113,6 @@ Meteor.methods({
 
 		VentasItem.remove({_id: datos.itemId});
 
-		/*Productos.update({_id: datos.productoId}, {
-				$inc: {
-					stock: datos.cantidad,
-					valor: datos.valor,
-					valorCosto: datos.valorCosto,
-					valorUtilidad: datos.valorUtilidad
-				}
-			});
-		
-		let menosVenta 			= datos.valor * -1;
-		let menosVentaUtilidad 	= datos.valorUtilidad * -1;
-
-		Reportes.update({_id: datos.reporteId}, {
-			$inc: {
-				valorVenta: menosVenta,
-				valorutilidadVenta: menosVentaUtilidad
-			}
-		});*/
-
 	},
 	guardarVenta: function (datos) {
 		check(datos, {
@@ -1164,6 +1122,8 @@ Meteor.methods({
 			formaPagoId: String,
 			ventaId: String
 		});
+
+
 
 		let items = VentasItem.find({ventaId: datos.ventaId});
 
@@ -1222,11 +1182,6 @@ Meteor.methods({
 				}
 			});
 		}
-
-		
-
-
-
 	},
 	eliminarVenta: function (ventaId, reporteId) {
 		check(ventaId, String);
@@ -1234,5 +1189,115 @@ Meteor.methods({
 
 		VentasItem.remove({ventaId: ventaId});
 		Ventas.remove({_id: ventaId});
+
+		Facturas.remove({ventaId: ventaId});
+		Boletas.remove({ventaId: ventaId});
+	},
+	nuevoInventarioFinal: function (negocioId) {
+		check(negocioId, String);
+
+		let inventarioFinalId = InventarioFinal.insert({
+			negocioId: negocioId,
+			createdAt: new Date(),
+			guardado: false,
+			userId: this.userId
+		});
+
+		return {
+			inventarioFinalId: inventarioFinalId
+		};
+	},
+	agregarProductoAInventarioFinalItem: function (datos) {
+		check(datos, {
+			codigo: String,
+			nombre: String,
+			pventa: Number,
+			cantidad: String,
+			inventarioId: String,
+			productoId: String,
+			utilidad: Number,
+			pcosto: Number
+		});
+
+		if (this.userId) {
+
+
+			datos.pventa.toFixed(2);
+			datos.importe = datos.pventa * datos.cantidad;
+			datos.importe.toFixed(2);
+
+		
+			datos.valor = datos.pventa * datos.cantidad;
+			datos.valorCosto = datos.pcosto * datos.cantidad;
+			datos.valorUtilidad = ( datos.pventa  * datos.cantidad ) - ( datos.pcosto * datos.cantidad )
+			
+			
+			datos.userId = this.userId;
+
+			let inventarioFinalItemId = InventarioFinalItem.insert(datos);
+			let invetarioId = InventarioFinal.update({_id: datos.inventarioId}, {
+				$inc: {
+					total: datos.importe
+				}
+			});
+
+		} else {
+			throw new Meteor.Error('No dijiste la palabra magica ;)');
+		}
+	},
+	eliminarInventarioFinalItem: function (datos) {
+		check(datos, {
+			importe: Number,
+			itemId: String,
+			inventarioId: String,
+			cantidad: String,
+			productoId: String,
+			pcosto: Number,
+			utilidad: Number,
+			pventa: Number
+		});
+
+		datos.importe *= -1;
+
+		datos.valor = datos.pventa * datos.cantidad;
+		datos.valorCosto = datos.pcosto * datos.cantidad;
+		datos.valorUtilidad = datos.utilidad * datos.cantidad;
+
+		InventarioFinal.update({_id: datos.inventarioId}, {
+			$inc: {
+				total: datos.importe
+			}
+		});
+
+		InventarioFinalItem.remove({_id: datos.itemId});
+	},
+	guardarInventarioFinal: function (datos) {
+
+		check(datos, {
+			invetarioFinalId: String
+		});
+
+		let items = InventarioFinalItem.find({inventarioId: datos.invetarioFinalId});
+
+		items.forEach( function (index) {
+		
+			Productos.update({_id: index.productoId}, {
+				$set: {
+					stock: index.cantidad,
+					valor: index.pventa * index.cantidad,
+					valorCosto: index.pcosto * index.cantidad,
+					valorUtilidad: index.utilidad * index.cantidad
+				}
+			});
+
+			
+		});
+
+	},
+	eliminarInventarioFinal: function (inventarioFinalId) {
+		check(inventarioFinalId, String);
+
+		InventarioFinalItem.remove({ventaId: inventarioFinalId});
+		InventarioFinal.remove({_id: inventarioFinalId});
 	}
 });

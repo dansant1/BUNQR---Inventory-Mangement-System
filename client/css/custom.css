@@ -155,7 +155,7 @@ input:-webkit-autofill {
 	padding-top: 14px;
 }
 
-li.menu-item:hover {
+.menu-item:hover {
 	background-color: #10222A;
 	cursor: pointer;
 	color: white !important;
@@ -183,18 +183,12 @@ li.menu-item:hover {
 	font-family: 'Arimo', sans-serif;
 	font-size: 12px;
 	font-weight: bold;
-	color: #657D90;
+	
 	text-transform: uppercase;
 	padding-left: 5px;
 }
 
-.menu a:hover {
-	color: white;
-}
 
-.menu li:hover {
-	color: white;
-}
 
 .contenido {
 	width: 100%;
@@ -855,10 +849,12 @@ div.opcion-main:hover {
 }
 
 .cuadro-reporte {
-	height: 250px;
+	
+	padding: 30px 15px;
+	min-height: 90px;
 	background-color: #20272F;
-	display: flex;
-	flex-direction: row;
+	/*display: flex;
+	flex-direction: row;*/
 	/*-webkit-box-shadow: inset 0px 1px 5px -1px rgba(0,0,0,0.75);
 	-moz-box-shadow: inset 0px 1px 5px -1px rgba(0,0,0,0.75);
 	box-shadow: inset 0px 1px 5px -1px rgba(0,0,0,0.75);*/
@@ -940,7 +936,7 @@ div.opcion-main:hover {
 
 .cuadro-valores	{
 	
-	width: 650px;
+	
 	height: 150px;
 	margin-top: 50px;
 	margin-right: 50px;
@@ -1219,4 +1215,67 @@ th > p {
 
 td > p {
 	margin: 0;
+}
+
+td {
+	text-align: center !important;
+}
+
+a.menu-a {
+	color: #7f8c8d;
+}
+
+li a.menu-a:hover {
+	color: white;
+}
+
+.black-box {
+	border-radius: 4px;	
+	height: 50px;
+}
+
+.black-box > h2 {
+	color: white;
+	margin-bottom: 0;
+}
+
+.black-box > p {
+	text-transform: uppercase;
+	margin-bottom: 0;
+}
+
+#reporte {
+	display: block;
+	margin: 0 auto;
+	width: 90% !important;
+	height: 350px !important;
+}
+
+.reporte-texto {
+	font-size: 18px;
+	color: white;
+	display: inline-block;
+}
+
+.reporte-texto-span{
+	display: inline-block;
+	position: relative;
+	top: 5px;
+	border-radius: 70%;
+	width: 25px;
+	height: 25px;
+	margin-right: 10px;
+}
+
+.azul {
+	background-color: #3498DB;
+}
+
+.turquesa {
+	background-color: #8E44AD;
+}
+
+.buscador > h2 {
+	margin: 0;
+	color: white;
 }

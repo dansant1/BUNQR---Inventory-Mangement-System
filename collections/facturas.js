@@ -1,0 +1,1 @@
+Facturas = new Mongo.Collection('facturas');

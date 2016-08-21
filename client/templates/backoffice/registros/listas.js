@@ -634,6 +634,13 @@ Template.Almacen.helpers({
 	},
 	nombres: function () {
 		return Meteor.users.find();
+	},
+	fuera: function (datos) {
+		if (datos <= 0) {
+			return 'red';
+		} else {
+			return '';
+		}
 	}
 });
 
@@ -673,6 +680,17 @@ Template.Almacen.events({
 			} else {
 				var mermaId = result.mermaId
 				FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/merma/' +  mermaId + '/nuevo');
+			}
+		});
+	},
+	'click .ingresar-inventario': function () {
+		let negocioId = FlowRouter.getParam('negocioid');
+		Meteor.call('nuevoInventarioFinal',  negocioId, function (error, result) {
+			if (error) {
+				console.log('Hubo un error');
+			} else {
+				var inventarioFinalId = result.inventarioFinalId
+				FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/final/' +  inventarioFinalId + '/nuevo');
 			}
 		});
 	}
@@ -1084,8 +1102,6 @@ Template.listaDeProductoVenta.events({
 
 		datos.ventaId = FlowRouter.getParam('ventaid');
 
-		//console.log(datos.ventaId);
-
 		if (datos.cantidad === undefined) {
 			Bert.alert( 'Ingresa la cantidad, porfavor vuelve a intentarlo', 'warning' );
 		} else {
@@ -1097,6 +1113,139 @@ Template.listaDeProductoVenta.events({
 		}
 	}
 });
+
+// Lista de inventario final items
+
+Template.listaInventarioFinalItem.onCreated(function () {
+	var self = this;
+	self.autorun(function() {
+    	var inventarioFinalId = FlowRouter.getParam('finalid');
+    	self.subscribe('listaInventarioFinalItem', inventarioFinalId); 
+    	self.subscribe('inventarioTotal', inventarioFinalId); 
+	});
+});
+
+Template.listaInventarioFinalItem.helpers({
+	productos: function () {
+		return InventarioFinalItem.find();
+	},
+	venta: function () {
+		return InventarioFinal.find();
+	},
+	importeReal() {
+		return this.valorCosto.toFixed(1);
+	},
+	totalReal() {
+		return this.total.toFixed(1);
+	}
+});
+
+Template.listaInventarioFinalItem.events({
+	'click .eliminar': function () {
+		var inventarioFinalId = FlowRouter.getParam('finalid');
+		var datos = {
+			importe: this.importe,
+			itemId: this._id,
+			inventarioId: inventarioFinalId,
+			cantidad: this.cantidad,
+			productoId: this.productoId,
+			pcosto: this.pcosto,
+			utilidad: this.utilidad,
+			pventa: this.pventa
+		};
+		
+		Meteor.call('eliminarInventarioFinalItem', datos, function (error) {
+			if (error) {
+				console.log('Hubo un error');
+			}
+		});
+	}
+});
+// Fin de lista de inventario final items
+
+Template.nuevoInventarioFinal.events({
+	'click .guardar': function () {
+		var inventarioFinalId = FlowRouter.getParam('finalid');
+		let datos = {
+			invetarioFinalId: inventarioFinalId
+		};
+		Meteor.call('guardarInventarioFinal', datos, function (error) {
+			if (error) {
+				console.log(error.reason);
+			} else {
+				Bert.alert( 'Guardaste el inventario :=)', 'success' );
+				FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/almacenes');
+			}
+		});
+	},
+	'click .cancelar': function () {
+		var inventarioFinalId = FlowRouter.getParam('finalid');
+		Meteor.call('eliminarInventarioFinal', inventarioFinalId, function (error) {
+			if (error) {
+				console.log(error.reason);
+			} else {
+				Bert.alert( 'Cancelaste el inventario final :=)', 'warning' );
+				FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/almacenes/');
+			}
+		});
+	}
+});
+
+// Lista de productos para inventario final
+Template.listaDeProductosInventarioFinal.onCreated(function () {
+	var self = this;
+	self.autorun(function() {
+    	var negocioId = FlowRouter.getParam('negocioid');
+    	self.subscribe('listaProductos', negocioId);  
+	});
+});
+
+Template.listaDeProductosInventarioFinal.helpers({
+	productos: function () {
+		return Productos.find();
+	},
+	productosIndex: function () {
+      return ProductosIndex;
+   }
+});
+
+Template.listaDeProductosInventarioFinal.events({
+	'click .agregar': function (e, template) {
+
+		e.preventDefault();
+
+		let datos = {
+			codigo: this.codigo,
+			nombre: this.nombre,
+			pventa: this.pventa,
+			productoId: this.__originalId,
+			utilidad: this.utilidad,
+			pcosto: this.pcosto,
+		};
+
+		$('input[name="cantidad"]').each(function(key,val){
+      		if (val.value !== "") {
+      			datos.cantidad = val.value;
+      			val.value = "";
+      		} 
+		});
+
+		datos.inventarioId = FlowRouter.getParam('finalid');
+
+		if (datos.cantidad === undefined || datos.cantidad === "") {
+			Bert.alert( 'Ingresa la cantidad, por favor vuelve a intentarlo', 'warning' );
+		} else {
+			Meteor.call('agregarProductoAInventarioFinalItem', datos, function (err, result) {
+				if (err) {
+					Bert.alert( 'Hubo un error, por favor vuelve a intentarlo', 'warning' );
+					console.log(err.reason);
+				}
+			});
+		}
+	}
+});
+
+// Fin de lista de productos para inventario final
 
 Template.listaVentaItem.onCreated(function () {
 	var self = this;
@@ -1148,6 +1297,7 @@ Template.listaVentaItem.events({
 
 Template.registrarVenta.onRendered(function () {
 	Session.set('mostrar', 'no-mostrar');
+	Session.set('mostrar-boleta', 'no-mostrar');
 });
 
 Template.registrarVenta.events({
@@ -1190,8 +1340,91 @@ Template.registrarVenta.events({
 			Session.set('mostrar', 'mostrar');
 		}
 
+	},
+	'click .boleta': function () {
+		
+		if (Session.get('mostrar-boleta') === "mostrar") {
+			Session.set('mostrar-boleta', 'no-mostrar');
+		} else {
+			Session.set('mostrar-boleta', 'mostrar');
+		}
+
 	}
 });
+
+Template.generarBoletaModal.onRendered(function () {
+	var picker = new Pikaday({ field: document.getElementById('datepicker3') });
+});
+
+Template.generarBoletaModal.helpers({
+	mostrar: function () {
+		return Session.get('mostrar-boleta');
+	}
+});
+
+Template.generarBoletaModal.events({
+	'submit form': function (event, template) {
+		event.preventDefault();
+		let ventaId 	= FlowRouter.getParam('ventaid');
+
+		//template.find("[name='factura']").value = "Generando factura..."
+
+		let datos = {
+			ventaId: ventaId,
+			direccion: template.find("[name='direccion']").value,
+			cliente: template.find("[name='cliente']").value,
+			emision: template.find("[name='emision']").value,
+			numero: template.find("[name='numero']").value,
+			observaciones: template.find("[name='observaciones']").value
+		}
+
+		if (datos.emision === "") {
+        	var rightNow = new Date();
+        	var res = rightNow.toISOString().slice(0,10).replace(/-/g,"");
+        	datos.emision = res;
+    	}
+
+		if (datos.direccion !== "" && datos.cliente !== "") {
+			Meteor.call('crearBoleta', datos, function (err, res) {
+				if (err) {
+					console.error(err);
+      			} else if (res) {
+      				template.find("[name='direccion']").value = "";
+					template.find("[name='cliente']").value = "";
+					template.find("[name='emision']").value = "";
+					template.find("[name='numero']").value = "";
+					template.find("[name='observaciones']").value = "";
+					window.open("data:application/pdf;base64, " + res);
+					if (Session.get('mostrar-boleta') === "mostrar") {
+						Session.set('mostrar-boleta', 'no-mostrar');
+					} else {
+						Session.set('mostrar-boleta', 'mostrar');
+					}
+      			}
+			});
+		} else {
+			Bert.alert('Ingrese los datos correctamente', 'warning');
+			
+		}
+
+		
+	},
+	'click .cerrar-boleta': function (e, template) {
+
+		template.find("[name='direccion']").value = "";
+		template.find("[name='cliente']").value = "";
+		template.find("[name='emision']").value = "";
+		template.find("[name='numero']").value = "";
+		template.find("[name='observaciones']").value = "";
+
+		if (Session.get('mostrar-boleta') === "mostrar") {
+			Session.set('mostrar-boleta', 'no-mostrar');
+		} else {
+			Session.set('mostrar-boleta', 'mostrar');
+		}
+	}
+});
+
 
 Template.generarFacturaModal.onRendered(function () {
 	var picker = new Pikaday({ field: document.getElementById('datepicker') });
@@ -1345,6 +1578,18 @@ Template.detalleVenta.events({
 		let ventaId = FlowRouter.getParam('ventaid');
 
 		Meteor.call('exportarFactura', ventaId, function (error, res) {
+			if (error) {
+				Bert.alert('Hubo un error, vuelve a intentarlo', 'warning');
+			} else {
+				Bert.alert('¡Listo!', 'success');
+				window.open("data:application/pdf;base64, " + res);
+			}
+		});
+	},
+	'click .boleta': function (e, template) {
+		let ventaId = FlowRouter.getParam('ventaid');
+
+		Meteor.call('exportarBoleta', ventaId, function (error, res) {
 			if (error) {
 				Bert.alert('Hubo un error, vuelve a intentarlo', 'warning');
 			} else {

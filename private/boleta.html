@@ -1,0 +1,82 @@
+<div class="container cuadro">
+		<div class="row"> <!-- Cabeza de la factura -->
+			<div class="col-md-7">
+				<div class="empresa">
+					<h3>{{negocio}}</h3>
+					
+					<h5>{{direccion}}</h5>
+					<h5>{{provincia}} - {{departamento}}</h5>
+				</div>
+			</div>
+			<div class="col-md-5">
+				<div class="cuadro datos">
+					<h3>Boleta de venta</h3>
+					<h3>RUC: {{ruce}}</h3>
+					<h3>{{numero}}</h3>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div class="row"> <!-- Datos del emisor -->
+			
+				<div class="col-md-4">
+					
+					<h2>Fecha de emisión: </h2>
+					<h2>Señor(es): </h2>
+					<h2>Dirección: </h2>
+					<h2>Observaciones: </h2>
+				</div>
+				<div class="col-md-8">
+					
+					<h2>{{emision}}</h2>
+					<h2>{{cliente}}</h2>
+					<h2>{{direccionc}}</h2>
+					<h2>{{observaciones}}</h2>
+				</div>	
+			
+		</div>
+		<div class="row"> <!-- Lista de productos -->
+			<div class="col-md-12">
+				<table class="table table-bordered">
+    				<thead>
+      					<tr>
+       		 				<th>Cantidad</th>
+        					
+        					<th>Descripción</th>
+        					<th>Precio Unitario</th>
+        					<th>Valor de venta</th>
+      					</tr>
+    				</thead>
+    				<tbody>
+    				{{#each items}}
+      					<tr>
+        					<td>{{cantidad}}</td>
+        					
+        					<td>{{nombre}}</td>
+        					<td>S/. {{pventa}}</td>
+        					<td>S/. {{valor}}</td>
+      					</tr>
+      				{{/each}}	
+    				</tbody>
+  				</table>
+			</div>
+		</div>
+		<div class="row"> <!-- Total -->
+			<div class="col-md-8">
+				
+			</div>
+			<div class="col-md-4">
+				
+				
+					<table class="table table-bordered">
+						<tbody>
+      						<tr>
+        						<td>TOTAL</td>
+        						<td>S/. {{total}}</td>		
+      						</tr>	
+    				</tbody>
+					</table>
+				
+			</div>
+		</div>
+	</div>

@@ -14,6 +14,42 @@ Template.reporteDiario.onCreated(function () {
 	});
 });
 
+Template.reporteDiario.onRendered(function () {
+	
+	function drawChart(){
+  		var data = {
+    		labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre"],
+    		datasets: 
+    		[
+    			{
+        			fillColor : "rgba(52, 152, 219,1.0)",
+        			strokeColor : "rgba(52, 152, 219,1.0)",
+        			pointColor : "rgba(220,220,220,1)",
+        			pointStrokeColor : "#fff",
+        			data : [25, 39, 40, 11, 46, 75, 50, 54, 77, 89, 45, 58]
+    			},
+    			{
+       		 		fillColor : "rgba(142, 68, 173,1.0)",
+        			strokeColor : "rgba(142, 68, 173,1.0)",
+        			pointColor : "rgba(151,187,205,1)",
+        			pointStrokeColor : "#fff",
+        			data: [45, 49, 70, 81, 56, 55, 40, 48, 55, 38, 42, 70],
+    			}  
+    		]
+		};
+
+  		Chart.defaults.global.responsive = true;
+
+  		var ctx = $("#reporte").get(0).getContext("2d");
+
+  		var myNewChart = new Chart(ctx);
+
+  		new Chart(ctx).Line(data);
+	}
+
+	drawChart();
+});
+
 Template.reporteDiario.helpers({
 	reportes: function () {
 		return Reportes.findOne({}, {sort: {fecha: -1}});
@@ -141,6 +177,17 @@ Template.reportes.events({
 			} else {
 				var mermaId = result.mermaId
 				FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/merma/' +  mermaId + '/nuevo');
+			}
+		});
+	},
+	'click .ingresar-inventario': function () {
+		let negocioId = FlowRouter.getParam('negocioid');
+		Meteor.call('nuevoInventarioFinal',  negocioId, function (error, result) {
+			if (error) {
+				console.log('Hubo un error');
+			} else {
+				var inventarioFinalId = result.inventarioFinalId
+				FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/final/' +  inventarioFinalId + '/nuevo');
 			}
 		});
 	}

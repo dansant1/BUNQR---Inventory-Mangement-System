@@ -349,34 +349,47 @@
 			<div class="stock ingresar-merma">
 				<p>Ingresar merma</p>
 			</div>
+			<div class="stock ingresar-inventario">
+				<p>Ingresar inventario final</p>
+			</div>
 		</div>
 		<div class="cuadro-reporte">
-			<div class="cuadro-total">
-				<div class="line"></div>
-				<div class="valor-total">
-					<p>S/. {{gananciaTotal}}</p>
-					<div class="texto">VALOR TOTAL</div>
+			
+			<div class="container">
+				
+				<div class="row" style="text-align: center;">
+					<div class="column">
+						<div class="black-box">
+								<h2>S/. {{gananciaTotal}}</h2>		
+								<p>VALOR TOTAL</p>
+						</div>		
+					</div>
+					<div class="column">
+						<div class="black-box">
+							<h2>S/. {{utilidadTotal}}</h2>
+							<p>UTILIDAD TOTAL</p>
+						</div>
+					</div>
+					<div class="column">
+						<div class="black-box">
+							<h2>S/. {{costoTotal}}</h2>
+							<p>VALOR COSTO</p>
+						</div>
+					</div>
+					<div class="column">
+						<div class="black-box">
+							<h2>{{cantidad}}</h2>
+							<p>Productos</p>
+						</div>
+					</div>
+					
 				</div>
-			</div>
-			<div class="cuadro-valores">
-				<div class="valor">
-					<p class="valor-total-item">S/. {{utilidadTotal}}</p>
-					<div class="valor-texto">UTILIDAD TOTAL</div>
-				</div>
-				<div class="valor-line"></div>
-				<div class="valor">
-					<p class="valor-total-item">S/. {{costoTotal}}</p>
-					<div class="valor-texto">VALOR COSTO</div>
-				</div>
-				<div class="valor-line"></div>
-				<div class="valor">
-					<p class="valor-total-item">{{cantidad}}</p>
-					<div class="valor-texto" style="margin-left: 1px;">PRODUCTOS</div>
-				</div>
-			</div>
+			</div>			
+
 		</div>
 
-		<div class="buscador">
+		<div class="buscador" style="height: 110px;">
+				<h2>Buscar producto</h2>
 				{{> EasySearch.Input index=productosIndex}}
 		</div>
 
@@ -388,11 +401,12 @@
      		 		<th><p style="text-align: center; color: #606C76">CODIGÓ</p></th>
       				<th><p style="text-align: center; color: #606C76">NOMBRE</p></th>
       				<th><p style="text-align: center; color: #606C76">STOCK</p></th>
-      				<th><p style="text-align: center; color: #606C76">COSTO (S/.)</p></th>
+      				<th><p style="text-align: center; color: #606C76">P. COSTO (S/.)</p></th>
+      				<th><p style="text-align: center; color: #606C76">TOTAL (S/.)</p></th>
       				<th><p style="text-align: center; color: #606C76">P. VENTA (S/.)</p></th>
       				<th><p style="text-align: center; color: #606C76">VALOR (S/.)</p></th>
       				<th><p style="text-align: center; color: #606C76">UTILIDAD (S/.)</p></th>
-      				<th><p style="text-align: center; color: #606C76">TOTAL (S/.)</p></th>
+      				
     			</tr>
   			</thead>
   			<tbody >
@@ -402,16 +416,17 @@
 					<tr class="tabla-hover">
 						<td><p style="text-align: center;">{{codigo}}</p></td>
 						<td><p style="text-align: center;">{{nombre}}</p></td>
-						<td><p style="text-align: center;">{{stock}}</p></td>
+						<td><p style="text-align: center; color: {{fuera stock}} ;">{{stock}}</p></td>
 						<td><p style="text-align: center;">S/. {{pcosto}}</p></td>
+						<td>
+							<p style="text-align: center; color: {{fuera Costo}}">S/. {{Costo}}</p>
+						</td>
 						<td><p style="text-align: center;">S/. {{pventa}}</p></td>
-						<td><p style="text-align: center;">S/. {{Valor}}</p></td>
+						<td><p style="text-align: center; color: {{fuera Valor}}">S/. {{Valor}}</p></td>
 						<td>
-							<p style="text-align: center;">S/. {{Utilidad}}</p>
+							<p style="text-align: center; color: {{fuera Utilidad}}">S/. {{Utilidad}}</p>
 						</td>
-						<td>
-							<p style="text-align: center;">S/. {{Costo}}</p>
-						</td>
+						
 					</tr>
 			
   				{{/EasySearch.Each}}
@@ -651,6 +666,159 @@
 	</div>
 </template>
 
+<!-- Registro de inventario final -->
+<template name="nuevoInventarioFinal">
+	
+	<div class="contenedor-negocios">
+		<div class="set-lista-negocios">
+			<div class="negocio item-negocio almacen-stock elegido">
+				<span class="negocio-item" style="text-align: center;">Inventario final</span>
+			</div>	
+		</div>
+	</div>
+
+	<div class="cuadro-main">
+	
+		<div class="sub-menu">
+			<div class="stock">
+				<p>Lista de inventarios</p>
+			</div>
+			<div class="stock stock-elegido">
+				<p>Nuevo inventario final</p>
+			</div>
+		</div>
+
+		<div class="cuadro-reporte" >
+			<div class="container">
+				<div class="row">
+					<div class="column" style="padding-left: 15px;">
+						<h2 style="color: white;">Inventario final</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="column" style="padding-left: 20px;">
+					
+						<input class="button-primary guardar" type="button" value="Guardar" name="guardar" id="boton-login">
+						<input class="button-clear cancelar" type="button" value="Cancelar" name="cancelar" id="boton-login" style="color: white; margin-left: 30px;">
+							
+					</div>
+				</div>
+			</div>
+		</div>
+		{{>listaInventarioFinalItem}}
+		{{>listaDeProductosInventarioFinal}}
+	</div>
+</template>
+
+<template name="listaDeProductosInventarioFinal">
+	<div class="buscador" style="padding-top: 15px; height: 125px;">
+			
+		<h2 style="color: white; margin-bottom: 0;">Buscar productos</h2>		
+		
+		{{> EasySearch.Input index=productosIndex }}
+	</div>
+	{{#if Template.subscriptionsReady}}
+	<table>
+		<thead>
+			<tr>
+				<th style="color: #606C76;">CÓDIGO</th>
+				<th style="color: #606C76;">PRODUCTO</th>
+				<th style="color: #606C76;">P. COSTO (S/.)</th>
+				<th style="color: #606C76;">CANTIDAD</th>
+				<th style="color: #606C76;">AGREGAR</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#EasySearch.Each index=productosIndex }}
+				<tr class="tabla-hover">
+					<td >
+					<p class="codigo">{{codigo}}</p>
+					</td>
+					<td >
+					<p class="nombre">{{nombre}}</p>
+					</td>
+					<td>
+					<p class="costo">S/. {{pcosto}}</p>
+					</td>
+					<td>
+						<input type="number" name="cantidad" min="1" style="width: 110px; border-bottom: 2.5px solid #5E4AD7;">
+					</td>
+					<td>
+						<button class="agregar" id="boton-login">Agregar</button>
+					</td>
+				</tr>
+			{{/EasySearch.Each}}
+
+			{{#EasySearch.IfSearching index=productosIndex}}
+ 					<div class="loading">
+  						{{>loader}}
+  					</div>
+			{{/EasySearch.IfSearching}}
+
+			
+		</tbody>
+	</table>
+	{{else}}
+		<div class="loading" style="width: 150px;">
+  			{{>loaderDos}}
+  		</div>
+	{{/if}}
+</template>
+
+<template name="listaInventarioFinalItem">
+
+			<table>
+				<thead>
+					<tr>
+						<th style="color: #606C76;"><p>CÓDIGO</p></th>
+						<th style="color: #606C76;"><p>PRODUCTO</p></th>
+						<th style="color: #606C76;"><p>P. COSTO (S/.)</p></th>
+					
+						<th style="color: #606C76;"><p>CANTIDAD</p></th>
+						<th style="color: #606C76;"><p>IMPORTE (S/.)</p></th>
+						<th style="color: #606C76;"><p>ELIMINAR</p></th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each productos}}
+					<tr>
+						<td><p style="text-align: center;">{{codigo}}</p></td>
+						<td><p style="text-align: center;">{{nombre}}</p></td>
+						<td><p style="text-align: center;">S/. {{pcosto}}</p></td>
+						
+						<td><p style="text-align: center;">{{cantidad}}</p></td>
+						<td><p style="text-align: center;">S/. {{importeReal}}</p></td>
+						<td>
+							<p>
+								<button class="eliminar" id="boton-login">Eliminar</button>
+							</p>
+						</td>
+					</tr>
+					{{/each}}
+				</tbody>
+				<tfoot class="full-width">
+    				<tr>
+    				{{#each venta}}
+						<th style="color: #606C76; padding-left: 27px;"><strong>TOTAL </strong>: S/. {{totalReal}} 
+      					</th>
+      				{{else}}
+      					<th style="color: #606C76;">
+      						<strong>TOTAL </strong>: S/. 0
+      					</th>
+    				{{/each}}
+
+      					<th></th>
+      					<th></th>
+      					<th></th>
+      					<th></th>
+      					<th></th>	
+      					<th></th>		
+    				</tr>
+  				</tfoot>
+			</table>
+</template>
+
+<!-- Fin de registro de inventario final -->
 
 
 <!-- Main de POS-->
@@ -702,17 +870,85 @@
 					<input class="button-clear cancelar" type="submit" value="Cancelar" name="cancelar" style="color: white; margin-left: 30px;">
 
 					<input class="button-primary facturar" type="button" value="Generar factura" name="factura" id="boton-login" style="margin-left: 30px;">
+
+					<input class="button-primary boleta" type="button" value="Generar boleta" name="boleta" id="boton-login" style="margin-left: 30px;">
 							
 				</div>
 			</div>
 			</div>
 		
 			{{>generarFacturaModal}}
+			{{>generarBoletaModal}}
+
 
 		</div>
 		{{>listaVentaItem}}
 		{{>listaDeProductoVenta}}
 	</div>
+</template>
+
+<template name="generarBoletaModal">
+    <div class="modal {{mostrar}}" id="facturaModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            	 <div class="modal-header">
+          			<h4 class="modal-title">Generar Boleta</h4>
+        		</div>
+
+                <div class="modal-body">
+                    <div class="container">
+  						
+  						<form>
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+      								<label for="cliente">Nombre del cliente</label>
+      								<input type="text" name="cliente" class="form-control" placeholder="Escribe el nombre del cliente">
+    						    </div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+      								<label for="direccion">Dirección del cliente</label>
+      								<input type="text" name="direccion" class="form-control" placeholder="Escribe la dirección del cliente">
+    							</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+      								<label for="emision">Fecha de emisión</label>
+      								<input type="text" id="datepicker3" name="emision" class="form-control" placeholder="Ingrese la fecha de emisión">
+    							</div>
+							</div>
+						</div>
+    					
+						<div class="row">
+							
+							<div class="col-md-6">
+								<div class="form-group">
+      								<label for="numero">Número de boleta</label>
+      								<input type="text" name="numero" class="form-control" placeholder="Ingrese el número de la boleta (opcional)">
+    							</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+      								<label for="observaciones">Observaciones </label>
+      								<input type="text" name="observaciones" class="form-control" placeholder="Opcional">
+    							</div>
+							</div>
+						</div>
+
+    					<button type="submit" id="boton-login" class="btn btn-default">Generar Boleta</button>
+  						
+  						</form>
+					</div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" id="boton-login" class="btn btn-default cerrar-boleta" data-dismiss="modal" style="background-color: #7f8c8d; color: #ecf0f1;">Cancelar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </template>
 
 <template name="generarFacturaModal">
@@ -896,10 +1132,10 @@
 			<table>
 				<thead>
 					<tr>
-						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">FECHA</p></th>
-						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">F. PAGO</p></th>
-						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">TOTAL (S/.)</p></th>
-						<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">DETALLE</p></th>
+						<th style="color: #606C76;"><p>FECHA</p></th>
+						<th style="color: #606C76;"><p>F. PAGO</p></th>
+						<th style="color: #606C76;"><p>TOTAL (S/.)</p></th>
+						<th style="color: #606C76;"><p>DETALLE</p></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -971,7 +1207,8 @@
 					</div>
 				{{/each}}	
 				<div style="display: block; position: absolute; top:410px; left: 180px;">
-					<input class="button-primary facturar" type="button" value="Generar factura" name="factura" id="boton-login" style="margin-left: 30px;">	
+					<input class="button-primary facturar" type="button" value="Generar factura" name="factura" id="boton-login" style="margin-left: 30px;">
+					<input class="button-primary boleta" type="button" value="Generar boleta" name="factura" id="boton-login" style="margin-left: 30px;">	
 				</div>
 		</div>
 

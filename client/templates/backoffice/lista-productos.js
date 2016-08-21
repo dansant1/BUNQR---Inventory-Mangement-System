@@ -34,7 +34,6 @@ Template.listaUnidad.onCreated(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
     	self.subscribe('listaPresentaciones', negocioId);  
 	});
-	console.log('Si se suscribe');
 });
 
 Template.listaUnidad.helpers({
@@ -50,7 +49,6 @@ Template.listaUnidadTwo.onCreated(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
     	self.subscribe('listaPresentaciones', negocioId);  
 	});
-	console.log('Si se suscribe');
 });
 
 Template.listaUnidadTwo.helpers({

@@ -30,9 +30,11 @@
 			<div class="stock ingresar-merma">
 				<p>Ingresar merma</p>
 			</div>
+			<div class="stock ingresar-inventario">
+				<p>Ingresar inventario final</p>
+			</div>
 		</div>
 		
-		<div class="dia"><h1 style="color: #435360;">HOY</h1></div>
 		{{>reporteDiario}}
 
 		<table>
@@ -64,4 +66,114 @@
 
 
 	
+</template>
+
+<template name="reporteDiario">
+	<div class="cuadro-reporte">
+		<div class="container">
+		<div class="row">
+			<div class="column column-50" style="text-align: center">
+				<span class="turquesa reporte-texto-span"></span>
+				<h2 class="reporte-texto">
+					
+					Ventas
+				</h2>
+			</div>
+			<div class="column column-50" style="text-align: center">
+				<span class="azul reporte-texto-span"></span>
+				<h2 class="reporte-texto">
+					
+					Costos
+				</h2>				
+			</div>
+		</div>
+		<div class="row">
+			<div class="column column-100" style="text-align: center;">
+				<canvas id="reporte"></canvas>
+			</div>
+		</div>
+		</div>	
+	</div>
+	
+
+	{{#if Template.subscriptionsReady}}
+
+	{{#with reportes}}
+	<div class="cuadro-reporte">
+
+			<div class="container">
+				
+				<div class="row" style="text-align: center;">
+					<div class="column">
+						<div class="black-box">
+								<h2>S/. {{utilidad}}</h2>		
+								<p>Utilidad total</p>
+						</div>		
+					</div>
+					<div class="column">
+						<div class="black-box">
+							<h2>S/. {{venta}}</h2>
+							<p>Total de ventas</p>
+						</div>
+					</div>
+					<div class="column">
+						<div class="black-box">
+							<h2>S/. {{costo}}</h2>
+							<p>Total de costos</p>
+						</div>
+					</div>
+					<div class="column">
+						<div class="black-box">
+							<h2>S/. {{merma}}</h2>
+							<p>Valor en merma</p>
+						</div>
+					</div>
+					<div class="column">
+						<div class="black-box">
+							<h2>S/. {{compra}}</h2>
+							<p>Total de compras</p>
+						</div>
+						
+					</div>
+				</div>
+			</div>			
+
+			
+		</div>
+	{{/with}}
+
+	{{else}}
+	
+	<div class="cuadro-reporte">
+			<div class="cuadro-total">
+				<div class="line"></div>
+				<div class="valor-total">
+					<p>S/. {{>loader}}</p>
+					<div class="texto">UTILIDAD TOTAL</div>
+				</div>
+			</div>
+			<div class="cuadro-valores">
+				<div class="valor">
+					<p class="valor-total-item">S/. {{>loader}}</p>
+					<div class="valor-texto">VENTAS TOTAL</div>
+				</div>
+				<div class="valor-line"></div>
+				<div class="valor">
+					<p class="valor-total-item">S/. {{>loader}}</p>
+					<div class="valor-texto">COSTO TOTAL</div>
+				</div>
+				<div class="valor-line"></div>
+				<div class="valor">
+					<p class="valor-total-item">S/. {{>loader}}</p>
+					<div class="valor-texto" style="margin-left: 1px;">VALOR MERMA</div>
+				</div>
+				<div class="valor-line"></div>
+				<div class="valor">
+					<p class="valor-total-item">S/. {{>loader}}</p>
+					<div class="valor-texto">COMPRAS TOTAL</div>
+				</div>
+			</div>
+	</div>
+
+	{{/if}}
 </template>
