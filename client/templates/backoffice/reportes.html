@@ -145,35 +145,46 @@
 	{{else}}
 	
 	<div class="cuadro-reporte">
-			<div class="cuadro-total">
-				<div class="line"></div>
-				<div class="valor-total">
-					<p>S/. {{>loader}}</p>
-					<div class="texto">UTILIDAD TOTAL</div>
+
+			<div class="container">
+				
+				<div class="row" style="text-align: center;">
+					<div class="column">
+						<div class="black-box">
+								<h2>S/. {{>loader}}</h2>		
+								<p>Utilidad total</p>
+						</div>		
+					</div>
+					<div class="column">
+						<div class="black-box">
+							<h2>S/. {{>loader}}</h2>
+							<p>Total de ventas</p>
+						</div>
+					</div>
+					<div class="column">
+						<div class="black-box">
+							<h2>S/. {{>loader}}</h2>
+							<p>Total de costos</p>
+						</div>
+					</div>
+					<div class="column">
+						<div class="black-box">
+							<h2>S/. {{>loader}}</h2>
+							<p>Valor en merma</p>
+						</div>
+					</div>
+					<div class="column">
+						<div class="black-box">
+							<h2>S/. {{>loader}}</h2>
+							<p>Total de compras</p>
+						</div>
+						
+					</div>
 				</div>
-			</div>
-			<div class="cuadro-valores">
-				<div class="valor">
-					<p class="valor-total-item">S/. {{>loader}}</p>
-					<div class="valor-texto">VENTAS TOTAL</div>
-				</div>
-				<div class="valor-line"></div>
-				<div class="valor">
-					<p class="valor-total-item">S/. {{>loader}}</p>
-					<div class="valor-texto">COSTO TOTAL</div>
-				</div>
-				<div class="valor-line"></div>
-				<div class="valor">
-					<p class="valor-total-item">S/. {{>loader}}</p>
-					<div class="valor-texto" style="margin-left: 1px;">VALOR MERMA</div>
-				</div>
-				<div class="valor-line"></div>
-				<div class="valor">
-					<p class="valor-total-item">S/. {{>loader}}</p>
-					<div class="valor-texto">COMPRAS TOTAL</div>
-				</div>
-			</div>
-	</div>
+			</div>			
+
+			
+		</div>
 
 	{{/if}}
 </template>
