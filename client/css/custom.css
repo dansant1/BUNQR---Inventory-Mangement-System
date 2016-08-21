@@ -1259,6 +1259,10 @@ li a.menu-a:hover {
 	background-color: rgba(39, 174, 96,1.0);
 }
 
+.naranja {
+	background-color: rgba(211, 84, 0,1.0);
+}
+
 .reporte-texto-span{
 	display: inline-block;
 	position: relative;
