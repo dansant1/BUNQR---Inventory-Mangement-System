@@ -225,12 +225,7 @@ Meteor.methods({
 				datos.almacen = false;
 			}
 
-			//datos.pcosto = parseFloat(datos.pcosto);
-			//datos.pcosto.toFixed(1);
-			//datos.pventa = parseFloat(datos.pventa);
-			//datos.pventa.toFixed(1);
-			//cantidad = parseFloat(cantidad);
-			//cantidad.toFixed(2);
+			
 			datos.createdAt = new Date;
 			var importe = datos.pcosto * cantidad;
 			importe.toFixed(1);

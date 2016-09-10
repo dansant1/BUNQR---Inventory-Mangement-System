@@ -24,21 +24,7 @@
 				<input class="button-primary boton-formulario" type="button" id="boton-login" value="Ingresar">
 			</div>
 		</div>
-		{{else}}
-			<div class="bienvenido">
-				<img src="/presentacion.png" alt="Bienvenido" galleryimg="no">
-				<div class="bienvenido-instrucciones">
-					{{#each nombres}}
-					<h1>Bienvenido, {{profile.nombre}}</h1>
-					{{/each}}
-					<blockquote>
-  						<p><em>De vez en cuando aparece un producto revolucionario que lo cambia todo. Uno es muy afortunado si puede trabajar en sólo uno de estos en su carrera. <strong>Steve Jobs.</strong></em></p>
-					</blockquote>
-					<ul>
-  						<li><strong>Primero,</strong> crea una empresa</li>
-					</ul>
-				</div>
-			</div>
+		
 		{{/each}}
 		{{else}}
 			<div class="loading" style="width: 225px;">

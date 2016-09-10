@@ -37,6 +37,22 @@ Meteor.methods({
 			Accounts.sendVerificationEmail( userId );
 		
 			Roles.addUsersToRoles(userId, ['administrador']);
+		
+			Meteor.defer(function () {
+
+				SSR.compileTemplate( 'htmlEmail', Assets.getText( 'bienvenido.html' ) );
+
+				var emailData = {
+  					nombre: opciones.profile.nombre + " " + opciones.profile.apellido
+				};
+
+				Email.send({
+  				to: opciones.email,
+  				from: "BUNQR <daniel@grupoddv.com>",
+  				subject: "Bienvenido a BUNQR",
+  				html: SSR.render( 'htmlEmail', emailData )
+				});
+			});
 		}
 
 		
@@ -89,33 +105,55 @@ Meteor.methods({
 			profile: {
 				nombre: String,
 				apellido: String,
+				empresa: String,
 				distribuidorId: String
 			}
 		});
 
-		opciones.profile.empresa = "Mi empresa";
+		let negocioId = Negocios.insert({
+				nombre: opciones.profile.empresa,
+				createdAt: new Date()
+		});	
+
+		opciones.profile.negocioId = negocioId;
 
 		let userId = Accounts.createUser(opciones);
 
 		// Acutalizacion
-		Accounts.sendVerificationEmail( userId );
 
-		ClientesDistribuidores.insert({
-			nombre: opciones.profile.nombre,
-			apellido: opciones.profile.apellido,
-			distribuidorId: opciones.profile.distribuidorId,
-			email: opciones.email,
-			createdAt: new Date(),
-			usuarioId: userId,
-			cancelado: false
-		});
+		if (userId) {
+			Accounts.sendVerificationEmail( userId );
 
-		let negocioId = Negocios.insert({
-				userId: userId,
-				nombre: opciones.profile.empresa,
-				createdAt: new Date()
-			});		
+			ClientesDistribuidores.insert({
+				nombre: opciones.profile.nombre,
+				apellido: opciones.profile.apellido,
+				distribuidorId: opciones.profile.distribuidorId,
+				email: opciones.email,
+				createdAt: new Date(),
+				usuarioId: userId,
+				cancelado: false
+			});
+
+			Roles.addUsersToRoles(userId, ['administrador']);
+			
+			Meteor.defer(function () {
+
+				SSR.compileTemplate( 'htmlEmail', Assets.getText( 'bienvenido.html' ) );
+
+				var emailData = {
+  					nombre: opciones.profile.nombre + " " + opciones.profile.apellido
+				};
+
+				Email.send({
+  				to: opciones.email,
+  				from: "BUNQR <daniel@grupoddv.com>",
+  				subject: "Bienvenido a BUNQR",
+  				html: SSR.render( 'htmlEmail', emailData )
+				});
+			});
+		}
+			
 		
-		Roles.addUsersToRoles(userId, ['administrador']);
+		
 	}
 });

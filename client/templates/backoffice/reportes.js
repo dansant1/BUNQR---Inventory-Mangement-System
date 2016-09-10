@@ -362,6 +362,112 @@ Template.reporteDiario.onRendered(function () {
   		var reporteChart = new Chart(ctx).Bar(data, options);
 	}
 
+	// Reporte Merma
+
+	function reporteM () {
+
+		
+
+	var obtenerMerma = function () {
+
+		var mermas = [];
+
+		// Obtenemos el total de cada mes
+		for (var mes = 0; mes <= 11; mes++) {
+
+			
+			var date = new Date();
+			var firstDay = new Date(date.getFullYear(), mes, 1);
+			var lastDay = new Date(date.getFullYear(), mes + 1, 0);
+
+			var mermaTotalMes = 0;
+
+			Reportes.find({ fecha: { $gte: firstDay, $lt: lastDay } }).forEach( function (index) {
+
+				if (index.valorMerma === undefined) {
+					mermaTotalMes += 0;
+				} else {
+					mermaTotalMes += index.valorMerma;
+				}
+				
+			});
+			
+			mermas.push(mermaTotalMes);
+		}
+
+		return mermas;
+	}
+
+		var options = {
+
+			///Boolean - Whether grid lines are shown across the chart
+			scaleShowGridLines: true,
+
+			//String - Colour of the grid lines
+			scaleGridLineColor: "rgba(0,0,0,.05)",
+
+			//Number - Width of the grid lines
+			scaleGridLineWidth: 1,
+
+			//Boolean - Whether to show horizontal lines (except X axis)
+			scaleShowHorizontalLines: true,
+
+			//Boolean - Whether to show vertical lines (except Y axis)
+			scaleShowVerticalLines: true,
+
+			//Boolean - Whether the line is curved between points
+			bezierCurve: true,
+
+			//Number - Tension of the bezier curve between points
+			bezierCurveTension: 0.4,
+
+			//Boolean - Whether to show a dot for each point
+			pointDot: true,
+
+			//Number - Radius of each point dot in pixels
+			pointDotRadius: 4,
+
+			//Number - Pixel width of point dot stroke
+			pointDotStrokeWidth: 1,
+
+			//Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+			pointHitDetectionRadius: 20,
+
+			//Boolean - Whether to show a stroke for datasets
+			datasetStroke: true,
+
+			//Number - Pixel width of dataset stroke
+			datasetStrokeWidth: 2,
+
+			//Boolean - Whether to fill the dataset with a colour
+			datasetFill: true,
+
+			display:true,
+
+			//String - A legend template
+			legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+
+		};
+
+  		var data = {
+    		labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre"],
+    		datasets: 
+    		[
+    			{
+        			fillColor : "rgba(39, 174, 96,1.0)",
+        			pointHighlightStroke: "rgba(39, 174, 96,1.0)",
+        			data : obtenerMerma()
+    			}
+    		]
+		};
+
+  		//Chart.defaults.global.responsive = true;
+
+  		var ctx = $("#reporteM").get(0).getContext("2d");
+
+  		var reporteMerma = new Chart(ctx).Line(data);
+	}
+
 	// Reporte Utilidades vs Costos
 	function reporteUC () {
 
@@ -500,33 +606,143 @@ Template.reporteDiario.onRendered(function () {
   		var reporteChart = new Chart(ctx).Bar(data, options);
 	}
 
-	function reporteProductosMasVendidos () {
+	// Reporte utilidades vs compras ( gastos )
 
-		var data = [
+	function reporteUG () {
 
-        {
-            value: 20,
-            color:"#637b85"
-        },
-        {
-            value : 30,
-            color : "#2c9c69"
-        },
-        {
-            value : 40,
-            color : "#dbba34"
-        },
-        {
-            value : 10,
-            color : "#c62f29"
-        }
+		var obtenerUtilidades = function  () {
 
-    ];
+		var utilidades = [];
 
-		var ctx = $("#reporteProductosMasVendidos").get(0).getContext("2d");
+		// Obtenemos el total de cada mes
+		for (var mes = 0; mes <= 11; mes++) {
 
-		var reportePMV = new Chart(ctx).Pie(data);
+			
+			var date = new Date();
+			var firstDay = new Date(date.getFullYear(), mes, 1);
+			var lastDay = new Date(date.getFullYear(), mes + 1, 0);
 
+			var utilidadTotalMes = 0;
+
+			Reportes.find({ fecha: { $gte: firstDay, $lt: lastDay } }).forEach( function (index) {
+
+				if (index.valorutilidadVenta === undefined) {
+					utilidadTotalMes += 0;
+				} else {
+					utilidadTotalMes += index.valorutilidadVenta;
+				}
+				
+			});
+			
+			utilidades.push(utilidadTotalMes);
+		}
+
+		return utilidades;
+	}
+
+	var obtenerCompras = function () {
+
+		var compras = [];
+
+		// Obtenemos el total de cada mes
+		for (var mes = 0; mes <= 11; mes++) {
+
+			
+			var date = new Date();
+			var firstDay = new Date(date.getFullYear(), mes, 1);
+			var lastDay = new Date(date.getFullYear(), mes + 1, 0);
+
+			var comprasTotalMes = 0;
+
+			Reportes.find({ fecha: { $gte: firstDay, $lt: lastDay } }).forEach( function (index) {
+
+				if (index.valorCompras === undefined) {
+					comprasTotalMes += 0;
+				} else {
+					comprasTotalMes += index.valorCompras;
+				}
+				
+			});
+			
+			compras.push(comprasTotalMes);
+		}
+
+		return compras;
+	}
+
+		var options = {
+
+			///Boolean - Whether grid lines are shown across the chart
+			scaleShowGridLines: true,
+
+			//String - Colour of the grid lines
+			scaleGridLineColor: "rgba(0,0,0,.05)",
+
+			//Number - Width of the grid lines
+			scaleGridLineWidth: 1,
+
+			//Boolean - Whether to show horizontal lines (except X axis)
+			scaleShowHorizontalLines: true,
+
+			//Boolean - Whether to show vertical lines (except Y axis)
+			scaleShowVerticalLines: true,
+
+			//Boolean - Whether the line is curved between points
+			bezierCurve: true,
+
+			//Number - Tension of the bezier curve between points
+			bezierCurveTension: 0.4,
+
+			//Boolean - Whether to show a dot for each point
+			pointDot: true,
+
+			//Number - Radius of each point dot in pixels
+			pointDotRadius: 4,
+
+			//Number - Pixel width of point dot stroke
+			pointDotStrokeWidth: 1,
+
+			//Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+			pointHitDetectionRadius: 20,
+
+			//Boolean - Whether to show a stroke for datasets
+			datasetStroke: true,
+
+			//Number - Pixel width of dataset stroke
+			datasetStrokeWidth: 2,
+
+			//Boolean - Whether to fill the dataset with a colour
+			datasetFill: true,
+
+			display:true,
+
+			//String - A legend template
+			legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+
+		};
+
+  		var data = {
+    		labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre"],
+    		datasets: 
+    		[
+    			{
+        			fillColor : "rgba(211, 84, 0,1.0)",
+        			pointHighlightStroke: "rgba(39, 174, 96,1.0)",
+        			data : obtenerUtilidades()
+    			},
+    			{
+       		 		fillColor : "rgba(241, 196, 15,1.0)",
+        			pointHighlightStroke: "rgba(39, 174, 96,1.0)",
+        			data: obtenerCompras()
+    			} 
+    		]
+		};
+
+  		//Chart.defaults.global.responsive = true;
+
+  		var ctx = $("#reporteUG").get(0).getContext("2d");
+
+  		var reporteChart = new Chart(ctx).Bar(data, options);
 	}
 
 	setTimeout(function () {
@@ -535,7 +751,8 @@ Template.reporteDiario.onRendered(function () {
 		Tracker.autorun(reporteVM);
 		Tracker.autorun(reporteUC);
 		Tracker.autorun(reporteP);
-
+		Tracker.autorun(reporteM);
+		Tracker.autorun(reporteUG);
 	}, 1000)
 
 	
@@ -625,11 +842,11 @@ Template.reportes.helpers({
 		}
 	},
 	utilidad: function () {
-		if (this.valorutilidadTotal === undefined) {
+		if (this.valorutilidadVenta === undefined) {
 			return 0;
 		} else {
 			//return this.valorutilidadTotal.toLocaleString();
-			return this.valorutilidadTotal.toFixed(1);
+			return this.valorutilidadVenta.toFixed(1);
 		}
 	},
 	compra: function () {

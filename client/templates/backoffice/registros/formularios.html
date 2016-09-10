@@ -755,29 +755,30 @@
 		</div>
 
 		<div class="cuadro-reporte">
-			{{#each compras}}
-				<div class="cuadro-total">
-					<div class="line"></div>
-					<div class="valor-total">
-						<p>S/. {{total}}</p>
-						<div class="texto">
-							IMPORTE TOTAL
+				<div class="container">
+
+				<div class="row">
+					<div class="column">
+						<h2 style="color: white; width: 80%; margin: 20px auto; text-align: center; font-weight: 300; text-transform: uppercase;">Detalle de compras</h2>
+					</div>
+				</div>
+				{{#each compras}}
+				<div class="row" style="text-align: center; height: 100px;">
+					<div class="column">
+						<div class="black-box">
+								<h2>S/. {{total}}</h2>		
+								<p>Importe total</p>
+						</div>		
+					</div>
+					<div class="column">
+						<div class="black-box">
+							<h2>{{fechaComprado}}</h2>
+							<p>Fecha</p>
 						</div>
 					</div>
 				</div>
-
-				<div class="cuadro-datos">
-					<div class="valor-dato">
-						<p style="color: white;">{{fechaComprado}}</p>
-						<div class="dato-texto">FECHA</div>
-					</div>
-					<div class="dato-line"></div>
-					<div class="valor-dato">
-						<p style="color: white;">{{cuentaBancaria}}</p>
-						<div class="dato-texto">C. BANCARIA</div>
-					</div>
-				</div>
-			{{/each}}
+				{{/each}}
+			</div>	
 		</div>
 
 		<table>

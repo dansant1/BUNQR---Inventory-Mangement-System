@@ -869,9 +869,9 @@
 					<input class="button-primary guardar" type="button" value="Guardar" name="guardar" id="boton-login">
 					<input class="button-clear cancelar" type="submit" value="Cancelar" name="cancelar" style="color: white; margin-left: 30px;">
 
-					<input class="button-primary facturar" type="button" value="Generar factura" name="factura" id="boton-login" style="margin-left: 30px;">
+					<!--<input class="button-primary facturar" type="button" value="Generar factura" name="factura" id="boton-login" style="margin-left: 30px;">
 
-					<input class="button-primary boleta" type="button" value="Generar boleta" name="boleta" id="boton-login" style="margin-left: 30px;">
+					<input class="button-primary boleta" type="button" value="Generar boleta" name="boleta" id="boton-login" style="margin-left: 30px;"> -->
 							
 				</div>
 			</div>
@@ -1179,37 +1179,52 @@
 		</div>
 
 		<div class="cuadro-reporte">
-				{{#each venta}}
-					<div class="cuadro-total">
-						<div class="line"></div>
-						<div class="valor-total">
-							<p style="color: white;">S/. {{totalReal}}</p>
-							<div class="texto">
-								IMPORTE (S/.)
-							</div>
-						</div>
+				
+				<div class="container">
+
+				<div class="row">
+					<div class="column">
+						<h2 style="color: white; width: 80%; margin: 20px auto; text-align: center; font-weight: 300; text-transform: uppercase;">Detalle de venta</h2>
 					</div>
-					<div class="cuadro-datos">
-						<div class="valor-dato">
-							<p style="color: white;">{{fechaVenta}}</p>
-							<div class="dato-texto">FECHA</div>
-						</div>
-						<div class="dato-line"></div>
-						<div class="valor-dato">
-							<p style="color: white;">{{formaPago}}</p>
-							<div class="dato-texto">F. PAGO</div>
-						</div>
-						<div class="dato-line"></div>
-						<div class="valor-dato">
-							<p style="color: white;">{{cliente}}</p>
-							<div class="dato-texto">CLIENTE</div>
-						</div>
-					</div>
-				{{/each}}	
-				<div style="display: block; position: absolute; top:410px; left: 180px;">
-					<input class="button-primary facturar" type="button" value="Generar factura" name="factura" id="boton-login" style="margin-left: 30px;">
-					<input class="button-primary boleta" type="button" value="Generar boleta" name="factura" id="boton-login" style="margin-left: 30px;">	
 				</div>
+				{{#each venta}}
+				<div class="row" style="text-align: center; height: 150px;">
+					<div class="column">
+						<div class="black-box">
+								<h2>S/. {{totalReal}}</h2>		
+								<p>IMPORTE (S/.)</p>
+						</div>		
+					</div>
+					<div class="column">
+						<div class="black-box">
+							<h2>{{fechaVenta}}</h2>
+							<p>Fecha</p>
+						</div>
+					</div>
+					<div class="column">
+						<div class="black-box">
+							<h2>{{cliente}}</h2>
+							<p>Clientes</p>
+						</div>
+					</div>
+					<div class="column">
+						<div class="black-box">
+							<h2>{{formaPago}}</h2>
+							<p>F. Pago</p>
+						</div>
+						
+					</div>
+				</div>
+				{{/each}}
+				<!--<div class="row">
+					<div class="column column-50" style="text-align: center;">
+						<input class="button-primary facturar" type="button" value="Generar factura" name="factura" id="boton-login" >
+					</div>
+					<div class="column column-50" style="text-align: center;">
+						<input class="button-primary boleta" type="button" value="Generar boleta" name="factura" id="boton-login">	
+					</div>
+				</div>-->
+			</div>			
 		</div>
 
 		
@@ -1584,48 +1599,54 @@
 			</div>
 		</div>
 		<div class="cuadro-reporte">
-			{{#each carga}}
-				<div class="cuadro-total" style="width: 250px; margin-left: 29px; margin-right: 12px;">
-					<div class="line"></div>
-					<div class="valor-total">
-						<p>S/. {{totalreal}}</p>
-						<div class="texto">MONTO TOTAL</div>
+			
+				<div class="container">
+
+				<div class="row">
+					<div class="column">
+						<h2 style="color: white; width: 80%; margin: 20px auto; text-align: center; font-weight: 300; text-transform: uppercase;">Detalle de ingreso de carga</h2>
 					</div>
 				</div>
-				<div class="cuadro-datos" style="width: 755px; max-width: 755;">
-					<div class="valor-dato">
-						<p style="color: white;">{{almacen}}</p>
-						<div class="dato-texto">
-							ALMACÉN
-						</div>	
+				{{#each carga}}
+				<div class="row" style="text-align: center; height: 150px;">
+					<div class="column">
+						<div class="black-box">
+								<h2>S/. {{totalreal}}</h2>		
+								<p>Monto total (S/.)</p>
+						</div>		
 					</div>
-					<div class="dato-line"></div>
-					<div class="valor-dato">
-						<p style="color: white;">{{fechaIngreso}}</p>
-						<div class="dato-texto">
-							FECHA
+					<div class="column">
+						<div class="black-box">
+							<h2>{{almacen}}</h2>
+							<p>Almacén</p>
 						</div>
 					</div>
-					
+					<div class="column">
+						<div class="black-box">
+							<h2>{{fechaIngreso}}</h2>
+							<p>Fecha</p>
+						</div>
+					</div>
+					<div class="column">
+						<div class="black-box">
+							<h2>S/. {{utilidadtotal}}</h2>
+							<p>Utilidad por Carga</p>
+						</div>
+						
+					</div>
 					{{#if hayProveedor}}
-					<div class="dato-line"></div>
-					<div class="valor-dato">
-						<p style="color: white;">{{proveedor}}</p>
-						<div class="dato-texto">
-							PROVEEDOR
-						</div>
-					</div>
+						<div class="column">
+							<div class="black-box">
+								<h2>{{proveedor}}</h2>
+								<p>Proveedor</p>
+							</div>
+						
+						</div>					
 					{{/if}}
-					<div class="dato-line"></div>
-					<div class="valor-dato">
-						<p style="color: white; font-size: 18px;">S/. {{utilidadtotal}}</p>
-						<div class="dato-texto" style="text-transform: uppercase;">
-							Utilidad total
-						</div>
-					</div>
 				</div>
-					
-					{{/each}}			
+				{{/each}}
+			</div>	
+	
 		</div>
 		
 				<table>
@@ -1756,31 +1777,45 @@
 		</div>
 
 		<div class="cuadro-reporte">	
-					{{#each merma}}
-					<div class="cuadro-total">
-						<div class="line"></div>
-						<div class="valor-total">
-							<p>S/. {{total}}</p>
-							<div class="texto">MONTO TOTAL</div>
+				
+			<div class="container">
+
+				<div class="row">
+					<div class="column">
+						<h2 style="color: white; width: 80%; margin: 20px auto; text-align: center; font-weight: 300; text-transform: uppercase;">Detalle de ingreso de Merma</h2>
+					</div>
+				</div>
+				{{#each merma}}
+				<div class="row" style="text-align: center; height: 100px;">
+					<div class="column">
+						<div class="black-box">
+								<h2>S/. {{total}}</h2>		
+								<p>Monto total (S/.)</p>
+						</div>		
+					</div>
+					<div class="column">
+						<div class="black-box">
+							<h2>{{fechaSalida}}</h2>
+							<p>Fecha de salida</p>
 						</div>
 					</div>
-					<div class="cuadro-datos">
-						<div class="valor-dato">
-							<p style="color: white;">{{fechaSalida}}</p>
-							<div class="dato-texto">FECHA SALIDA</div>
-						</div>
-						<div class="dato-line"></div>
-						<div class="valor-dato">
-							<p style="color: white;">{{proveedor}}</p>
-							<div class="dato-texto">PROVEEDOR</div>
-						</div>
-						<div class="dato-line"></div>
-						<div class="valor-dato">
-							<p style="color: white;">{{descripcion}}</p>
-							<div class="dato-texto">DESCRIPCIÓN</div>
+					<div class="column">
+						<div class="black-box">
+							<h2>{{proveedor}}</h2>
+							<p>Proveedor</p>
 						</div>
 					</div>
-					{{/each}}		
+					{{#if descripcion}}
+					<div class="column">
+						<div class="black-box">
+							<h2>{{descripcion}}</h2>
+							<p>Descripción</p>
+						</div>
+					</div>
+					{{/if}}
+				</div>
+				{{/each}}
+			</div>	
 		</div>
 
 				<table>

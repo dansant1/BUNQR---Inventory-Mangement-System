@@ -27,5 +27,8 @@ Template.resporteDistribuidor.helpers({
 		var pagado = 0;
 
 		return pagado;
+	},
+	link() {
+		return Meteor.userId();
 	}
 });

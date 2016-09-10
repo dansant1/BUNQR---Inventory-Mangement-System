@@ -679,14 +679,30 @@ div.cuadro-main {
 	
 	margin-top: 0px;
 	display: flex;
-	margin-left: 170.5px;
+	
 	background-color: white;
 	min-height: 507.5px;
 	z-index: -2;
 	flex-direction: column;
-
-	
 }
+
+@media (min-width: 768px) {
+	div.cuadro-main {
+		margin-left: 170.5px;
+	}
+}
+
+@media (max-width: 500px) {
+	div.cuadro-main {
+		margin: 0;
+	}
+
+	.menu {
+		display: none !important;
+	}
+}
+
+
 
 div.opcion-main {
 	max-width: 90%;
@@ -791,10 +807,6 @@ div.opcion-main:hover {
     -moz-transition: background-color 0.4s ease-out;
     -o-transition: background-color 0.4s ease-out;
     transition: background-color 0.4s ease-out;
-	
-	-webkit-box-shadow: inset 0px 1px 5px -1px rgba(0,0,0,0.75);
-	-moz-box-shadow: inset 0px 1px 5px -1px rgba(0,0,0,0.75);
-	box-shadow: inset 0px 1px 5px -1px rgba(0,0,0,0.75);
 }
 
 .stock:hover {
