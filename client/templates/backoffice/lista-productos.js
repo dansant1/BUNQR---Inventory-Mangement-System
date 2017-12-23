@@ -2,7 +2,7 @@ Template.listaProductos.onCreated(function() {
 	var self = this;
 	self.autorun(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
-    	self.subscribe('listaProductos', negocioId);  
+    	self.subscribe('listaProductos', negocioId);
 	});
 	console.log('Si se suscribe');
 });
@@ -17,7 +17,7 @@ Template.listaAlmacen.onCreated(function() {
 	var self = this;
 	self.autorun(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
-    	self.subscribe('listaAlmacenes', negocioId);  
+    	self.subscribe('listaAlmacenes', negocioId);
 	});
 	console.log('Si se suscribe');
 });
@@ -32,7 +32,7 @@ Template.listaUnidad.onCreated(function() {
 	var self = this;
 	self.autorun(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
-    	self.subscribe('listaPresentaciones', negocioId);  
+    	self.subscribe('listaPresentaciones', negocioId);
 	});
 });
 
@@ -47,7 +47,7 @@ Template.listaUnidadTwo.onCreated(function() {
 	var self = this;
 	self.autorun(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
-    	self.subscribe('listaPresentaciones', negocioId);  
+    	self.subscribe('listaPresentaciones', negocioId);
 	});
 });
 
@@ -62,7 +62,7 @@ Template.listaClientes.onCreated(function() {
 	var self = this;
 	self.autorun(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
-    	self.subscribe('listaClientes', negocioId);  
+    	self.subscribe('listaClientes', negocioId);
 	});
 	console.log('Si se suscribe clientes');
 });
@@ -78,7 +78,7 @@ Template.listaFormasPago.onCreated(function() {
 	var self = this;
 	self.autorun(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
-    	self.subscribe('listaFormasPago', negocioId);  
+    	self.subscribe('listaFormasPago', negocioId);
 	});
 	console.log('Si se suscribe formas de pago');
 });
@@ -94,9 +94,9 @@ Template.listaProveedores.onCreated(function() {
 	var self = this;
 	self.autorun(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
-    	self.subscribe('listaProveedores', negocioId);  
+    	self.subscribe('listaProveedores', negocioId);
 	});
-	
+
 });
 
 Template.listaProveedores.helpers({
@@ -109,7 +109,7 @@ Template.ListaDeProductos.onCreated(function () {
 	var self = this;
 	self.autorun(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
-    	self.subscribe('listaProductos', negocioId);  
+    	self.subscribe('listaProductos', negocioId);
     	Suscripcion.subscribe('users');
 	});
 });
@@ -132,7 +132,7 @@ Template.ListaDeProductos.events({
 		e.preventDefault();
 
 		var datos = {
-			productoId: this.__originalId,
+			productoId: this._id, //this.__originalId,
 			utilidad: this.utilidad,
 			pventa: this.pventa,
 			pcosto: this.pcosto,
@@ -147,12 +147,12 @@ Template.ListaDeProductos.events({
       		if (val.value !== "") {
       			datos.cantidad = val.value;
       			val.value = "";
-      		} 
+      		}
 		});
-		
+
 
 		// Fin de medidas
-		
+
 		datos.cargaId = FlowRouter.getParam('cargaid');
 		datos.reporteId = FlowRouter.getParam('reporteid');
 
@@ -160,8 +160,8 @@ Template.ListaDeProductos.events({
 			if (err) {
 				console.log(err.reason);
 			}
-		}); 
-		
+		});
+
 	}
 });
 
@@ -170,8 +170,8 @@ Template.ListaCargaItem.onCreated(function () {
 	var self = this;
 	self.autorun(function() {
     	var cargaId = FlowRouter.getParam('cargaid');
-    	self.subscribe('listaCargaItem', cargaId); 
-    	self.subscribe('CargaItemTwo', cargaId); 
+    	self.subscribe('listaCargaItem', cargaId);
+    	self.subscribe('CargaItemTwo', cargaId);
 	});
 });
 
@@ -199,11 +199,11 @@ Template.ListaCargaItem.events({
 			valor: this.valor,
 			utilidad: this.valorUtilidad,
 			productoId: this.productoId,
-			cantidad: this.cantidad
+			cantidad: parseFloat(this.cantidad)
 		};
 
 		datos.reporteId = FlowRouter.getParam('reporteid');
-		
+
 		// let cargaItemId = this._id;
 		Meteor.call('eliminarCargaItem', datos, function (err) {
 			if (err) {
@@ -218,7 +218,7 @@ Template.listaCuentas.onCreated(function () {
 	var self = this;
   	self.autorun(function() {
     var negocioId = FlowRouter.getParam('negocioid');
-    self.subscribe('ListaCuentasBancarias', negocioId);  
+    self.subscribe('ListaCuentasBancarias', negocioId);
   });
 });
 

@@ -1,19 +1,47 @@
 <template name="reportes">
-	{{>menuPrincipal}}
-
-
 
 	<div class="contenedor-negocios">
 		<div class="set-lista-negocios">
+
 			<div class="negocio item-negocio elegido">
 				<span class="negocio-item" style="text-align: center;">Reportes</span>
 			</div>
+
+			{{#if isInRole 'administrador'}}
 			<div class="negocio item-negocio ingreso-ventas">
 				<span class="negocio-item" style="text-align: center;">Ventas</span>
 			</div>
+			{{/if}}
+
+			{{#if isInRole 'ventas'}}
+			<div class="negocio item-negocio ingreso-ventas">
+				<span class="negocio-item" style="text-align: center;">Ventas</span>
+			</div>
+			{{/if}}
+
+			{{#if isInRole 'contabilidad'}}
+			<div class="negocio item-negocio ingreso-ventas">
+				<span class="negocio-item" style="text-align: center;">Ventas</span>
+			</div>
+			{{/if}}
+
+			{{#if isInRole 'contabilidad'}}
 			<div class="negocio item-negocio ingreso-carga">
 				<span class="negocio-item" style="text-align: center;">Ingresos</span>
 			</div>
+			{{/if}}
+
+			{{#if isInRole 'administrador'}}
+			<div class="negocio item-negocio ingreso-carga">
+				<span class="negocio-item" style="text-align: center;">Ingresos</span>
+			</div>
+			{{/if}}
+
+			{{#if isInRole 'almacen'}}
+			<div class="negocio item-negocio ingreso-carga">
+				<span class="negocio-item" style="text-align: center;">Ingresos</span>
+			</div>
+			{{/if}}
 		</div>
 	</div>
 
@@ -24,15 +52,42 @@
 			<div class="stock stock-elegido">
 				<p>Reporte de Hoy</p>
 			</div>
+
+			{{#if isInRole 'almacen'}}
 			<div class="stock ingresar-carga">
 				<p>Ingresar carga</p>
 			</div>
+			{{/if}}
+
+			{{#if isInRole 'administrador'}}
+			<div class="stock ingresar-carga">
+				<p>Ingresar carga</p>
+			</div>
+			{{/if}}
+
+			{{#if isInRole 'administrador'}}
 			<div class="stock ingresar-merma">
 				<p>Ingresar merma</p>
 			</div>
+			{{/if}}
+
+			{{#if isInRole 'almacen'}}
+			<div class="stock ingresar-merma">
+				<p>Ingresar merma</p>
+			</div>
+			{{/if}}
+
+			{{#if isInRole 'administrador'}}
 			<div class="stock ingresar-inventario">
 				<p>Ingresar inventario final</p>
 			</div>
+			{{/if}}
+
+			{{#if isInRole 'almacen'}}
+			<div class="stock ingresar-inventario">
+				<p>Ingresar inventario final</p>
+			</div>
+			{{/if}}
 		</div>
 
 		{{>reporteDiario}}
@@ -41,22 +96,115 @@
 			<thead>
 				<tr>
 					<th><p style="margin-left: 9px; color: #606C76">DÍA</p></th>
+
+							{{#if isInRole 'administrador'}}
       				<th><p style="margin-left: 9px; color: #606C76">VENTAS (S/.)</p></th>
+							{{/if}}
+
+							{{#if isInRole 'contabilidad'}}
+							<th><p style="margin-left: 9px; color: #606C76">VENTAS (S/.)</p></th>
+							{{/if}}
+
+							{{#if isInRole 'ventas'}}
+							<th><p style="margin-left: 9px; color: #606C76">VENTAS (S/.)</p></th>
+							{{/if}}
+
+							{{#if isInRole 'administrador'}}
       				<th><p style="margin-left: 9px; color: #606C76">COMPRAS (S/.)</p></th>
+							{{/if}}
+							{{#if isInRole 'contabilidad'}}
+							<th><p style="margin-left: 9px; color: #606C76">COMPRAS (S/.)</p></th>
+							{{/if}}
+
+							{{#if isInRole 'administrador'}}
       				<th><p style="margin-left: 9px; color: #606C76">MERMA (S/.)</p></th>
+							{{/if}}
+
+							{{#if isInRole 'contabilidad'}}
+      				<th><p style="margin-left: 9px; color: #606C76">MERMA (S/.)</p></th>
+							{{/if}}
+
+							{{#if isInRole 'almacen'}}
+      				<th><p style="margin-left: 9px; color: #606C76">MERMA (S/.)</p></th>
+							{{/if}}
+
+							{{#if isInRole 'administrador'}}
       				<th><p style="margin-left: 9px; color: #606C76">COSTOS (S/.)</p></th>
+							{{/if}}
+
+							{{#if isInRole 'contabilidad'}}
+      				<th><p style="margin-left: 9px; color: #606C76">COSTOS (S/.)</p></th>
+							{{/if}}
+
+							{{#if isInRole 'almacen'}}
+      				<th><p style="margin-left: 9px; color: #606C76">COSTOS (S/.)</p></th>
+							{{/if}}
+
+							{{#if isInRole 'administrador'}}
       				<th><p style="margin-left: 9px; color: #606C76">UTILIDAD (S/.)</p></th>
+							{{/if}}
+
+							{{#if isInRole 'contabilidad'}}
+      				<th><p style="margin-left: 9px; color: #606C76">UTILIDAD (S/.)</p></th>
+							{{/if}}
 				</tr>
 			</thead>
 			<tbody>
 				{{#each todosreportes }}
 				<tr class="tabla-hover">
 						<td><p style="margin-left: 20px;">{{fechaAux}}</p></td>
+
+						{{#if isInRole 'administrador'}}
 						<td><p style="margin-left: 20px;">S/. {{venta}}</p></td>
+						{{/if}}
+
+						{{#if isInRole 'ventas'}}
+						<td><p style="margin-left: 20px;">S/. {{venta}}</p></td>
+						{{/if}}
+
+						{{#if isInRole 'contabilidad'}}
+						<td><p style="margin-left: 20px;">S/. {{venta}}</p></td>
+						{{/if}}
+
+						{{#if isInRole 'administrador'}}
 						<td><p style="margin-left: 20px;">S/. {{compra}}</p></td>
+						{{/if}}
+
+						{{#if isInRole 'contabilidad'}}
+						<td><p style="margin-left: 20px;">S/. {{compra}}</p></td>
+						{{/if}}
+
+						{{#if isInRole 'administrador'}}
 						<td><p style="margin-left: 20px;">S/. {{merma}}</p></td>
+						{{/if}}
+
+						{{#if isInRole 'contabilidad'}}
+						<td><p style="margin-left: 20px;">S/. {{merma}}</p></td>
+						{{/if}}
+
+						{{#if isInRole 'almacen'}}
+						<td><p style="margin-left: 20px;">S/. {{merma}}</p></td>
+						{{/if}}
+
+						{{#if isInRole 'administrador'}}
 						<td><p style="margin-left: 20px;">S/. {{costo}}</p></td>
+						{{/if}}
+
+						{{#if isInRole 'contabilidad'}}
+						<td><p style="margin-left: 20px;">S/. {{costo}}</p></td>
+						{{/if}}
+
+						{{#if isInRole 'almacen'}}
+						<td><p style="margin-left: 20px;">S/. {{costo}}</p></td>
+						{{/if}}
+
+						{{#if isInRole 'administrador'}}
 						<td><p style="margin-left: 20px;">S/. {{utilidad}}</p></td>
+						{{/if}}
+
+						{{#if isInRole 'contabilidad'}}
+						<td><p style="margin-left: 20px;">S/. {{utilidad}}</p></td>
+						{{/if}}
 				</tr>
 				{{/each}}
 			</tbody>
@@ -75,6 +223,7 @@
 		<div class="row">
 
 		<div class="column column-100">
+
 			<div class="row">
 				<div class="column column-50" style="text-align: center">
 					<span class="turquesa reporte-texto-span"></span>
@@ -94,6 +243,11 @@
 					<canvas id="reporte"></canvas>
 				</div>
 			</div>
+
+
+
+
+
 		</div>
 
 		<div class="column column-100">
@@ -216,37 +370,124 @@
 				</div>
 
 				<div class="row" style="text-align: center;">
+					{{#if isInRole 'administrador'}}
 					<div class="column">
 						<div class="black-box">
 								<h2>S/. {{utilidad}}</h2>
 								<p>Utilidad total</p>
 						</div>
 					</div>
+					{{/if}}
+
+					{{#if isInRole 'contabilidad'}}
+					<div class="column">
+						<div class="black-box">
+								<h2>S/. {{utilidad}}</h2>
+								<p>Utilidad total</p>
+						</div>
+					</div>
+					{{/if}}
+
+					{{#if isInRole 'contabilidad'}}
 					<div class="column">
 						<div class="black-box">
 							<h2>S/. {{venta}}</h2>
 							<p>Total de ventas</p>
 						</div>
 					</div>
+					{{/if}}
+
+					{{#if isInRole 'administrador'}}
+					<div class="column">
+						<div class="black-box">
+							<h2>S/. {{venta}}</h2>
+							<p>Total de ventas</p>
+						</div>
+					</div>
+					{{/if}}
+
+					{{#if isInRole 'ventas'}}
+					<div class="column">
+						<div class="black-box">
+							<h2>S/. {{venta}}</h2>
+							<p>Total de ventas</p>
+						</div>
+					</div>
+					{{/if}}
+
+
+					{{#if isInRole 'administrador'}}
 					<div class="column">
 						<div class="black-box">
 							<h2>S/. {{costo}}</h2>
 							<p>Total de costos</p>
 						</div>
 					</div>
+					{{/if}}
+
+					{{#if isInRole 'contabilidad'}}
+					<div class="column">
+						<div class="black-box">
+							<h2>S/. {{costo}}</h2>
+							<p>Total de costos</p>
+						</div>
+					</div>
+					{{/if}}
+
+					{{#if isInRole 'almacen'}}
+					<div class="column">
+						<div class="black-box">
+							<h2>S/. {{costo}}</h2>
+							<p>Total de costos</p>
+						</div>
+					</div>
+					{{/if}}
+
+					{{#if isInRole 'almacen'}}
 					<div class="column">
 						<div class="black-box">
 							<h2>S/. {{merma}}</h2>
 							<p>Valor en merma</p>
 						</div>
 					</div>
+					{{/if}}
+
+					{{#if isInRole 'administrador'}}
+					<div class="column">
+						<div class="black-box">
+							<h2>S/. {{merma}}</h2>
+							<p>Valor en merma</p>
+						</div>
+					</div>
+					{{/if}}
+
+					{{#if isInRole 'contabilidad'}}
+					<div class="column">
+						<div class="black-box">
+							<h2>S/. {{merma}}</h2>
+							<p>Valor en merma</p>
+						</div>
+					</div>
+					{{/if}}
+
+					{{#if isInRole 'contabilidad'}}
 					<div class="column">
 						<div class="black-box">
 							<h2>S/. {{compra}}</h2>
 							<p>Total de compras</p>
 						</div>
-
 					</div>
+					{{/if}}
+
+					{{#if isInRole 'administrador'}}
+					<div class="column">
+						<div class="black-box">
+							<h2>S/. {{compra}}</h2>
+							<p>Total de compras</p>
+						</div>
+					</div>
+					{{/if}}
+
 				</div>
 			</div>
 

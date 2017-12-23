@@ -10,7 +10,8 @@ Template.signup.events({
    				nombre: template.find( '[name="nombre"]' ).value,
    				apellido: template.find( '[name="apellido"]' ).value,
                 empresa: template.find( '[name="empresa"]' ).value
-   			}
+   			},
+				opcion: 1
   		};
 
         if (user.profile.nombre !== "" && user.profile.apellido !== "" && user.profile.empresa !== "") {
@@ -24,7 +25,7 @@ Template.signup.events({
             });
         }
 
-  		
+
 	}
 });
 
@@ -55,5 +56,3 @@ Template.signupReferido.events({
         }
     }
 });
-
-

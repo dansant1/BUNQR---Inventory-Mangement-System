@@ -62,7 +62,7 @@ Template.listaProducto.events({
 			} else {
 				var cargaId = result.cargaId;
 				FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/' + cargaId + '/ingresos/masivo/nuevo');
-				Bert.alert( 'Agregaste una carga nueva', 'success' );	
+				Bert.alert( 'Agregaste una carga nueva', 'success' );
 			}
 		});
 	}
@@ -73,7 +73,7 @@ Template.registrosProductos.onCreated(function () {
 	var self = this;
   	self.autorun(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
-    	self.subscribe('ListaProductosItem', negocioId);  
+    	self.subscribe('ListaProductosItem', negocioId);
   	});
 });
 
@@ -90,13 +90,13 @@ Template.listaStock.onCreated(function () {
 	var self = this;
   	self.autorun(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
-    	self.subscribe('ListaProductosItem', negocioId);  
+    	self.subscribe('ListaProductosItem', negocioId);
   	});
 });
 
 Template.listaStock.helpers({
 	item: function () {
-		return Productos.find({}, {sort: {createdAt: -1}});	
+		return Productos.find({}, {sort: {createdAt: -1}});
 	}
 });
 
@@ -173,7 +173,7 @@ Template.listaProveedor.onCreated(function () {
 	var self = this;
   	self.autorun(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
-    	self.subscribe('listaProveedores', negocioId);  
+    	self.subscribe('listaProveedores', negocioId);
   	});
 });
 
@@ -238,7 +238,7 @@ Template.listaCliente.onCreated(function () {
 	var self = this;
   	self.autorun(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
-    	self.subscribe('listaClientes', negocioId);  
+    	self.subscribe('listaClientes', negocioId);
   	});
 });
 
@@ -295,7 +295,7 @@ Template.listaFormasDePago.onCreated(function () {
 	var self = this;
   	self.autorun(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
-    	self.subscribe('listaFormasPago', negocioId);  
+    	self.subscribe('listaFormasPago', negocioId);
   	});
 });
 
@@ -404,7 +404,7 @@ Template.listaAlmacenes.onCreated( function () {
 	var self = this;
   	self.autorun(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
-    	self.subscribe('listaAlmacenes', negocioId);  
+    	self.subscribe('listaAlmacenes', negocioId);
   	});
 });
 
@@ -467,7 +467,7 @@ Template.listaIngresos.helpers({
 
 
 Template.listaSalidas.events({
-	
+
 	'click .ingreso-merma': function () {
 		let negocioId = FlowRouter.getParam('negocioid');
 		Meteor.call('crearMerma',  negocioId, function (error, result) {
@@ -478,7 +478,7 @@ Template.listaSalidas.events({
 				FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/merma/' +  mermaId + '/nuevo');
 			}
 		});
-		
+
 	},
 	'click .lista-merma': function () {
 		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/merma');
@@ -511,9 +511,9 @@ Template.Ventas.events({
 
 
 Template.Almacen.onCreated(function () {
-	
+
 	var self = this;
-	
+
 	let template = Template.instance();
 	template.gananciaTotal = new ReactiveVar();
 	template.utilidadTotal = new ReactiveVar();
@@ -521,15 +521,15 @@ Template.Almacen.onCreated(function () {
 
 	self.autorun(function () {
 		let negocioId = FlowRouter.getParam('negocioid')
-		
+
 		self.subscribe('users');
 	});
 
 });
 
 Template.Almacen.onRendered(function () {
-	
-	let negocioId = FlowRouter.getParam('negocioid');	
+
+	let negocioId = FlowRouter.getParam('negocioid');
 
 	Meteor.call( 'obtenerTotal', negocioId, ( error, response ) => {
         if ( error ) {
@@ -607,7 +607,7 @@ Template.Almacen.helpers({
             return total.toFixed(1);
 	},
 	productosIndex: function () {
-		
+
 		return ProductosIndex;
 	},
 	hayProducto: function () {
@@ -668,7 +668,7 @@ Template.Almacen.events({
 			} else {
 				var cargaId = result.cargaId;
 				FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/' + cargaId + '/ingresos/masivo/nuevo');
-				Bert.alert( 'Agregaste una carga nueva', 'success' );	
+				Bert.alert( 'Agregaste una carga nueva', 'success' );
 			}
 		});
 	},
@@ -705,11 +705,11 @@ Template.ingresosAlmacen.events({
 			} else {
 				var cargaId = result.cargaId;
 				FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/' + cargaId + '/ingresos/masivo/nuevo');
-				Bert.alert( 'Agregaste una carga nueva', 'success' );	
+				Bert.alert( 'Agregaste una carga nueva', 'success' );
 			}
 		});
 
-		
+
 	},
 	'click .ingreso-compra': function () {
 
@@ -759,7 +759,7 @@ Template.listaCargasMasivo.onCreated(function () {
 	var self = this;
   	self.autorun(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
-    	self.subscribe('ListaCargasMasivo', negocioId);  
+    	self.subscribe('ListaCargasMasivo', negocioId);
   	});
 });
 
@@ -819,7 +819,7 @@ Template.listaCargasMasivo.events({
 			} else {
 				var cargaId = result.cargaId;
 				FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/' + cargaId + '/ingresos/masivo/nuevo');
-				Bert.alert( 'Agregaste una carga nueva', 'success' );	
+				Bert.alert( 'Agregaste una carga nueva', 'success' );
 			}
 		});
 	},
@@ -840,10 +840,10 @@ Template.detalleCarga.onCreated(function () {
 
 	var self = this;
 	let negocioId = FlowRouter.getParam('negocioid');
-	let cargaId = FlowRouter.getParam('cargaid'); 
+	let cargaId = FlowRouter.getParam('cargaid');
   	self.autorun(function () {
     	self.subscribe('ListaCargasMasivo', negocioId);
-    	self.subscribe('ListaCargaitem', cargaId);  
+    	self.subscribe('ListaCargaitem', cargaId);
   	});
 });
 
@@ -852,7 +852,7 @@ Template.detalleCarga.events({
 		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/ingresos/masivo');
 	},
 	'click .ingreso-stock': function () {
-		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/almacenes');	
+		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/almacenes');
 	}
 });
 
@@ -860,7 +860,7 @@ Template.detalleCarga.helpers({
 	carga: function () {
 		let cargaId = FlowRouter.getParam('cargaid');
 
-		return Cargas.find({_id: cargaId}); 
+		return Cargas.find({_id: cargaId});
 	},
 	fechaIngreso: function () {
 		let meses = [
@@ -898,7 +898,7 @@ Template.detalleCarga.helpers({
 		CargaItem.find().forEach(function (index) {
 			utilidad = utilidad + index.valorUtilidad;
 		});
-		
+
 		return utilidad.toFixed(1);
 	},
 	valorreal() {
@@ -920,8 +920,8 @@ Template.listaMermas.onCreated(function () {
 	var self = this;
   	self.autorun(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
-    	self.subscribe('listaMermas', negocioId);  
-    	self.subscribe('users');  
+    	self.subscribe('listaMermas', negocioId);
+    	self.subscribe('users');
   	});
 });
 
@@ -959,14 +959,14 @@ Template.listaMermas.events({
 });
 
 Template.detalleMerma.onCreated(function () {
-	
+
 	var self = this;
-	
-	let mermaId = FlowRouter.getParam('mermaid'); 
+
+	let mermaId = FlowRouter.getParam('mermaid');
   	self.autorun(function () {
-  		self.subscribe('DetalleDeMerma', mermaId); 
+  		self.subscribe('DetalleDeMerma', mermaId);
     	self.subscribe('listaMermaItem', mermaId);
-    	 
+
   	});
 });
 
@@ -992,7 +992,7 @@ Template.detalleMerma.events({
 
 Template.detalleMerma.helpers({
 	merma: function () {
-		return Mermas.find(); 
+		return Mermas.find();
 	},
 	fechaSalida: function () {
 		let meses = [
@@ -1054,7 +1054,7 @@ Template.listaDeProductoVenta.onCreated(function () {
 	var self = this;
 	self.autorun(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
-    	self.subscribe('listaProductos', negocioId);  
+    	self.subscribe('listaProductos', negocioId);
 	});
 });
 
@@ -1075,7 +1075,7 @@ Template.listaDeProductoVenta.events({
 			codigo: this.codigo,
 			nombre: this.nombre,
 			pventa: this.pventa,
-			productoId: this.__originalId,
+			productoId: this._id, //this.__originalId,
 			utilidad: this.utilidad,
 			pcosto: this.pcosto,
 		};
@@ -1086,14 +1086,14 @@ Template.listaDeProductoVenta.events({
       		if (val.value !== "") {
       			datos.cantidad = val.value;
       			val.value = "";
-      		} 
+      		}
 		});
 
 		$('input[name="descuento"]').each(function(key,val){
       		if (val.value !== "") {
       			datos.descuento = val.value;
       			val.value = "";
-      		} 
+      		}
 		});
 
 		if (datos.descuento === undefined) {
@@ -1120,8 +1120,8 @@ Template.listaInventarioFinalItem.onCreated(function () {
 	var self = this;
 	self.autorun(function() {
     	var inventarioFinalId = FlowRouter.getParam('finalid');
-    	self.subscribe('listaInventarioFinalItem', inventarioFinalId); 
-    	self.subscribe('inventarioTotal', inventarioFinalId); 
+    	self.subscribe('listaInventarioFinalItem', inventarioFinalId);
+    	self.subscribe('inventarioTotal', inventarioFinalId);
 	});
 });
 
@@ -1153,7 +1153,7 @@ Template.listaInventarioFinalItem.events({
 			utilidad: this.utilidad,
 			pventa: this.pventa
 		};
-		
+
 		Meteor.call('eliminarInventarioFinalItem', datos, function (error) {
 			if (error) {
 				console.log('Hubo un error');
@@ -1196,7 +1196,7 @@ Template.listaDeProductosInventarioFinal.onCreated(function () {
 	var self = this;
 	self.autorun(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
-    	self.subscribe('listaProductos', negocioId);  
+    	self.subscribe('listaProductos', negocioId);
 	});
 });
 
@@ -1227,7 +1227,7 @@ Template.listaDeProductosInventarioFinal.events({
       		if (val.value !== "") {
       			datos.cantidad = val.value;
       			val.value = "";
-      		} 
+      		}
 		});
 
 		datos.inventarioId = FlowRouter.getParam('finalid');
@@ -1251,8 +1251,8 @@ Template.listaVentaItem.onCreated(function () {
 	var self = this;
 	self.autorun(function() {
     	var ventaId = FlowRouter.getParam('ventaid');
-    	self.subscribe('listaVentaItem', ventaId); 
-    	self.subscribe('ventaTotal', ventaId); 
+    	self.subscribe('listaVentaItem', ventaId);
+    	self.subscribe('ventaTotal', ventaId);
 	});
 });
 
@@ -1286,7 +1286,7 @@ Template.listaVentaItem.events({
 		};
 
 		datos.reporteId = FlowRouter.getParam('reporteid');
-		
+
 		Meteor.call('eliminarVentaItem', datos, function (error) {
 			if (error) {
 				console.log('Hubo un error');
@@ -1333,7 +1333,7 @@ Template.registrarVenta.events({
 		});
 	},
 	'click .facturar': function () {
-		
+
 		if (Session.get('mostrar') === "mostrar") {
 			Session.set('mostrar', 'no-mostrar');
 		} else {
@@ -1342,7 +1342,7 @@ Template.registrarVenta.events({
 
 	},
 	'click .boleta': function () {
-		
+
 		if (Session.get('mostrar-boleta') === "mostrar") {
 			Session.set('mostrar-boleta', 'no-mostrar');
 		} else {
@@ -1404,10 +1404,10 @@ Template.generarBoletaModal.events({
 			});
 		} else {
 			Bert.alert('Ingrese los datos correctamente', 'warning');
-			
+
 		}
 
-		
+
 	},
 	'click .cerrar-boleta': function (e, template) {
 
@@ -1481,10 +1481,10 @@ Template.generarFacturaModal.events({
 			});
 		} else {
 			Bert.alert('Ingrese los datos correctamente', 'warning');
-			
+
 		}
 
-		
+
 	},
 	'click .cerrar': function (e, template) {
 
@@ -1506,13 +1506,13 @@ Template.generarFacturaModal.events({
 Template.ListaVentas.onCreated(function () {
 	var self = this;
 	self.autorun(function() {
-    	var negocioId = FlowRouter.getParam('negocioid'); 
-    	self.subscribe('ventasDelDia', negocioId); 
+    	var negocioId = FlowRouter.getParam('negocioid');
+    	self.subscribe('ventasDelDia', negocioId);
 	});
 });
 
 Template.ListaVentas.helpers({
-	ventas: function () {	
+	ventas: function () {
 		return Ventas.find({}, {sort: {pagado: -1}});
 	},
 	fechaVenta: function () {
@@ -1547,13 +1547,13 @@ Template.ListaVentas.events({
 });
 
 Template.detalleVenta.onCreated(function () {
-	
+
 	var self = this;
-	
-	let ventaId = FlowRouter.getParam('ventaid'); 
+
+	let ventaId = FlowRouter.getParam('ventaid');
   	self.autorun(function () {
     	self.subscribe('DetalleVenta', ventaId);
-    	self.subscribe('listaVentaItem', ventaId);  
+    	self.subscribe('listaVentaItem', ventaId);
   	});
 });
 
@@ -1604,7 +1604,7 @@ Template.detalleVenta.helpers({
 	venta: function () {
 		let ventaId = FlowRouter.getParam('ventaid');
 
-		return Ventas.find({_id: ventaId}); 
+		return Ventas.find({_id: ventaId});
 	},
 	fechaVenta: function () {
 		let meses = [

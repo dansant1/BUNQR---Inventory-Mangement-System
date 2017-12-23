@@ -76,7 +76,7 @@
 			<div class="column">
 				<label style="color: white;">Nombre de medida</label>
     			<input type="text" placeholder="Ejemplo: kg, g, docena, etc." name="nombre">
-			</div>		
+			</div>
 		</div>
 		<div class="row">
 			<div class="column">
@@ -182,12 +182,12 @@
 			<div class="column">
 				<label style="color: white;">Nombre de proveedor</label>
     		<input type="text" placeholder="Nombre" name="empresa">
-	
+
 			</div>
   			<div class="column">
   				   		<label style="color: white;">Descripcion de proveedor</label>
     		<input type="text" placeholder="Descripcion" name="descripcion">
-  			</div> 			
+  			</div>
 		</div>
 		<div class="row">
 			<div class="column">
@@ -200,19 +200,19 @@
 
 <!-- Formulario de cliente -->
 <template name="registroCliente">
-	
+
 	<div class="cuadro-reporte" style="height: 365px;">
 	<div class="container">
 		<div class="row" style="margin-top: 40px;">
 			<div class="column">
 				<label style="color: white;">Nombre / Raz. social</label>
     		<input type="text" placeholder="Nombre" name="nombre">
-	
+
 			</div>
   			<div class="column">
   				   		<label style="color: white;">Numero de RUC/DNI </label>
     		<input type="number" placeholder="Ingresa el numero de RUC o DNI" name="numero">
-  			</div> 			
+  			</div>
 		</div>
 		<div class="row">
 			<div class="column">
@@ -223,7 +223,7 @@
 				<label>Contacto</label>
     			<input type="text" placeholder="Ingrese el contacto del cliente" name="contacto">
 			</div>
-			
+
 		</div>
 		<div class="row">
 			<div class="column">
@@ -265,7 +265,7 @@
   			<div class="column">
   				<label style="color: white;">Numero de dias</label>
     			<input type="number" placeholder="Periodo" name="periodo" min="1">
-  			</div> 			
+  			</div>
 		</div>
 		<div class="row">
 			<div class="column">
@@ -308,19 +308,19 @@
 
 <!-- Formulario de almacenes -->
 <template name="registroAlmacen">
-	
+
 	<div class="cuadro-reporte" style="height: 195px;">
 	<div class="container">
 		<div class="row" style="margin-top: 40px;">
 			<div class="column">
 				<label style="color: white;">Nombre del almacen</label>
     			<input type="text" placeholder="Ingrese el nombre del almacen" name="almacen">
-	
+
 			</div>
   			<div class="column">
   				<label style="color: white;">Dirección</label>
     			<input type="text" placeholder="Ingrese la ubicación del almacen" name="direccion">
-  			</div> 			
+  			</div>
 		</div>
 		<div class="row">
 			<div class="column">
@@ -408,44 +408,44 @@
 
 <!-- Formulario para agregar producto durante carga masiva -->
 <template name="FormularioCargaMasiva">
-	
+
 	<div class="container">
 		<div class="row" id="formulario-proforma">
 							<div class="column">
 
 								<label>Codigo</label>
     							<input type="text" name="codigo">
-    							
+
       							<label>P. Venta</label>
       							<input type="number" step="0.10" min="0" name="pventa">
-      							
+
 							</div>
 							<div class="column">
 								<label>Nombre</label>
       							<input type="text" name="nombre">
       							<label>P. Costo</label>
     							<input type="number" step="0.10" min="0" name="pcosto">
-      							
+
 							</div>
 							<div class="column">
 								<label>Cantidad</label>
 								<input type="number" step="0.10" min="0" name="cantidad">
 								<label>Medida</label>
     							{{>listaUnidadTwo}}
-    							
-							</div>	
+
+							</div>
 							<div class="column">
       							<label>Lugar</label>
     							<select id="almacen">
     								<option value="1">Almacén</option>
     								<option value="2">Tienda</option>
     							</select>
-								
+
 							</div>
 				</div>
 				<div class="row">
 					<div class="column">
-						<input class="button-primary boton-formulario agregar" type="submit" value="Agregar producto" name="guardar" id="boton-login" style="width: 200px; margin-left: 10px; margin-right: 32px;">	
+						<input class="button-primary boton-formulario agregar" type="submit" value="Agregar producto" name="guardar" id="boton-login" style="width: 200px; margin-left: 10px; margin-right: 32px;">
 					</div>
 				</div>
 	</div>
@@ -459,19 +459,19 @@
 		<div class="set-lista-negocios">
 			<div class="negocio item-negocio almacen-stock ">
 				<span class="negocio-item" style="text-align: center;">Inventario</span>
-			</div>	
+			</div>
 			<div class="negocio item-negocio almacen-ingreso elegido">
 				<span class="negocio-item" style="text-align: center;">Ingresos</span>
-			</div>	
+			</div>
 			<div class="negocio item-negocio almacen-salida">
 				<span class="negocio-item" style="text-align: center;">Salidas</span>
 			</div>
 			<div class="negocio item-negocio almacen-producto">
 				<span class="negocio-item" style="text-align: center;">Compras</span>
-			</div>		
+			</div>
 			<div class="negocio item-negocio almacen-producto">
 				<span class="negocio-item" style="text-align: center;">Productos</span>
-			</div>	
+			</div>
 		</div>
 	</div>
 
@@ -495,65 +495,65 @@
 
 								<label style="color: white;">Almacén</label>
     							{{>listaAlmacen}}
-    							
+
       							<label style="color: white;">Fecha</label>
       							<input type="date" name="fecha">
-      							
+
 							</div>
 							<div class="column">
     							<label style="color: white;">Proveedor</label>
     							{{>listaProveedores}}
-      							
+
       							<label style="color: white;">Moneda</label>
     							<select id="moneda" class="seleccion">
       								<option value="soles">Soles</option>
       								<option value="dolares">Dolares</option>
       							</select>
-      							
+
 							</div>
 							<div class="column">
 								<label style="color: white;">Forma de pago</label>
     							{{>listaFormasPago}}
-							</div>		
+							</div>
 					</div>
 					<div class="row">
 						<div class="column">
-							<input class="button-primary boton-formulario agregar-masivo" type="submit" value="Guardar" name="guardar" id="boton-login" style="width: 200px; margin-left: 10px; margin-right: 32px;">	
-							<input class="button button-clear cancelar-masivo" type="submit" value="Cancelar" name="cancelar" style="color: white;">	
+							<input class="button-primary boton-formulario agregar-masivo" type="submit" value="Guardar" name="guardar" id="boton-login" style="width: 200px; margin-left: 10px; margin-right: 32px;">
+							<input class="button button-clear cancelar-masivo" type="submit" value="Cancelar" name="cancelar" style="color: white;">
 						</div>
 					</div>
 			</div>
 		</div>
-		
+
 		{{>ListaCargaItem}}
 		<div class="cuadro-reporte-2">
-			{{>FormularioCargaMasiva}}	
+			{{>FormularioCargaMasiva}}
 		</div>
-		{{>ListaDeProductos}}	
+		{{>ListaDeProductos}}
 	</div>
 </template>
 
 
 <!-- Formulario para agregar compra -->
 <template name="registrarCompra">
-	
+
 	<div class="contenedor-negocios">
 		<div class="set-lista-negocios">
 			<div class="negocio item-negocio almacen-stock ">
 				<span class="negocio-item" style="text-align: center;">Inventario</span>
-			</div>	
+			</div>
 			<div class="negocio item-negocio almacen-ingreso elegido">
 				<span class="negocio-item" style="text-align: center;">Ingresos</span>
-			</div>	
+			</div>
 			<div class="negocio item-negocio almacen-salida">
 				<span class="negocio-item" style="text-align: center;">Salidas</span>
 			</div>
 			<div class="negocio item-negocio almacen-producto">
 				<span class="negocio-item" style="text-align: center;">Compras</span>
-			</div>		
+			</div>
 			<div class="negocio item-negocio almacen-producto">
 				<span class="negocio-item" style="text-align: center;">Productos</span>
-			</div>	
+			</div>
 		</div>
 	</div>
 
@@ -568,7 +568,7 @@
 				</div>
 			</div>
 
-			<div class="cuadro-reporte" style="height: 177.5px">
+			<div class="cuadro-reporte" style="height: 192.5px">
 				<div class="container">
 					<div class="row" id="formulario-proforma">
 						<div class="column">
@@ -588,12 +588,12 @@
 					</div>
 				</div>
 			</div>
-			
+
 			{{>listaCompraItem}}
-					
+
 			{{>FormularioCompraItem}}
-	
-		
+
+
 	</div>
 </template>
 
@@ -650,7 +650,7 @@
       			<th style="color: #606C76;"><strong>TOTAL (S/.) :</strong> {{total}}</th>
       			{{/each}}
       			<th></th>
-      			<th></th>			
+      			<th></th>
     		</tr>
   		</tfoot>
 	</table>
@@ -659,24 +659,24 @@
 
 <!-- Lista de Compras para administrar -->
 <template name="listaComprasTwo">
-	
+
 	<div class="contenedor-negocios">
 		<div class="set-lista-negocios">
 			<div class="negocio item-negocio almacen-stock">
 				<span class="negocio-item" style="text-align: center;">Inventario</span>
-			</div>	
+			</div>
 			<div class="negocio item-negocio almacen-ingreso">
 				<span class="negocio-item" style="text-align: center;">Ingresos</span>
-			</div>	
+			</div>
 			<div class="negocio item-negocio almacen-salida">
 				<span class="negocio-item" style="text-align: center;">Salidas</span>
 			</div>
 			<div class="negocio item-negocio almacen-compra  elegido">
 				<span class="negocio-item" style="text-align: center;">Compras</span>
-			</div>		
+			</div>
 			<div class="negocio item-negocio almacen-producto">
 				<span class="negocio-item" style="text-align: center;">Productos</span>
-			</div>	
+			</div>
 		</div>
 	</div>
 
@@ -715,7 +715,7 @@
 				</tbody>
 		</table>
 	</div>
-	
+
 </template>
 
 
@@ -725,19 +725,19 @@
 		<div class="set-lista-negocios">
 			<div class="negocio item-negocio almacen-stock">
 				<span class="negocio-item" style="text-align: center;">Inventario</span>
-			</div>	
+			</div>
 			<div class="negocio item-negocio almacen-ingreso">
 				<span class="negocio-item" style="text-align: center;">Ingresos</span>
-			</div>	
+			</div>
 			<div class="negocio item-negocio almacen-salida">
 				<span class="negocio-item" style="text-align: center;">Salidas</span>
 			</div>
 			<div class="negocio item-negocio almacen-compra  elegido">
 				<span class="negocio-item" style="text-align: center;">Compras</span>
-			</div>		
+			</div>
 			<div class="negocio item-negocio almacen-producto">
 				<span class="negocio-item" style="text-align: center;">Productos</span>
-			</div>	
+			</div>
 		</div>
 	</div>
 
@@ -766,9 +766,9 @@
 				<div class="row" style="text-align: center; height: 100px;">
 					<div class="column">
 						<div class="black-box">
-								<h2>S/. {{total}}</h2>		
+								<h2>S/. {{total}}</h2>
 								<p>Importe total</p>
-						</div>		
+						</div>
 					</div>
 					<div class="column">
 						<div class="black-box">
@@ -778,7 +778,7 @@
 					</div>
 				</div>
 				{{/each}}
-			</div>	
+			</div>
 		</div>
 
 		<table>
@@ -797,7 +797,7 @@
 				{{/each}}
 			</tbody>
 		</table>
-	
+
 	</div>
 </template>
 
@@ -808,24 +808,24 @@
 		<div class="set-lista-negocios">
 			<div class="negocio item-negocio almacen-stock">
 				<span class="negocio-item" style="text-align: center;">Inventario</span>
-			</div>	
+			</div>
 			<div class="negocio item-negocio almacen-ingreso">
 				<span class="negocio-item" style="text-align: center;">Ingresos</span>
-			</div>	
+			</div>
 			<div class="negocio item-negocio almacen-salida elegido">
 				<span class="negocio-item" style="text-align: center;">Salidas</span>
 			</div>
 			<div class="negocio item-negocio almacen-producto">
 				<span class="negocio-item" style="text-align: center;">Compras</span>
-			</div>		
+			</div>
 			<div class="negocio item-negocio almacen-producto">
 				<span class="negocio-item" style="text-align: center;">Productos</span>
-			</div>	
+			</div>
 		</div>
 	</div>
 
 	<div class="cuadro-main">
-	
+
 		<div class="sub-menu">
 			<div class="stock ir-stock">
 				<p>Stock</p>
@@ -837,7 +837,7 @@
 				<p>Ingresar merma</p>
 			</div>
 		</div>
-		
+
 		<div class="cuadro-reporte">
 			<div class="container">
 				<div class="row" id="formulario-proforma">
@@ -854,10 +854,10 @@
 				</div>
 				<div class="row">
 					<div class="column">
-					
+
 						<input class="button-primary boton-formulario guardar" id="boton-login" style="width: 200px; margin-left: 10px; margin-right: 32px;" type="button" value="Guardar" name="guardar">
 						<input class="button-clear cancelar" type="submit" value="Cancelar" name="cancelar" style="color: white;">
-					
+
 					</div>
 				</div>
 			</div>
@@ -916,7 +916,7 @@
   					</div>
 			{{/EasySearch.IfSearching}}
 
-  				
+
 		</tbody>
 	</table>
 	{{else}}
@@ -962,10 +962,10 @@
       			<th style="color: #606C76; padding-left: 30px;"><strong>TOTAL (S/.) :</strong> {{totalreal}}</th>
       			{{/each}}
       			<th></th>
-      			<th></th>	
       			<th></th>
       			<th></th>
-      			<th></th>		
+      			<th></th>
+      			<th></th>
     		</tr>
   		</tfoot>
 	</table>

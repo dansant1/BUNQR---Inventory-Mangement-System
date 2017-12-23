@@ -5,9 +5,9 @@
 		<option value="{{_id}}">{{nombre}}</option>
 		{{else}}
 		<option value="">Sin productos</option>
-		{{/each}}	
+		{{/each}}
 	</select>
-	
+
 </template>
 
 <!-- Lista de almacenes -->
@@ -17,9 +17,9 @@
 		<option value="{{_id}}">{{nombre}}</option>
 		{{else}}
 		<option value="">Sin almacen</option>
-		{{/each}}	
+		{{/each}}
 	</select>
-	
+
 </template>
 
 <!-- Lista de unidades de productos -->
@@ -27,7 +27,7 @@
 	<select id="unidades" style="width: 104px;">
 		{{#each unidades}}
 		<option value="{{_id}}">{{nombre}}</option>
-		{{/each}}	
+		{{/each}}
 		<option value="unidad">u</option>
 	</select>
 </template>
@@ -38,9 +38,9 @@
 		<option value="opcion" selected="selected">OPCIÓN</option>
 		{{#each unidades}}
 		<option value="{{nombre}}">{{nombre}}</option>
-		{{/each}}	
+		{{/each}}
 		<option value="UNIDAD">u</option>
-		
+
 	</select>
 </template>
 
@@ -49,9 +49,9 @@
 	<select id="cuentas">
 		{{#each cuentas}}
 		<option value="{{_id}}">{{numero}} - {{banco}}</option>
-		{{/each}}	
+		{{/each}}
 		<option value="sinid">No colocar</option>
-		
+
 	</select>
 </template>
 
@@ -63,7 +63,7 @@
 		{{else}}
 		<option value="--">Sin clientes registrado</option>
 		{{/each}}
-		<option value="--">No colocar</option>	
+		<option value="--">No colocar</option>
 	</select>
 </template>
 
@@ -75,7 +75,7 @@
 		{{else}}
 		<option value="--">Sin formas de pago registrado</option>
 		{{/each}}
-		<option value="--">Contado</option>	
+		<option value="--">Contado</option>
 	</select>
 </template>
 
@@ -87,7 +87,7 @@
 		{{else}}
 		<option value="">Sin proveedores registrados</option>
 		{{/each}}
-		<option value="--">No colocar</option>	
+		<option value="--">No colocar</option>
 	</select>
 </template>
 
@@ -118,7 +118,7 @@
 					<p class="codigo" style="margin-left: 45px;">{{nombre}}</p>
 					</td>
 					<td>
-					<p class="codigo" style="margin-left: 45px;">{{medida}}</p>	
+					<p class="codigo" style="margin-left: 45px;">{{medida}}</p>
 					</td>
 					<td>
 					<p class="codigo" style="margin-left: 45px;">S/. {{pcosto}}</p></td>
@@ -132,20 +132,20 @@
 						<button class="eliminar" id="boton-login">Eliminar</button>
 					</td>
 				</tr>
-			
+
 			{{/each}}
 		</tbody>
 		<tfoot class="full-width">
     		<tr>
     			{{#each carga}}
-      			<th style="color: #606C76; padding-left: 30px;" ><strong>TOTAL (S/.) : </strong> {{totalreal}}</th>   		
+      			<th style="color: #606C76; padding-left: 30px;" ><strong>TOTAL (S/.) : </strong> {{totalreal}}</th>
       			{{/each}}
       			<th></th>
       			<th></th>
       			<th></th>
       			<th></th>
       			<th></th>
-      			<th></th>				      			
+      			<th></th>
     		</tr>
   		</tfoot>
 	</table>
@@ -154,37 +154,35 @@
 <!-- Lista de productos -->
 <template name="ListaDeProductos">
 	<div class="buscador">
-				{{> EasySearch.Input index=productosIndex placeholder="Hola..." }}
+
 	</div>
 	<table>
 		<thead>
 			<tr>
 				<th><p style="margin-left: 9px; color: #606C76">CODIGÓ</p></th>
 				<th><p style="margin-left: 9px; color: #606C76">PRODUCTO</p></th>
-				<th><p style="margin-left: 9px; color: #606C76">MEDIDA</p></th>
+
 				<th><p style="margin-left: 9px; color: #606C76">COSTO (S/.)</p></th>
 				<th><p style="margin-left: 9px; color: #606C76">CANTIDAD</p></th>
 				<th><p style="margin-left: 9px; color: #606C76">AGREGAR</p></th>
 			</tr>
 		</thead>
 		<tbody>
-			{{#EasySearch.Each index=productosIndex}}
+			{{#each productos}}
 				<tr class="tabla-hover">
 					<td >
 					<p class="codigo" style="margin-left: 55px;">{{codigo}}</p>
 					</td>
 					<td >
-					<p class="nombre" style="margin-left: 55px;">{{nombre}}</p>
+					<p class="nombre" style="margin-left: 55px;">{{nombre}} ( {{medida}} )</p>
 					</td>
-					<td>
-						<p style="margin-left: 55px; margin-top: 20px;">{{medida}}</p>
-					</td>
+
 					<td>
 						<p class="costo" style="margin-left: 55px;">S/. {{pcosto}}</p>
 					</td>
 					<td>
 						<p style="margin-left: 55px; margin-top: 20px;">
-	<input type="number" name="cantidad" step="0.10" style="width: 110px; border-bottom: 2.5px solid #5E4AD7;" min="1" >	
+	<input type="number" name="cantidad" step="0.10" style="width: 110px; border-bottom: 2.5px solid #5E4AD7;" min="1" >
 </p>
 					</td>
 					<td>
@@ -193,16 +191,11 @@
 						</p>
 					</td>
 				</tr>
-			{{/EasySearch.Each}}
+			{{/each}}
 
-			{{#EasySearch.IfSearching index=productosIndex}}
- 					<div class="loading">
-  						{{>loader}}
-  					</div>
-			{{/EasySearch.IfSearching}}
 
-			
+
+
 		</tbody>
 	</table>
 </template>
-

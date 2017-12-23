@@ -1,45 +1,5 @@
 <template name="menuPrincipal">
-	<div class="menu">
-		<ul class="menu-main">
-			<li class="menu-item i-1">
-				<i class="fa fa-tachometer" aria-hidden="true" style="display: inline-block; margin-right: 5px;"></i>
-				<a href="" class="menu-a">
 
-					Reportes
-				</a>
-			</li>
-			<li class="menu-item i-2">
-				<i class="fa fa-cubes" aria-hidden="true" style="display: inline-block; margin-right: 5px;"></i>
-				<a href="" class="menu-a">
-
-					Almacén
-				</a>
-			</li>
-			<li class="menu-item i-3">
-				<i class="fa fa-credit-card" aria-hidden="true" style="display:inline-block;margin-right: 5px;"></i>
-				<a href="" class="menu-a">
-					Ventas
-				</a>
-			</li>
-
-			<li class="menu-item i-6">
-				<i class="fa fa-folder" aria-hidden="true" style="display: inline-block; margin-right: 5px;"></i>
-				<a class="menu-a">
-
-					Registros
-				</a>
-			</li>
-
-			<li class="menu-item i-8">
-				<i class="fa fa-cog" aria-hidden="true" style="display: inline-block; margin-right: 5px;"></i>
-				<a class="menu-a">
-					Configuración
-				</a>
-			</li>
-		</ul>
-
-		{{>logout}}
-	</div>
 </template>
 
 <template name="ConfiguracionNegocio">
@@ -120,7 +80,7 @@
 					  </div>
 
 						<div class="form-group">
-							<select name="tipo">
+							<select id="tipo">
 								<option value="1">Administrador</option>
 								<option value="2">Ventas</option>
 								<option value="3">Almacen</option>

@@ -104,15 +104,20 @@ Template.ConfiguracionNegocio.events({
    				nombre: template.find( '[name="nombre"]' ).value,
    				apellido: template.find( '[name="apellido"]' ).value,
           negocioId: FlowRouter.getParam('negocioid')
-   			}
+   			},
+				tipo: parseInt($( "#tipo" ).val())
   		};
 
-        if (user.profile.nombre !== "" && user.profile.apellido !== "" && user.profile.empresa !== "") {
+        if (user.email !== "" && user.password !== "" && user.profile.nombre !== "" && user.profile.apellido !== "" && user.profile.negocioId !== "") {
             Meteor.call('agregarUsuario', user, function (err, result) {
                 if ( err ) {
                     Bert.alert( err.reason, 'warning' );
                 } else {
 									Bert.alert('Usuario Agregadoo', 'success')
+									template.find( '[name="email-user"]' ).value = "";
+									template.find( '[name="password-user"]' ).value = "";
+									template.find( '[name="nombre"]' ).value = "";
+									template.find( '[name="apellido"]' ).value = "";
 								}
             });
         }

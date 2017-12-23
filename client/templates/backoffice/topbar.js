@@ -12,24 +12,35 @@ Template.topbar.events({
 	'click .nuevo-3': function () {
 		FlowRouter.go('/dashboard/' + FlowRouter.getParam('negocioid') + '/registros/proformas');
 	},
-	'click .nuevo-4': function () {
+	'click .i-1': function () {
 
+		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') );
 	},
-	'click .nuevo-5': function () {
-
+	'click .i-2': function () {
+		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/almacenes');
 	},
-	'click .nuevo-6': function () {
-
+	'click .i-3': function () {
+		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/ventas');
 	},
-	'click .nuevo-7': function () {
-
+	'click .i-4': function () {
+		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/finanzas');
 	},
-	'click .nuevo-8': function () {
-
+	'click .i-5': function () {
+		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/consultas');
 	},
-	'click .nuevo-9': function () {
-
+	'click .i-6': function () {
+		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros' );
 	},
+	'click .i-7': function () {
+		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/configuracion' );
+	},
+	'click .i-8': function () {
+		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/configuracion/negocio' );
+	},
+	'click .logout': function () {
+		Meteor.logout();
+		Bert.alert( 'Nos vemos luego :=)', 'success' );
+	}
 });
 
 Template.topbar.onCreated(function () {
@@ -42,6 +53,10 @@ Template.topbar.onCreated(function () {
 });
 
 Template.topbar.helpers({
+	id: function () {
+		var negocioId = FlowRouter.getParam("negocioid");
+		return negocioId;
+	},
 	nombre: function () {
 		return Meteor.users.findOne({});
 	},

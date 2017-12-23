@@ -79,7 +79,7 @@ Template.registroPresentacion.events({
       };
 
       datos.negocioId = FlowRouter.getParam('negocioid');
-      
+
 
      Meteor.call('registrarPresentacion', datos, function (err, result) {
          if (err) {
@@ -87,7 +87,7 @@ Template.registroPresentacion.events({
          } else {
 
             Bert.alert( 'Creaste una nueva presentacion :=)', 'success' );
-             template.find( '[name="nombre"]' ).value = "";    
+             template.find( '[name="nombre"]' ).value = "";
          }
       });
    }
@@ -95,13 +95,13 @@ Template.registroPresentacion.events({
 
 
 Template.registroProducto.onCreated(function () {
-   
+
    var self = this;
    self.autorun(function() {
       var negocioId = FlowRouter.getParam('negocioid');
       self.subscribe('listaMarcas', negocioId);
       self.subscribe('listaCategorias', negocioId);
-      self.subscribe('listaLineas', negocioId);  
+      self.subscribe('listaLineas', negocioId);
    });
 
 });
@@ -120,13 +120,13 @@ Template.registroProducto.helpers({
 
 
 Template.FormularioCargaMasiva.onCreated(function () {
-   
+
    var self = this;
    self.autorun(function() {
       var negocioId = FlowRouter.getParam('negocioid');
       self.subscribe('listaMarcas', negocioId);
       self.subscribe('listaCategorias', negocioId);
-      self.subscribe('listaLineas', negocioId);  
+      self.subscribe('listaLineas', negocioId);
    });
 
 });
@@ -322,14 +322,21 @@ Template.registroAlmacen.events({
 
       datos.negocioId = FlowRouter.getParam('negocioid');
 
-      Meteor.call('registrarAlmacen', datos, function (err, result) {
-         if (err) {
-            Bert.alert( 'Hubo un error interno, porfavor vuelve a intentarlo', 'warning' );
-         } else {
-            Bert.alert( 'Agregaste un almacen :=)', 'success' );
-            
-         }
-      });
+      if (datos.nombre !== "") {
+        Meteor.call('registrarAlmacen', datos, function (err, result) {
+           if (err) {
+              Bert.alert( 'Hubo un error interno, porfavor vuelve a intentarlo', 'warning' );
+           } else {
+              Bert.alert( 'Agregaste un almacen :=)', 'success' );
+              template.find( '[name="almacen"]' ).value = ""
+              template.find( '[name="direccion"]' ).value = ""
+           }
+        });
+      } else {
+        Bert.alert('Complete los datos', 'warning')
+      }
+
+
    }
 });
 
@@ -339,7 +346,7 @@ Template.registroIngresos.events({
 
       let datos = {
          proveedor: $('#proveedores>option:selected').text(),
-         proveedorId: $('#proveedores>option:selected').val(), 
+         proveedorId: $('#proveedores>option:selected').val(),
          tipo: $('#tipo>option:selected').text(),
          almacen: $('#almacenes>option:selected').text(),
          almacenId: $('#almacenes>option:selected').val(),
@@ -356,7 +363,7 @@ Template.registroIngresos.events({
 
       if (datos.hora === "") {
          datos.hora = '00'
-      } 
+      }
 
       if (datos.minuto === "") {
          datos.minuto = '00'
@@ -368,14 +375,17 @@ Template.registroIngresos.events({
 
       datos.negocioId = FlowRouter.getParam('negocioid');
 
-      Meteor.call('registrarIngreso', datos, function (err, result) {
-         if (err) {
-            Bert.alert( 'Hubo un error interno, porfavor vuelve a intentarlo', 'warning' );
-         } else {
-            Bert.alert( 'Agregaste un ingreso :=)', 'success' );
-            FlowRouter.go('/dashboard/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/ingresos');
-         }
-      });
+
+            Meteor.call('registrarIngreso', datos, function (err, result) {
+               if (err) {
+                  Bert.alert( 'Hubo un error interno, porfavor vuelve a intentarlo', 'warning' );
+               } else {
+                  Bert.alert( 'Agregaste un ingreso :=)', 'success' );
+                  FlowRouter.go('/dashboard/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/ingresos');
+               }
+             });
+
+
    }
 });
 
@@ -519,7 +529,7 @@ Template.FormularioCompraItem.events({
 
          if (datos.importe === "") {
             Bert.alert('Ingresa el importe', 'warning');
-         } 
+         }
 
          if (datos.descripcion === "") {
             Bert.alert('Ingresa el importe', warning);
@@ -534,7 +544,7 @@ Template.FormularioCompraItem.events({
                }
             });
          }
-      
+
    }
 });
 
@@ -542,8 +552,8 @@ Template.listaCompraItem.onCreated(function () {
    var self = this;
    self.autorun(function() {
       var compraId = FlowRouter.getParam('compraid');
-      self.subscribe('ListaComprasItem', compraId); 
-      self.subscribe('CompraUnica', compraId);  
+      self.subscribe('ListaComprasItem', compraId);
+      self.subscribe('CompraUnica', compraId);
    });
 });
 
@@ -568,7 +578,7 @@ Template.listaCompraItem.events({
                console.log('Hubo un error');
             }
          });
-      } 
+      }
    }
 });
 
@@ -577,7 +587,7 @@ Template.registrarCompra.events({
       var datos = {
          fecha: template.find('[name="fecha"]').value,
          cuentaBancaria: $('#cuentas>option:selected').text(),
-         cuentaBancariaId: $('#cuentas>option:selected').val() 
+         cuentaBancariaId: $('#cuentas>option:selected').val()
       };
 
       datos.negocioId = FlowRouter.getParam('negocioid');
@@ -593,8 +603,8 @@ Template.registrarCompra.events({
             }
          });
       } else {
-         Bert.alert('Ingresa la fecha', 'warning');  
-         
+         Bert.alert('Ingresa la fecha', 'warning');
+
       }
    },
    'click .cancelar': function () {
@@ -604,7 +614,7 @@ Template.registrarCompra.events({
          if (error) {
             console.log(error.reason);
          } else {
-            Bert.alert('Cancelaste la compra', 'warning');  
+            Bert.alert('Cancelaste la compra', 'warning');
             FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/ingresos/compras');
          }
       });
@@ -618,7 +628,7 @@ Template.listaComprasTwo.onCreated(function () {
    var self = this;
    self.autorun(function() {
       var negocioId = FlowRouter.getParam('negocioid');
-      self.subscribe('ListaCompras', negocioId);  
+      self.subscribe('ListaCompras', negocioId);
    });
 });
 
@@ -680,8 +690,8 @@ Template.detalleCompra.onCreated(function () {
    var self = this;
    self.autorun(function() {
       compraId = FlowRouter.getParam('compraid');
-      self.subscribe('ListaComprasItem', compraId);  
-      self.subscribe('detallaDeUnaCompra', compraId);  
+      self.subscribe('ListaComprasItem', compraId);
+      self.subscribe('detallaDeUnaCompra', compraId);
    });
 });
 
@@ -718,14 +728,14 @@ Template.registroMerma.events({
          fecha: template.find('[name="fecha"]').value,
          descripcion: template.find('[name="descripcion"]').value,
          proveedor: $('#proveedores>option:selected').text(),
-         proveedorId: $('#proveedores>option:selected').val() 
+         proveedorId: $('#proveedores>option:selected').val()
       };
 
       datos.mermaId = FlowRouter.getParam('mermaid');
 
       if (datos.fecha == undefined) {
          Bert.alert('Ingresa la fecha', 'warning');
-      } else {   
+      } else {
          Meteor.call('registrarMerma', datos, function (error, result) {
             if (error) {
                console.log(error.reason);
@@ -743,7 +753,7 @@ Template.registroMerma.events({
          if (error) {
             console.log(error.reason);
          } else {
-            Bert.alert('Cancelaste el registro de merma', 'warning');  
+            Bert.alert('Cancelaste el registro de merma', 'warning');
             FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/salidas');
          }
       });
@@ -759,7 +769,7 @@ Template.registroMerma.events({
          } else {
             var cargaId = result.cargaId;
             FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/' + cargaId + '/ingresos/masivo/nuevo');
-            Bert.alert( 'Agregaste una carga nueva', 'success' ); 
+            Bert.alert( 'Agregaste una carga nueva', 'success' );
          }
       });
    }
@@ -769,13 +779,13 @@ Template.registroMerma.events({
 Template.ListaProductosMerma.onCreated(function () {
    var self = this;
    self.autorun(function() {
-      self.subscribe('users');    
+      self.subscribe('users');
    });
 });
 
 Template.ListaProductosMerma.helpers({
    productosIndex: function () {
-      
+
       return ProductosIndex;
    },
    nombres: function () {
@@ -801,33 +811,33 @@ Template.ListaProductosMerma.events({
             if (val.value !== "") {
                datos.cantidad = val.value;
                val.value = "";
-            } 
+            }
       });
 
       // Medidas
       /*$('tr>td>p>#unidad').each(function(key,val){
-             
+
             if (val.value !== "opcion") {
                datos.medida = val.value;
-               val.value = "opcion" 
-            } 
+               val.value = "opcion"
+            }
       });*/
 
     //console.log(datos.medida);
       // Fin de medidas
-      
+
       datos.mermaId     = FlowRouter.getParam('mermaid');
       datos.reporteId   = FlowRouter.getParam('reporteid');
-      
+
       Meteor.call('agregarProductoAMermaItem', datos, function (err, result) {
          if (err) {
             console.log(err.reason);
          } else {
             console.log('Exitooo!');
          }
-      }); 
-      
-      
+      });
+
+
    }
 });
 
@@ -836,7 +846,7 @@ Template.listaMermaItem.onCreated(function () {
    self.autorun(function() {
       var mermaId = FlowRouter.getParam('mermaid');
       self.subscribe('listaMermaItem', mermaId);
-      self.subscribe('MermaUnica', mermaId);  
+      self.subscribe('MermaUnica', mermaId);
    });
 });
 

@@ -7,7 +7,8 @@ Meteor.methods({
 				nombre: String,
 				apellido: String,
 				negocioId: String
-			}
+			},
+			tipo: Number
 		});
 
 		opciones.profile.empresa = Negocios.findOne({_id: opciones.profile.negocioId}).nombre;
@@ -15,37 +16,21 @@ Meteor.methods({
 		let userId = Accounts.createUser(opciones);
 
 		if (userId) {
+			console.log(opciones.tipo)
 
-			ClientesDistribuidores.insert({
-				nombre: opciones.profile.nombre,
-				apellido: opciones.profile.apellido,
-				distribuidorId: this.userId,
-				email: opciones.email,
-				createdAt: new Date(),
-				usuarioId: userId,
-				cancelado: false
-			});
+			if (opciones.tipo == 1 ) {
+				Roles.addUsersToRoles(userId, ['administrador']);
 
-			// Acutalizacion
-			//Accounts.sendVerificationEmail( userId );
+			} else if (opciones.tipo == 2) {
+				Roles.addUsersToRoles(userId, ['ventas']);
 
-			Roles.addUsersToRoles(userId, ['administrador']);
+			} else if (opciones.tipo == 3) {
+				Roles.addUsersToRoles(userId, ['almacen']);
 
-			/*Meteor.defer(function () {
+			} else if (opciones.tipo == 4) {
+				Roles.addUsersToRoles(userId, ['contabilidad']);
 
-				SSR.compileTemplate( 'htmlEmail', Assets.getText( 'bienvenido.html' ) );
-
-				var emailData = {
-  					nombre: opciones.profile.nombre + " " + opciones.profile.apellido
-				};
-
-				Email.send({
-  				to: opciones.email,
-  				from: "BUNQR <daniel@grupoddv.com>",
-  				subject: "Bienvenido a BUNQR",
-  				html: SSR.render( 'htmlEmail', emailData )
-				});
-			}); */
+			}
 		}
 
 	},
@@ -58,7 +43,8 @@ Meteor.methods({
 				nombre: String,
 				apellido: String,
 				empresa: String
-			}
+			},
+			tipo: Number
 		});
 
 		let negocioId = Negocios.insert({
@@ -73,38 +59,23 @@ Meteor.methods({
 
 		if (userId) {
 
-			ClientesDistribuidores.insert({
-				nombre: opciones.profile.nombre,
-				apellido: opciones.profile.apellido,
-				distribuidorId: this.userId,
-				email: opciones.email,
-				createdAt: new Date(),
-				usuarioId: userId,
-				cancelado: false
-			});
+			console.log(opcion.tipo)
 
-			// Acutalizacion
-			//Accounts.sendVerificationEmail( userId );
+			if (opciones.tipo == 1 ) {
+				Roles.addUsersToRoles(userId, ['administrador']);
 
-			Roles.addUsersToRoles(userId, ['administrador']);
+			} else if (opciones.tipo == 2) {
+				Roles.addUsersToRoles(userId, ['ventas']);
 
-			/*Meteor.defer(function () {
+			} else if (opciones.tipo == 3) {
+				Roles.addUsersToRoles(userId, ['almacen']);
 
-				SSR.compileTemplate( 'htmlEmail', Assets.getText( 'bienvenido.html' ) );
+			} else if (opciones.tipo == 4) {
+				Roles.addUsersToRoles(userId, ['contabilidad']);
 
-				var emailData = {
-  					nombre: opciones.profile.nombre + " " + opciones.profile.apellido
-				};
+			}
 
-				Email.send({
-  				to: opciones.email,
-  				from: "BUNQR <daniel@grupoddv.com>",
-  				subject: "Bienvenido a BUNQR",
-  				html: SSR.render( 'htmlEmail', emailData )
-				});
-			}); */
 		}
-
 
 	},
 	crearAdmin: function (opciones) {
