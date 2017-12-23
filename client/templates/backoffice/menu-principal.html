@@ -4,14 +4,14 @@
 			<li class="menu-item i-1">
 				<i class="fa fa-tachometer" aria-hidden="true" style="display: inline-block; margin-right: 5px;"></i>
 				<a href="" class="menu-a">
-					
+
 					Reportes
 				</a>
 			</li>
 			<li class="menu-item i-2">
 				<i class="fa fa-cubes" aria-hidden="true" style="display: inline-block; margin-right: 5px;"></i>
 				<a href="" class="menu-a">
-					
+
 					Almacén
 				</a>
 			</li>
@@ -21,11 +21,11 @@
 					Ventas
 				</a>
 			</li>
-			
+
 			<li class="menu-item i-6">
 				<i class="fa fa-folder" aria-hidden="true" style="display: inline-block; margin-right: 5px;"></i>
 				<a class="menu-a">
-					
+
 					Registros
 				</a>
 			</li>
@@ -37,7 +37,7 @@
 				</a>
 			</li>
 		</ul>
-		
+
 		{{>logout}}
 	</div>
 </template>
@@ -69,7 +69,7 @@
     							</div>
 							</div>
 						</div>
-    					
+
 						<div class="row">
 							<div class="col-md-4">
 								<div class="form-group">
@@ -92,8 +92,44 @@
 						</div>
 
     					<button type="submit" id="boton-login" class="btn btn-default"> Guardar cambios</button>
-  						
+
   						</form>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<h1>Agregar Usuario</h1>
+					<form action="/action_page.php">
+					  <div class="form-group">
+					    <label for="email">Email:</label>
+					    <input type="email" class="form-control" name="email-user" id="email">
+					  </div>
+					  <div class="form-group">
+					    <label for="pwd">Contraseña:</label>
+					    <input type="password" class="form-control" name="password-user" id="pwd">
+					  </div>
+
+						<div class="form-group">
+					    <label for="email">Nombre:</label>
+					    <input type="text" class="form-control" name="nombre" id="email">
+					  </div>
+					  <div class="form-group">
+					    <label for="pwd">Apellido:</label>
+					    <input type="text" class="form-control" name="apellido" id="pwd">
+					  </div>
+
+						<div class="form-group">
+							<select name="tipo">
+								<option value="1">Administrador</option>
+								<option value="2">Ventas</option>
+								<option value="3">Almacen</option>
+								<option value="4">Contabilidad</option>
+							</select>
+						</div>
+
+					  <button type="button" class="btn btn-default agregar-usuario">Agregar</button>
+					</form>
 				</div>
 			</div>
 		</div>

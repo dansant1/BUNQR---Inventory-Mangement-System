@@ -12,12 +12,12 @@
 
 ::selection {
 	color: white;
-	background-color: #3BC492; 
+	background-color: #3BC492;
 }
 
 p {
 	font-size: 14px;
-	line-height: 22.4px;
+	line-height: 18.4px;
 	color: #6c7279;
 }
 h1 {
@@ -685,18 +685,18 @@ ul li {
 
 .footer .footer-share .fb:hover {
 	border: 3px solid #3A5795;
-	
+
 }
 
 
 .footer .footer-share  .twitter:hover {
 	border: 3px solid #00D2D3;
-	
+
 }
 
 .footer .footer-share  .youtube:hover {
 	border: 3px solid #E62117;
-	
+
 }
 
 
@@ -724,7 +724,7 @@ button.registrate {
 	font-family: "Roboto", sans-serif;
 	font-weight: bold;
 	text-transform: uppercase;
-	
+
 	-webkit-transition: background-color 0.4s ease-out;
     -moz-transition: background-color 0.4s ease-out;
     -o-transition: background-color 0.4s ease-out;
@@ -734,5 +734,5 @@ button.registrate {
 button.registrate:hover {
 	background: #3BC492;
 	box-shadow: rgba(0, 0, 0, 0.156863) 0px 3px 7px, rgba(0, 0, 0, 0.2) 0px 3px 7px;
-	
+
 }

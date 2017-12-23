@@ -1,4 +1,54 @@
 Meteor.methods({
+	agregarUsuario: function (opciones) {
+		check(opciones, {
+			email: String,
+			password: String,
+			profile: {
+				nombre: String,
+				apellido: String,
+				negocioId: String
+			}
+		});
+
+		opciones.profile.empresa = Negocios.findOne({_id: opciones.profile.negocioId}).nombre;
+
+		let userId = Accounts.createUser(opciones);
+
+		if (userId) {
+
+			ClientesDistribuidores.insert({
+				nombre: opciones.profile.nombre,
+				apellido: opciones.profile.apellido,
+				distribuidorId: this.userId,
+				email: opciones.email,
+				createdAt: new Date(),
+				usuarioId: userId,
+				cancelado: false
+			});
+
+			// Acutalizacion
+			//Accounts.sendVerificationEmail( userId );
+
+			Roles.addUsersToRoles(userId, ['administrador']);
+
+			/*Meteor.defer(function () {
+
+				SSR.compileTemplate( 'htmlEmail', Assets.getText( 'bienvenido.html' ) );
+
+				var emailData = {
+  					nombre: opciones.profile.nombre + " " + opciones.profile.apellido
+				};
+
+				Email.send({
+  				to: opciones.email,
+  				from: "BUNQR <daniel@grupoddv.com>",
+  				subject: "Bienvenido a BUNQR",
+  				html: SSR.render( 'htmlEmail', emailData )
+				});
+			}); */
+		}
+
+	},
 	crearUsuario: function (opciones) {
 
 		check(opciones, {
@@ -14,7 +64,7 @@ Meteor.methods({
 		let negocioId = Negocios.insert({
 				nombre: opciones.profile.empresa,
 				createdAt: new Date()
-		});	
+		});
 
 		opciones.profile.negocioId = negocioId;
 
@@ -32,13 +82,13 @@ Meteor.methods({
 				usuarioId: userId,
 				cancelado: false
 			});
-			
+
 			// Acutalizacion
-			Accounts.sendVerificationEmail( userId );
-		
+			//Accounts.sendVerificationEmail( userId );
+
 			Roles.addUsersToRoles(userId, ['administrador']);
-		
-			Meteor.defer(function () {
+
+			/*Meteor.defer(function () {
 
 				SSR.compileTemplate( 'htmlEmail', Assets.getText( 'bienvenido.html' ) );
 
@@ -52,10 +102,10 @@ Meteor.methods({
   				subject: "Bienvenido a BUNQR",
   				html: SSR.render( 'htmlEmail', emailData )
 				});
-			});
+			}); */
 		}
 
-		
+
 	},
 	crearAdmin: function (opciones) {
 		check(opciones, {
@@ -68,7 +118,7 @@ Meteor.methods({
 		});
 
 		let userId = Accounts.createUser(opciones);
-		
+
 		Roles.addUsersToRoles(userId, ['fundador']);
 	},
 	crearDistribuidor: function (opciones) {
@@ -82,7 +132,7 @@ Meteor.methods({
 		});
 
 		let userId = Accounts.createUser(opciones);
-		
+
 		Distribuidores.insert({
 			nombre: opciones.profile.nombre,
 			apellido: opciones.profile.apellido,
@@ -93,8 +143,8 @@ Meteor.methods({
 			usuarioId: userId
 		});
 
-		
-		
+
+
 		Roles.addUsersToRoles(userId, ['distribuidor']);
 	},
 	crearUsuarioReferido: function (opciones) {
@@ -113,7 +163,7 @@ Meteor.methods({
 		let negocioId = Negocios.insert({
 				nombre: opciones.profile.empresa,
 				createdAt: new Date()
-		});	
+		});
 
 		opciones.profile.negocioId = negocioId;
 
@@ -135,7 +185,7 @@ Meteor.methods({
 			});
 
 			Roles.addUsersToRoles(userId, ['administrador']);
-			
+
 			Meteor.defer(function () {
 
 				SSR.compileTemplate( 'htmlEmail', Assets.getText( 'bienvenido.html' ) );
@@ -152,8 +202,8 @@ Meteor.methods({
 				});
 			});
 		}
-			
-		
-		
+
+
+
 	}
 });

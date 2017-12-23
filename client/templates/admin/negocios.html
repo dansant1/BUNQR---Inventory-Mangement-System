@@ -1,12 +1,12 @@
 <template name="negocios">
-	{{>menuNegocios}}
+
 	<div class="contenedor-negocios">
 		<div class="set-lista-negocios">
 
 				<div class="negocio">
 					<span class="negocio-item" style="text-align: center;">Negocios
 					</span>
-				</div>	
+				</div>
 
 		</div>
 	</div>
@@ -18,13 +18,12 @@
 			<div class="mostrar-nombre">
 				<h2 style="margin-left: 15px; width: 50%; margin-right: 0">{{nombre}}</h2>
 			</div>
-			<div class="line" style="margin-top: -65px; height: 100px; margin-right: 20px;">
-			</div>
+			<br>
 			<div style="margin-top: -38.5px; width: 200px; margin-left: 44px;" class="item-negocio">
 				<input class="button-primary boton-formulario" type="button" id="boton-login" value="Ingresar">
 			</div>
 		</div>
-		
+
 		{{/each}}
 		{{else}}
 			<div class="loading" style="width: 225px;">

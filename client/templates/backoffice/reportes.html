@@ -7,13 +7,13 @@
 		<div class="set-lista-negocios">
 			<div class="negocio item-negocio elegido">
 				<span class="negocio-item" style="text-align: center;">Reportes</span>
-			</div>	
+			</div>
 			<div class="negocio item-negocio ingreso-ventas">
 				<span class="negocio-item" style="text-align: center;">Ventas</span>
-			</div>	
+			</div>
 			<div class="negocio item-negocio ingreso-carga">
 				<span class="negocio-item" style="text-align: center;">Ingresos</span>
-			</div>	
+			</div>
 		</div>
 	</div>
 
@@ -34,7 +34,7 @@
 				<p>Ingresar inventario final</p>
 			</div>
 		</div>
-		
+
 		{{>reporteDiario}}
 
 		<table>
@@ -65,16 +65,16 @@
 	</div>
 
 
-	
+
 </template>
 
 <template name="reporteDiario">
 	<div class="cuadro-reporte" style="padding-bottom: 10px;">
 		<div class="container">
-		
+
 		<div class="row">
-			
-		<div class="column column-50">
+
+		<div class="column column-100">
 			<div class="row">
 				<div class="column column-50" style="text-align: center">
 					<span class="turquesa reporte-texto-span"></span>
@@ -86,7 +86,7 @@
 					<span class="azul reporte-texto-span"></span>
 					<h2 class="reporte-texto">
 						Costos
-					</h2>				
+					</h2>
 				</div>
 			</div>
 			<div class="row">
@@ -96,16 +96,16 @@
 			</div>
 		</div>
 
-		<div class="column column-50">
+		<div class="column column-100">
 			<div class="row">
-				
+
 				<div class="column column-50" style="text-align: center">
 					<span class="verde reporte-texto-span"></span>
 					<h2 class="reporte-texto">
 						Merma
-					</h2>				
+					</h2>
 				</div>
-				
+
 				<div class="column column-50" style="text-align: center">
 					<span class="turquesa reporte-texto-span"></span>
 					<h2 class="reporte-texto">
@@ -114,7 +114,7 @@
 				</div>
 
 			</div>
-			
+
 			<div class="row">
 				<div class="column" style="text-align: center;">
 					<canvas id="reporteVM"></canvas>
@@ -122,11 +122,11 @@
 			</div>
 
 		</div>
-			
+
 		</div>
-	
+
 		<div class="row">
-			<div class="column column-50">
+			<div class="column column-100">
 				<div class="row">
 					<div class="column column-50" style="text-align: center">
 						<span class="naranja reporte-texto-span"></span>
@@ -138,7 +138,7 @@
 						<span class="azul reporte-texto-span"></span>
 						<h2 class="reporte-texto">
 							Costos
-						</h2>				
+						</h2>
 					</div>
 				</div>
 				<div class="row">
@@ -161,7 +161,7 @@
 
 		<!-- Chart para Utilidad vs Gastos y chart para Mermas -->
 			<div class="row">
-			<div class="column column-50">
+			<div class="column column-100">
 				<div class="row">
 					<div class="column column-50" style="text-align: center">
 						<span class="naranja reporte-texto-span"></span>
@@ -173,7 +173,7 @@
 						<span class="reporte-texto-span" style="background-color: rgba(241, 196, 15,1.0);"></span>
 						<h2 class="reporte-texto">
 							Gastos
-						</h2>				
+						</h2>
 					</div>
 				</div>
 				<div class="row">
@@ -188,7 +188,7 @@
 						<span class="verde reporte-texto-span"></span>
 						<h2 style="color: white;" class="reporte-texto">Merma</h2>
 					</div>
-					
+
 				</div>
 				<div class="row">
 					<div class="column" style="text-align: center">
@@ -198,9 +198,9 @@
 			</div>
 		</div>
 
-		</div>	
+		</div>
 	</div>
-	
+
 
 	{{#if Template.subscriptionsReady}}
 
@@ -214,13 +214,13 @@
 						<h2 style="color: white; width: 80%; margin: 20px auto; text-align: center; font-weight: 300; text-transform: uppercase;">Datos de hoy</h2>
 					</div>
 				</div>
-				
+
 				<div class="row" style="text-align: center;">
 					<div class="column">
 						<div class="black-box">
-								<h2>S/. {{utilidad}}</h2>		
+								<h2>S/. {{utilidad}}</h2>
 								<p>Utilidad total</p>
-						</div>		
+						</div>
 					</div>
 					<div class="column">
 						<div class="black-box">
@@ -245,27 +245,27 @@
 							<h2>S/. {{compra}}</h2>
 							<p>Total de compras</p>
 						</div>
-						
+
 					</div>
 				</div>
-			</div>			
+			</div>
 
-			
+
 		</div>
 	{{/with}}
 
 	{{else}}
-	
+
 	<div class="cuadro-reporte">
 
 			<div class="container">
-				
+
 				<div class="row" style="text-align: center;">
 					<div class="column">
 						<div class="black-box">
-								<h2>S/. {{>loader}}</h2>		
+								<h2>S/. {{>loader}}</h2>
 								<p>Utilidad total</p>
-						</div>		
+						</div>
 					</div>
 					<div class="column">
 						<div class="black-box">
@@ -290,12 +290,12 @@
 							<h2>S/. {{>loader}}</h2>
 							<p>Total de compras</p>
 						</div>
-						
+
 					</div>
 				</div>
-			</div>			
+			</div>
 
-			
+
 		</div>
 
 	{{/if}}

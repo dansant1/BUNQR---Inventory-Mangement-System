@@ -1,0 +1,13 @@
+Tareas Software:
+1. Arreglar Menu Lateral
+2. Hacer los menus mas fluidos (hay botones que no funcionan o que no estan terminados)
+3. Hacer la funcionalidad de Roles
+4. Crear una pantalla POS para los roles de ventas
+5. Testear
+Tareas Administrativas:
+1. Hacer Fanpage de DDV inventarios
+2. Hacer video (opciones)
+3. Hacer cotizacion (lunes)
+4. Hacer contrato de venta (terminos y condiciones / politicas de privacidad)
+5. Hacer presentacion PPT (opcional)
+6. Hacer lista de funcionalidades (me puedo guiar de tradegecko)

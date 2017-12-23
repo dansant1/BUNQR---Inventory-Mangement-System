@@ -1,5 +1,8 @@
 Template.topbar.events({
-	
+	'click #open'(e, t) {
+		$( ".menu").toggleClass( "open" );
+
+	},
 	'click .nuevo-1': function () {
 		FlowRouter.go('/dashboard/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/ingresos');
 	},
@@ -34,12 +37,21 @@ Template.topbar.onCreated(function () {
 
 	self.autorun(function() {
     	var postId = FlowRouter.getParam('postId');
-    	self.subscribe('users');  
+    	self.subscribe('users');
   	});
 });
 
 Template.topbar.helpers({
 	nombre: function () {
 		return Meteor.users.findOne({});
+	},
+	EstaEnSeccionNegocio() {
+		let botom = FlowRouter.getParam('reporteId')
+
+		if (boton !== undefined) {
+			return true
+		}
+
+		return;
 	}
 });

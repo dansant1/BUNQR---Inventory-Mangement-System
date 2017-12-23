@@ -1,14 +1,19 @@
 <template name="topbar">
-	<img src="/logo-opcional2.png" alt="BUNQR" style="margin-top: 18.5px; margin-left: 30px;">
-	<span style="position: absolute; left: 160px; top: 32.5px; font-size: 12px; color: black;">&reg;</span>
-	
-	<div class="my">
-		<p style="margin-top: 10px;"><a href="/dashboard" style="color: #606C76;">Dashboard</a></p>
+
+	<button type="button" name="button" id="open" style="position: absolute; top: 10px; left: 20px;">
+		<i class="fa fa-bars" aria-hidden="true"></i>
+	</button>
+
+	<div style="
+		margin-top: 10px;
+    width: 100%;
+		text-align: center;
+    height: 70px;
+    color: black;">
+		<a href="/dashboard" style="color: #606C76; font-size: 2.5rem" class="font-principal">{{currentUser.profile.empresa}}</a>
 	</div>
-	
-	<div class="saludo float-right">
-		{{#with nombre}}
-		<h5 style="text-transform: capitalize;">Hola, {{profile.nombre}}</h5>
-		{{/with}}
-	</div>
+
+
+
+
 </template>

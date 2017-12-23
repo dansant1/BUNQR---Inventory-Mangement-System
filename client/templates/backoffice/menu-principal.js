@@ -8,7 +8,7 @@ Template.menuPrincipal.helpers({
 
 Template.menuPrincipal.events({
 	'click .i-1': function () {
-		
+
 		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') );
 	},
 	'click .i-2': function () {
@@ -36,14 +36,14 @@ Template.menuPrincipal.events({
 		Meteor.logout();
 		Bert.alert( 'Nos vemos luego :=)', 'success' );
 	},
-	
+
 });
 
 Template.ConfiguracionNegocio.onCreated(function () {
 	var self = this;
   	self.autorun(function() {
-    	
-    	self.subscribe('MiEmpresa');  
+
+    	self.subscribe('MiEmpresa');
   	});
 });
 
@@ -94,6 +94,27 @@ Template.ConfiguracionNegocio.events({
 			Berta.lert('Ingrese los datos correctamente', 'warning');
 		}
 
-		
+
+	},
+	'click .agregar-usuario'(event, template) {
+		let user = {
+    		email: template.find( '[name="email-user"]' ).value,
+    		password: template.find( '[name="password-user"]' ).value,
+   			profile: {
+   				nombre: template.find( '[name="nombre"]' ).value,
+   				apellido: template.find( '[name="apellido"]' ).value,
+          negocioId: FlowRouter.getParam('negocioid')
+   			}
+  		};
+
+        if (user.profile.nombre !== "" && user.profile.apellido !== "" && user.profile.empresa !== "") {
+            Meteor.call('agregarUsuario', user, function (err, result) {
+                if ( err ) {
+                    Bert.alert( err.reason, 'warning' );
+                } else {
+									Bert.alert('Usuario Agregadoo', 'success')
+								}
+            });
+        }
 	}
 });
