@@ -416,7 +416,7 @@ Template.FormularioCargaMasiva.events({
    'click .agregar': function (e, template) {
       e.preventDefault();
 
-      var datos = {
+      let datos = {
          codigo: template.find( '[name="codigo"]' ).value,
          nombre: template.find( '[name="nombre"]' ).value,
          medida: $('#unidad>option:selected').text(),
@@ -432,17 +432,24 @@ Template.FormularioCargaMasiva.events({
       var cantidad = template.find( '[name="cantidad"]' ).value;
       var cargaId = FlowRouter.getParam('cargaid');
 
-      Meteor.call('registrarProductoCargaMasiva', datos, cantidad, cargaId, function (err, result) {
-         if (err) {
-            console.log('Hubo un error');
-         } else {
-            template.find( '[name="codigo"]' ).value     = "";
-            template.find( '[name="nombre"]' ).value     = "";
-            template.find( '[name="cantidad"]' ).value   = "";
-            template.find( '[name="pcosto"]' ).value      = "";
-            template.find( '[name="pventa"]' ).value     = "";
-         }
-      });
+      if (datos.codigo !== "" && datos.nombre !== "" && datos.medida !== "OPCIÓN" && datos.almacen !== "Sin almacen"
+          && datos.pcosto !== "" && datos.pventa !== "") {
+            Meteor.call('registrarProductoCargaMasiva', datos, cantidad, cargaId, function (err, result) {
+               if (err) {
+                  Bert.alert('Hubo un error', 'warning');
+               } else {
+                  template.find( '[name="codigo"]' ).value     = "";
+                  template.find( '[name="nombre"]' ).value     = "";
+                  template.find( '[name="cantidad"]' ).value   = "";
+                  template.find( '[name="pcosto"]' ).value      = "";
+                  template.find( '[name="pventa"]' ).value     = "";
+               }
+            });
+      } else {
+        Bert.alert('Complete los Datos', 'warning')
+      }
+
+
    }
 });
 
@@ -474,7 +481,7 @@ Template.ingresoMasivo.events({
       } else {
          Meteor.call('AgregarCargaMasiva', datos, function (err, result) {
             if (err) {
-               console.log('Hubo un error');
+               Bert.alert(err.reason, 'warning')
             } else {
                Bert.alert( 'Agregaste una carga al almacen :=)', 'success' );
                FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/ingresos/masivo');
@@ -744,12 +751,12 @@ Template.registroMerma.events({
 
       datos.mermaId = FlowRouter.getParam('mermaid');
 
-      if (datos.fecha == undefined) {
+      if (datos.fecha === "") {
          Bert.alert('Ingresa la fecha', 'warning');
       } else {
          Meteor.call('registrarMerma', datos, function (error, result) {
             if (error) {
-               console.log(error.reason);
+               Bert.alert(error.reason, 'warning');
             } else {
                Bert.alert( 'Guardaste la Merma', 'success' );
                FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/salidas');

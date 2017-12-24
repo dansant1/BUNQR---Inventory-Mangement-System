@@ -838,7 +838,7 @@
 			</div>
 		</div>
 
-		<div class="cuadro-reporte" style="height: 185px;">
+		<div class="cuadro-reporte" style="height: 193px;">
 			<div class="container">
 			<div class="row" id="formulario-proforma">
 				<div class="column">
@@ -852,14 +852,8 @@
 			</div>
 			<div class="row">
 				<div class="column" style="padding-left: 20px;">
-
 					<input class="button-primary guardar" type="button" value="Guardar" name="guardar" id="boton-login">
 					<input class="button-clear cancelar" type="submit" value="Cancelar" name="cancelar" style="color: white; margin-left: 30px;">
-
-					<!--<input class="button-primary facturar" type="button" value="Generar factura" name="factura" id="boton-login" style="margin-left: 30px;">
-
-					<input class="button-primary boleta" type="button" value="Generar boleta" name="boleta" id="boton-login" style="margin-left: 30px;"> -->
-
 				</div>
 			</div>
 			</div>
@@ -1004,8 +998,9 @@
 </template>
 
 <template name="listaDeProductoVenta">
-	<div class="buscador" style="padding-top: 13.5px;">
-
+	<div class="buscador" style="padding-top: 13.5px; height: 125px;">
+		<h2 style="padding-top: 10px;">Buscar producto</h2>
+		<input type="text" name="search" class="form-control" width="250px" placeholder="Busque por código o nombre...">
 	</div>
 	{{#if Template.subscriptionsReady}}
 	<table>
@@ -1814,7 +1809,7 @@
 							<td style="text-align: center;"><p style="text-align: center;">{{producto}}</p></td>
 							<td style="text-align: center;"><p style="text-align: center;">{{cantidad}}</p></td>
 							<td style="text-align: center;"><p style="text-align: center;">S/. {{pcosto}}</p></td>
-							<td style="text-align: center;"><p style="text-align: center;">S/. {{importe}}</p></td>
+							<td style="text-align: center;"><p style="text-align: center;">S/. {{importeM}}</p></td>
 						</tr>
 						{{else}}
 							<tr>Sin salidas...</tr>

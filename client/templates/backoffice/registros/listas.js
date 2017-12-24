@@ -58,7 +58,7 @@ Template.listaProducto.events({
 	'click .ingresar-carga': function () {
 		Meteor.call('nuevoIngresoMasivo', function (err, result) {
 			if (err) {
-				console.log('Hubo un error');
+				Bert.alert('Hubo un error', 'warning');
 			} else {
 				var cargaId = result.cargaId;
 				FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/' + cargaId + '/ingresos/masivo/nuevo');
@@ -538,6 +538,82 @@ Template.Almacen.onCreated(function () {
   });
 
 });
+
+Template.listaDeProductoVenta.onCreated(function () {
+
+	let template = Template.instance();
+	let negocioId = FlowRouter.getParam('negocioid')
+
+	template.searchQuery = new ReactiveVar();
+  template.searching   = new ReactiveVar( false );
+
+  template.autorun( () => {
+
+		template.subscribe( 'ListaProductosItemBuscador', negocioId, template.searchQuery.get(), () => {
+      setTimeout( () => {
+        template.searching.set( false );
+      }, 400 );
+    });
+  });
+
+});
+
+Template.listaDeProductoVenta.events({
+  'keyup [name="search"]' ( event, template ) {
+
+    let value = event.target.value.trim();
+
+    if ( value !== '' && event.keyCode === 13 ) {
+      template.searchQuery.set( value );
+      template.searching.set( true );
+    }
+    if ( value === '' ) {
+      template.searchQuery.set( value );
+    }
+  }
+});
+
+
+Template.ListaDeProductos.onCreated(function () {
+
+	let template = Template.instance();
+	let negocioId = FlowRouter.getParam('negocioid')
+	template.searchQuery = new ReactiveVar();
+  template.searching   = new ReactiveVar( false );
+
+  template.autorun( () => {
+
+		template.subscribe( 'ListaProductosItemBuscador', negocioId, template.searchQuery.get(), () => {
+      setTimeout( () => {
+        template.searching.set( false );
+      }, 400 );
+    });
+  });
+
+});
+
+Template.ListaDeProductos.events({
+  'keyup [name="search"]' ( event, template ) {
+
+    let value = event.target.value.trim();
+
+    if ( value !== '' && event.keyCode === 13 ) {
+      template.searchQuery.set( value );
+      template.searching.set( true );
+    }
+    if ( value === '' ) {
+      template.searchQuery.set( value );
+    }
+  }
+});
+
+Template.ListaDeProductos.helpers({
+	productos: function () {
+		let negocioId = FlowRouter.getParam('negocioid')
+		return Productos.find({ negocioId: negocioId });
+	}
+})
+
 
 Template.Almacen.events({
   'keyup [name="search"]' ( event, template ) {
@@ -1022,6 +1098,9 @@ Template.detalleMerma.events({
 });
 
 Template.detalleMerma.helpers({
+	importeM() {
+		return this.importe.toFixed(2)
+	},
 	merma: function () {
 		return Mermas.find();
 	},
@@ -1081,17 +1160,12 @@ Template.Ventas.events({
 	}
 });
 
-Template.listaDeProductoVenta.onCreated(function () {
-	var self = this;
-	self.autorun(function() {
-    	var negocioId = FlowRouter.getParam('negocioid');
-    	self.subscribe('listaProductos', negocioId);
-	});
-});
+
 
 Template.listaDeProductoVenta.helpers({
 	productos: function () {
-		return Productos.find();
+		let negocioId = FlowRouter.getParam('negocioid')
+		return Productos.find({ negocioId: negocioId });
 	},
 	productosIndex: function () {
       return ProductosIndex;
@@ -1222,7 +1296,7 @@ Template.nuevoInventarioFinal.events({
 	},
 	'click .ir-stock'() {
 		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/almacenes/');
-		
+
 	}
 });
 
@@ -1345,9 +1419,10 @@ Template.registrarVenta.events({
 			formaPagoId: $('#formas-pago>option:selected').val(),
 			ventaId: ventaId
 		};
+
 		Meteor.call('guardarVenta', datos, function (error) {
 			if (error) {
-				console.log(error.reason);
+				Bert.alert(error.reason, 'warning');
 			} else {
 				Bert.alert( 'Guardaste la venta :=)', 'success' );
 				FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/ventas/');

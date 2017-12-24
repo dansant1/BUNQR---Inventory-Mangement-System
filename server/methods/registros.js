@@ -11,7 +11,7 @@ Meteor.methods({
 			let  fecha 	= new Date();
 			let dia 	= fecha.getDate();
 			let mes 	= fecha.getMonth();
-			let anio 	= fecha.getFullYear();
+			let anio 	= fecha.getFullYear()
 
 			fechaAux	= dia + '-' + mes + '-' + anio;
 
@@ -27,7 +27,7 @@ Meteor.methods({
 			}
 
 		} else { // 2. Si ya tenemos Reportes entonces quiero obtener el reporte de hoy o crear uno nuevo
-			
+
 			let crear, _id, reportes, reporteId;
 			let fechaAux;
 
@@ -100,7 +100,7 @@ Meteor.methods({
 		});
 
 		const userId = this.userId;
-		datos.userId = this.userId;		
+		datos.userId = this.userId;
 		if (userId) {
 			datos.createdAt = new Date();
 			var categoriaId = Categorias.insert(datos);
@@ -117,7 +117,7 @@ Meteor.methods({
 		});
 
 		const userId = this.userId;
-		
+
 		if (userId) {
 			datos.createdAt = new Date();
 			var lineaId = Lineas.insert(datos);
@@ -133,7 +133,7 @@ Meteor.methods({
 			negocioId: String,
 		});
 
-		
+
 
 		const userId = this.userId;
 		datos.userId = this.userId;
@@ -166,14 +166,14 @@ Meteor.methods({
 
 		if (datos.stockmin == "") {
 			datos.stockmin = 0;
-		} 
+		}
 
 		if (datos.stockmax == "") {
 			datos.stockmax = 0;
 		}
 
 		const userId = this.userId;
-		
+
 		if (userId) {
 			datos.createdAt = new Date;
 			datos.pcosto = parseFloat(datos.pcosto);
@@ -185,11 +185,11 @@ Meteor.methods({
 
 			if (datos.stockmax !== 0) {
 				datos.stockmax = parseFloat(datos.stockmax);
-				datos.stockmax.toFixed(2);	
+				datos.stockmax.toFixed(2);
 			}
 			if (datos.stockmin !== 0) {
 				datos.stockmin = parseFloat(datos.stockmin);
-				datos.stockmin.toFixed(2);	
+				datos.stockmin.toFixed(2);
 			}
 			datos.userId = this.userId;
 
@@ -225,7 +225,7 @@ Meteor.methods({
 				datos.almacen = false;
 			}
 
-			
+
 			datos.createdAt = new Date;
 			var importe = datos.pcosto * cantidad;
 			importe.toFixed(1);
@@ -257,7 +257,7 @@ Meteor.methods({
 				almacen: datos.almacen
 			});
 
-			
+
 			var productoId = Productos.insert({
 				nombre:  datos.nombre,
 				codigo: datos.codigo,
@@ -309,7 +309,7 @@ Meteor.methods({
 				cargaId: cargaId
 			};
 		} else {
-			throw new Meteor.Error('No dijiste la palabra magica ;)');	
+			throw new Meteor.Error('No dijiste la palabra magica ;)');
 		}
 	},
 	AgregarCargaMasiva: function (datos) {
@@ -329,28 +329,36 @@ Meteor.methods({
 
 
 		if (this.userId) {
-			
+
 			datos.fecha = new Date(datos.fecha + " GMT-0500");
-			
-			var cargaId = Cargas.update({_id: datos.cargaId}, {
-				$set: {
-					almacen: datos.almacen,
-					almacenId: datos.almacenId,
-					proveedor: datos.proveedor,
-					proveedorId: datos.proveedorId,
-					formaPago: datos.formaPago,
-					formaPagoId: datos.formaPagoId,
-					moneda: datos.moneda,
-					fecha: datos.fecha,
-					negocioId: datos.negocioId,
-					guardado: true
+
+			let cargas = CargaItem.find({cargaId: datos.cargaId});
+
+			if (cargas.fetch().length !== 0) {
+				let cargaId = Cargas.update({_id: datos.cargaId}, {
+					$set: {
+						almacen: datos.almacen,
+						almacenId: datos.almacenId,
+						proveedor: datos.proveedor,
+						proveedorId: datos.proveedorId,
+						formaPago: datos.formaPago,
+						formaPagoId: datos.formaPagoId,
+						moneda: datos.moneda,
+						fecha: datos.fecha,
+						negocioId: datos.negocioId,
+						guardado: true
+					}
+				});
+				return {
+					cargaId: cargaId
 				}
-			});
-			return {
-				cargaId: cargaId
+			} else {
+				throw new Meteor.Error('Productos', 'Ingrese los Productos');
 			}
+
+
 		} else {
-			throw new Meteor.Error('No dijiste la palabra magica ;)');	
+			throw new Meteor.Error('No dijiste la palabra magica ;)');
 		}
 	},
 	eliminarCargaItem: function (datos) {
@@ -400,7 +408,7 @@ Meteor.methods({
 
 			CargaItem.remove({_id: datos.cargaItemId});
 		} else {
-			throw new Meteor.Error('No dijiste la palabra magica ;)');	
+			throw new Meteor.Error('No dijiste la palabra magica ;)');
 		}
 	},
 	modificarCantidadCargaItem: function (datos) {
@@ -417,15 +425,15 @@ Meteor.methods({
 		const userId = this.userId;
 
 		if (userId) {
-			
-			CargaItem.update({_id: datos.cargaItemId}, 
+
+			CargaItem.update({_id: datos.cargaItemId},
 					{$set: {
-						importe: importe, 
-						cantidad: datos.cantidad} 
+						importe: importe,
+						cantidad: datos.cantidad}
 					});
 
 		} else {
-			throw new Meteor.Error('No dijiste la palabra magica ;)');		
+			throw new Meteor.Error('No dijiste la palabra magica ;)');
 		}
 	},
 	agregarProductoACargaItem: function (datos) {
@@ -450,18 +458,18 @@ Meteor.methods({
 			datos.cantidad.toFixed(3);
 
 			//var producto = Productos.findOne({_id: datos.productoId});
-			
-			// En este punto hacer el update para establecer el producto.stock con $lt mas 
+
+			// En este punto hacer el update para establecer el producto.stock con $lt mas
 			// la cantidad de datos.cantidad y establer el stock
 
 			//producto.pcosto.toFixed(2);
 
-			// El importe es el valorCosto		
+			// El importe es el valorCosto
 			datos.importe = datos.pcosto * datos.cantidad;
 			datos.importe.toFixed(2);
 
 			// Incrementamos el stock del producto
-			
+
 
 			datos.valorUtilidad = datos.utilidad * datos.cantidad;
 			datos.valorUtilidad.toFixed(2);
@@ -491,7 +499,7 @@ Meteor.methods({
 
 			console.log(datos.productoId);
 
-			
+
 
 			let CargaId = Cargas.update({_id: datos.cargaId}, {
 				$inc: {
@@ -521,7 +529,7 @@ Meteor.methods({
 			};
 
 		} else {
-			throw new Meteor.Error('No dijiste la palabra magica ;)');		
+			throw new Meteor.Error('No dijiste la palabra magica ;)');
 		}
 	},
 	CancelarCarga: function (cargaId, reporteId) {
@@ -541,7 +549,7 @@ Meteor.methods({
 				item.valor 		= item.valor      * -1;
 				item.importe = item.importe * -1;
 				item.valorUtilidad = item.valorUtilidad * -1;
- 
+
 				Productos.update({_id: item.productoId}, {
 					$inc: {
 						stock: item.cantidad,
@@ -559,11 +567,11 @@ Meteor.methods({
 
 			});
 
-
+			Cargas.remove({guardado: false});
 			Cargas.remove({_id: cargaId});
 			CargaItem.remove({cargaId: cargaId});
 		} else {
-			throw new Meteor.Error('No dijiste la palabra magica ;)');	
+			throw new Meteor.Error('No dijiste la palabra magica ;)');
 		}
 
 	},
@@ -576,7 +584,7 @@ Meteor.methods({
 		});
 
 		const userId = this.userId;
-		
+
 		if (userId) {
 			datos.costo = parseInt(datos.costo);
 			var servicioId = Servicios.insert(datos);
@@ -593,7 +601,7 @@ Meteor.methods({
 		});
 
 		const userId = this.userId;
-		
+
 		if (userId) {
 			var proveedorId = Proveedores.insert(datos);
 			return proveedorId;
@@ -614,7 +622,7 @@ Meteor.methods({
 
 		const userId = this.userId;
 
-		
+
 		if (userId) {
 
 			var clienteId = Clientes.insert(datos);
@@ -632,7 +640,7 @@ Meteor.methods({
 		});
 
 		const userId = this.userId;
-		
+
 		if (userId) {
 			datos.periodo = parseInt(datos.periodo);
 			var formasDePagoId = FormasdePago.insert(datos);
@@ -651,7 +659,7 @@ Meteor.methods({
 		});
 
 		const userId = this.userId;
-		
+
 		if (userId) {
 			datos.saldo = parseInt(datos.saldo);
 			var cuentaBancariaId = CuentasBancarias.insert(datos);
@@ -668,7 +676,7 @@ Meteor.methods({
 		});
 
 		const userId = this.userId;
-		
+
 		if (userId) {
 			datos.userId = this.userId;
 			var almacenId = Almacen.insert(datos);
@@ -704,10 +712,10 @@ Meteor.methods({
 			console.log(costoProducto);
 			let cantidad = datos.cantidad = parseInt(datos.cantidad);
 			console.log(cantidad)
-			datos.importe = costoProducto * cantidad; 
+			datos.importe = costoProducto * cantidad;
 			console.log(datos.importe);
 			datos.fecha = new Date(datos.fecha + 'T' + datos.hora + ':' + datos.minuto + ':00');
-			
+
 			let ingresoId = Ingresos.insert(datos);
 		} else {
 			throw new Meteor.Error('No dijiste la palabra magica ;)');
@@ -751,7 +759,7 @@ Meteor.methods({
 				compraId: compraId
 			};
 		} else {
-			throw new Meteor.Error('No dijiste la palabra magica ;)');	
+			throw new Meteor.Error('No dijiste la palabra magica ;)');
 		}
 	},
 	agregarCompraItem: function (datos) {
@@ -841,13 +849,13 @@ Meteor.methods({
 
 
 		} else {
-			throw new Meteor.Error('No dijiste la palabra magica ;)');	
+			throw new Meteor.Error('No dijiste la palabra magica ;)');
 		}
 	},
 	crearMerma: function (negocioId) {
 		check(negocioId, String)
 		if (this.userId) {
-			var mermaId = Mermas.insert({createdAt: new Date(), 
+			var mermaId = Mermas.insert({createdAt: new Date(),
 										guardado: false,
 										negocioId: negocioId,
 										userId: this.userId});
@@ -855,7 +863,7 @@ Meteor.methods({
 				mermaId: mermaId
 			};
 		} else {
-			throw new Meteor.Error('No dijiste la palabra magica ;)');	
+			throw new Meteor.Error('No dijiste la palabra magica ;)');
 		}
 	},
 	registrarMerma: function (datos) {
@@ -873,24 +881,31 @@ Meteor.methods({
 
 			datos.fecha = new Date(datos.fecha + " GMT-0500");
 
+			let mermaItems = MermasItem.find({mermaId: datos.mermaId});
 
-			let mermaId = Mermas.update({_id: datos.mermaId}, {
-				$set: {
-					fecha: datos.fecha,
-					descripcion: datos.descripcion,
-					proveedor: datos.proveedor,
-					proveedorId: datos.proveedorId,
-					guardado: true
+			if (mermaItems.fetch().length !== 0 ) {
+				let mermaId = Mermas.update({_id: datos.mermaId}, {
+					$set: {
+						fecha: datos.fecha,
+						descripcion: datos.descripcion,
+						proveedor: datos.proveedor,
+						proveedorId: datos.proveedorId,
+						guardado: true
+					}
+				});
+
+				return {
+					mermaId: mermaId
 				}
-			});
-
-			return {
-				mermaId: mermaId
+			} else {
+				throw new Meteor.Error('Merma', 'Ingresa Productosal Registro de Merma');
 			}
 
-			console.log('funciona')
+
+
+
 		} else {
-			throw new Meteor.Error('No dijiste la palabra magica ;)');	
+			throw new Meteor.Error('No dijiste la palabra magica ;)');
 		}
 	},
 	agregarProductoAMermaItem: function (datos) {
@@ -909,13 +924,13 @@ Meteor.methods({
 
 
 		if (this.userId) {
-			
+
 			datos.pcosto 	= parseFloat(datos.pcosto);
 			datos.cantidad 	= parseFloat(datos.cantidad);
 			datos.cantidad.toFixed(3);
 			datos.importe 	= datos.pcosto * datos.cantidad;
 			datos.importe.toFixed(2);
-			
+
 			let menosValor 	= datos.pventa * datos.cantidad * -1;
 			let menosUtilidad = datos.utilidad * datos.cantidad * -1;
 			let menosCosto = datos.pcosto * datos.cantidad * -1;
@@ -955,7 +970,7 @@ Meteor.methods({
 			}
 
 		} else {
-			throw new Meteor.Error('No dijiste la palabra magica ;)');	
+			throw new Meteor.Error('No dijiste la palabra magica ;)');
 		}
 
 	},
@@ -977,7 +992,7 @@ Meteor.methods({
 					valorCosto: valorCosto,
 					valorUtilidad: valorUtilidad
 				}
-		});		
+		});
 
 		var menosImporte = importe * -1;
 
@@ -1003,7 +1018,7 @@ Meteor.methods({
 		var mermas = MermasItem.find({mermaId: MermaId});
 
 		mermas.forEach(function (item) {
-			
+
 			Productos.update({_id: item.productoId}, {
 				$inc: {
 					stock: item.cantidad,
@@ -1022,9 +1037,12 @@ Meteor.methods({
 			});
 		});
 
+
+
+		Mermas.remove({guardado: false})
 		MermasItem.remove({mermaId: MermaId});
 		Mermas.remove({_id: MermaId});
-	},  
+	},
 	nuevaVenta: function (negocioId) {
 		check(negocioId, String);
 
@@ -1061,12 +1079,12 @@ Meteor.methods({
 			datos.importe = (datos.pventa - datos.descuento) * datos.cantidad;
 			datos.importe.toFixed(2);
 
-		
+
 			datos.valor = datos.pventa * datos.cantidad;
 			datos.valorCosto = datos.pcosto * datos.cantidad;
 			datos.valorUtilidad = ( (datos.pventa - datos.descuento) * datos.cantidad ) - ( datos.pcosto * datos.cantidad )
-			
-			
+
+
 			datos.userId = this.userId;
 
 			let ventaItemId = VentasItem.insert(datos);
@@ -1118,65 +1136,70 @@ Meteor.methods({
 			ventaId: String
 		});
 
-
-
 		let items = VentasItem.find({ventaId: datos.ventaId});
 
-		items.forEach(function (index) {
-		
-			Productos.update({_id: index.productoId}, {
-				$inc: {
-					stock: index.cantidad * -1,
-					valor: index.pventa * index.cantidad * -1,
-					valorCosto: index.pcosto * index.cantidad * -1,
-					valorUtilidad: index.utilidad * index.cantidad * -1
-				}
+		console.log(items.fetch().length)
+
+		if (items.fetch().length !== 0) {
+			items.forEach(function (index) {
+
+				Productos.update({_id: index.productoId}, {
+					$inc: {
+						stock: index.cantidad * -1,
+						valor: index.pventa * index.cantidad * -1,
+						valorCosto: index.pcosto * index.cantidad * -1,
+						valorUtilidad: index.utilidad * index.cantidad * -1
+					}
+				});
+
+				Reportes.update({_id: index.reporteId}, {
+					$inc: {
+						valorVenta: index.importe,
+						valorutilidadVenta: index.valorUtilidad
+					}
+				});
+
 			});
 
-			Reportes.update({_id: index.reporteId}, {
-				$inc: {
-					valorVenta: index.importe,
-					valorutilidadVenta: index.valorUtilidad
-				}
-			});
-			
-		});
+			function getFormattedDate(date) {
+	  			var year = date.getFullYear();
+	  			var month = (1 + date.getMonth()).toString();
+	  			month = month.length > 1 ? month : '0' + month;
+	  			var day = date.getDate().toString();
+	  			day = day.length > 1 ? day : '0' + day;
+	  			return month + '/' + day + '/' + year;
+			}
 
-		function getFormattedDate(date) {
-  			var year = date.getFullYear();
-  			var month = (1 + date.getMonth()).toString();
-  			month = month.length > 1 ? month : '0' + month;
-  			var day = date.getDate().toString();
-  			day = day.length > 1 ? day : '0' + day;
-  			return month + '/' + day + '/' + year;
-		}
-
-		if ( Ventas.findOne({_id: datos.ventaId}).emision === undefined ) {
-			Ventas.update({_id: datos.ventaId}, {
-				$set: {
-					cliente: datos.cliente,
-					clienteId: datos.clienteId,
-					formaPago: datos.formaPago,
-					formaPagoId: datos.formaPagoId,
-					pagado: new Date(),
-					guardado: true,
-					emision: getFormattedDate(new Date()),
-					vence: "-",
-					observaciones: ""
-				}
-			});
+			if ( Ventas.findOne({_id: datos.ventaId}).emision === undefined ) {
+				Ventas.update({_id: datos.ventaId}, {
+					$set: {
+						cliente: datos.cliente,
+						clienteId: datos.clienteId,
+						formaPago: datos.formaPago,
+						formaPagoId: datos.formaPagoId,
+						pagado: new Date(),
+						guardado: true,
+						emision: getFormattedDate(new Date()),
+						vence: "-",
+						observaciones: ""
+					}
+				});
+			} else {
+				Ventas.update({_id: datos.ventaId}, {
+					$set: {
+						cliente: datos.cliente,
+						clienteId: datos.clienteId,
+						formaPago: datos.formaPago,
+						formaPagoId: datos.formaPagoId,
+						pagado: new Date(),
+						guardado: true
+					}
+				});
+			}
 		} else {
-			Ventas.update({_id: datos.ventaId}, {
-				$set: {
-					cliente: datos.cliente,
-					clienteId: datos.clienteId,
-					formaPago: datos.formaPago,
-					formaPagoId: datos.formaPagoId,
-					pagado: new Date(),
-					guardado: true
-				}
-			});
+			throw new Meteor.Error('Productos', 'Agregue Productos a la Venta');
 		}
+
 	},
 	eliminarVenta: function (ventaId, reporteId) {
 		check(ventaId, String);
@@ -1221,12 +1244,12 @@ Meteor.methods({
 			datos.importe = datos.pventa * datos.cantidad;
 			datos.importe.toFixed(2);
 
-		
+
 			datos.valor = datos.pventa * datos.cantidad;
 			datos.valorCosto = datos.pcosto * datos.cantidad;
 			datos.valorUtilidad = ( datos.pventa  * datos.cantidad ) - ( datos.pcosto * datos.cantidad )
-			
-			
+
+
 			datos.userId = this.userId;
 
 			let inventarioFinalItemId = InventarioFinalItem.insert(datos);
@@ -1275,7 +1298,7 @@ Meteor.methods({
 		let items = InventarioFinalItem.find({inventarioId: datos.invetarioFinalId});
 
 		items.forEach( function (index) {
-		
+
 			Productos.update({_id: index.productoId}, {
 				$set: {
 					stock: index.cantidad,
@@ -1285,7 +1308,7 @@ Meteor.methods({
 				}
 			});
 
-			
+
 		});
 
 	},

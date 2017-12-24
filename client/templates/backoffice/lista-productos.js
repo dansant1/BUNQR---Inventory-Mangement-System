@@ -109,15 +109,13 @@ Template.ListaDeProductos.onCreated(function () {
 	var self = this;
 	self.autorun(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
-    	self.subscribe('listaProductos', negocioId);
+
     	Suscripcion.subscribe('users');
 	});
 });
 
 Template.ListaDeProductos.helpers({
-	productos: function () {
-		return Productos.find();
-	},
+	
 	productosIndex: function () {
 
 		return ProductosIndex;

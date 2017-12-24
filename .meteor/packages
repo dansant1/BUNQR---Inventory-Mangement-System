@@ -15,8 +15,7 @@ tracker                 # Meteor's client-side reactive programming library
 es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
-kadira:flow-router
-kadira:blaze-layout
+
 momentjs:moment
 themeteorchef:bert
 accounts-base
@@ -33,18 +32,16 @@ reactive-var
 alanning:roles
 meteorhacks:subs-manager
 accounts-ui
-miro:mailchimp
 email
 standard-minifier-css
 standard-minifier-js
-dfischer:phantomjs
 meteorhacks:ssr
-meteorhacks:npm
 
 
-npm-container
 peppelg:bootstrap-3-modal
 richsilv:pikaday
 chart:chart
 underscore
 twbs:bootstrap
+kadira:flow-router
+kadira:blaze-layout
