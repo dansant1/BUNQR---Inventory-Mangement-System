@@ -511,7 +511,18 @@ Template.ingresoMasivo.events({
    'click .ir-stock': function () {
       FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/almacenes');
    },
-
+   'click .almacen-salida'() {
+     FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/salidas');
+   },
+   'click .almacen-ingreso'() {
+     FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/almacenes');
+   },
+   'click .almacen-producto'() {
+     FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/producto');
+   },
+   'click .almacen-compras'() {
+     FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/ingresos/compras');
+   }
 });
 
 Template.FormularioCompraItem.events({
@@ -772,6 +783,18 @@ Template.registroMerma.events({
             Bert.alert( 'Agregaste una carga nueva', 'success' );
          }
       });
+   },
+   'click .almacen-salida'() {
+     FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/salidas');
+   },
+   'click .almacen-ingreso'() {
+     FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/almacenes');
+   },
+   'click .almacen-producto'() {
+     FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/producto');
+   },
+   'click .almacen-compras'() {
+     FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/ingresos/compras');
    }
 });
 

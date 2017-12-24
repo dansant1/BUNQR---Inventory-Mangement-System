@@ -145,7 +145,9 @@ Meteor.publish('listaInventarioFinalItem', function (inventarioFinalId) {
 });
 
 Meteor.publish('inventarioTotal', function (inventarioFinalId) {
+
 	check(inventarioFinalId, String);
+	
 	if (this.userId) {
 		return InventarioFinal.find({_id: inventarioFinalId});
 	} else {
@@ -162,6 +164,35 @@ Meteor.publish('ListaProductosItem', function (negocioId) {
 		return this.ready();
 	}
 });
+
+Meteor.publish('ListaProductosItemBuscador', function (negocioId, search) {
+
+	check( search, Match.OneOf( String, null, undefined ) );
+	check(negocioId, String);
+
+	let query      = {},
+      projection = { limit: 10, sort: { nombre: 1 } };
+
+  if ( search ) {
+    let regex = new RegExp( search, 'i' );
+
+    query = {
+
+      $or: [
+        { nombre: regex },
+        { codigo: regex },
+
+      ]
+    };
+
+    projection.limit = 100;
+  }
+
+  return Productos.find( query, projection );
+
+});
+
+
 
 Meteor.publish('ListaCompras', function (negocioId) {
 	check(negocioId, String);

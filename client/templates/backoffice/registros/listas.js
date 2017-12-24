@@ -518,14 +518,47 @@ Template.Almacen.onCreated(function () {
 	template.gananciaTotal = new ReactiveVar();
 	template.utilidadTotal = new ReactiveVar();
 	template.costoTotal = new ReactiveVar();
-
+	let negocioId = FlowRouter.getParam('negocioid')
 	self.autorun(function () {
-		let negocioId = FlowRouter.getParam('negocioid')
+
 
 		self.subscribe('users');
 	});
 
+	template.searchQuery = new ReactiveVar();
+  template.searching   = new ReactiveVar( false );
+
+  template.autorun( () => {
+
+		template.subscribe( 'ListaProductosItemBuscador', negocioId, template.searchQuery.get(), () => {
+      setTimeout( () => {
+        template.searching.set( false );
+      }, 400 );
+    });
+  });
+
 });
+
+Template.Almacen.events({
+  'keyup [name="search"]' ( event, template ) {
+
+
+
+    let value = event.target.value.trim();
+
+		console.log(value)
+
+    if ( value !== '' && event.keyCode === 13 ) {
+      template.searchQuery.set( value );
+      template.searching.set( true );
+    }
+
+    if ( value === '' ) {
+      template.searchQuery.set( value );
+    }
+  }
+});
+
 
 Template.Almacen.onRendered(function () {
 
@@ -559,7 +592,8 @@ Template.Almacen.onRendered(function () {
 
 Template.Almacen.helpers({
 	productos: function () {
-		return Productos.find();
+		let negocioId = FlowRouter.getParam('negocioid')
+		return Productos.find({ negocioId: negocioId });
 	},
 	gananciaTotal: function () {
 		let revenues = Template.instance().gananciaTotal.get(),
@@ -568,9 +602,6 @@ Template.Almacen.helpers({
             if ( revenues ) {
                 revenues.map( ( revenue ) => total += revenue.total );
             }
-
-
-
             //return  total.toLocaleString();
             return total.toFixed(1);
 	},
@@ -1188,6 +1219,10 @@ Template.nuevoInventarioFinal.events({
 				FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/almacenes/');
 			}
 		});
+	},
+	'click .ir-stock'() {
+		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/almacenes/');
+		
 	}
 });
 
@@ -1348,6 +1383,10 @@ Template.registrarVenta.events({
 		} else {
 			Session.set('mostrar-boleta', 'mostrar');
 		}
+
+	},
+	'click .lista-ventas'() {
+		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/ventas');
 
 	}
 });

@@ -1,5 +1,21 @@
 Productos = new Mongo.Collection('productos');
 
+if ( Meteor.isServer ) {
+  Productos._ensureIndex( { nombre: 1, codigo: 1 } );
+}
+
+Productos.allow({
+  insert: () => false,
+  update: () => false,
+  remove: () => false
+});
+
+Productos.deny({
+  insert: () => true,
+  update: () => true,
+  remove: () => true
+});
+
 ProductosSchema = new SimpleSchema({
 	nombre: {
 		type: String

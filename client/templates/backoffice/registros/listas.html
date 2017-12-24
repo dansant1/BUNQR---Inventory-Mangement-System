@@ -390,7 +390,7 @@
 
 		<div class="buscador" style="height: 110px;">
 				<h2>Buscar producto</h2>
-				{{> EasySearch.Input index=productosIndex}}
+				<input type="text" name="search" class="form-control" width="250px" placeholder="Busque por código o nombre...">
 		</div>
 
 		{{#if Template.subscriptionsReady}}
@@ -411,7 +411,7 @@
   			</thead>
   			<tbody >
 
-  				{{#EasySearch.Each index=productosIndex }}
+  				{{#each productos}}
 
 					<tr class="tabla-hover">
 						<td><p style="text-align: center;">{{codigo}}</p></td>
@@ -426,19 +426,8 @@
 						<td>
 							<p style="text-align: center; color: {{fuera Utilidad}}">S/. {{Utilidad}}</p>
 						</td>
-
 					</tr>
-
-  				{{/EasySearch.Each}}
-
-				{{#EasySearch.IfSearching index=productosIndex}}
- 					<div class="loading">
-  						{{>loader}}
-  					</div>
-				{{/EasySearch.IfSearching}}
-
-
-
+  				{{/each}}
   			</tbody>
 		</table>
 		{{else}}
@@ -447,8 +436,6 @@
   			</div>
 		{{/if}}
 	</div>
-
-
 
 </template>
 
@@ -680,7 +667,7 @@
 	<div class="cuadro-main">
 
 		<div class="sub-menu">
-			<div class="stock">
+			<div class="stock ir-stock">
 				<p>Lista de inventarios</p>
 			</div>
 			<div class="stock stock-elegido">
@@ -843,7 +830,7 @@
 	<div class="cuadro-main">
 
 		<div class="sub-menu">
-			<div class="stock">
+			<div class="stock lista-ventas">
 				<p>Lista de ventas</p>
 			</div>
 			<div class="stock stock-elegido">

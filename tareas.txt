@@ -1,7 +1,7 @@
 Tareas Software:
 1. Arreglar Menu Lateral (listo)
-2. Hacer los menus mas fluidos (hay botones que no funcionan o que no estan terminados)
-3. Hacer la funcionalidad de Roles (in process)
+2. Hacer los menus mas fluidos (listo)
+3. Hacer la funcionalidad de Roles (listo)
 5. Testear
 Tareas Administrativas:
 1. Hacer Fanpage de DDV inventarios
