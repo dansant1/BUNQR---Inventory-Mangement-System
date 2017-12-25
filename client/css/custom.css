@@ -2,6 +2,7 @@
 @import url(https://fonts.googleapis.com/css?family=Open%20Sans:300,400,500,600,700);
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
 
+
 body {
 	margin: 0;
 
@@ -13,6 +14,12 @@ body {
 	font-weight: bold;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
 
 ::-moz-selection {
 	color: white;

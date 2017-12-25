@@ -2,10 +2,17 @@ Tareas Software:
 1. Arreglar Menu Lateral (listo)
 2. Hacer los menus mas fluidos (listo)
 3. Hacer la funcionalidad de Roles (listo)
-5. Testear
+5. Permitir cambiar cantidades de productos en el POS
+6. Agregar vendedores por tienda
+7. Hacer registro de vendedores (datos y tienda asociada)
+8. Editar datos de producto (Listo)
+9. Editar datos de registros
+10.Exportar a Ecel (futuro)
+11.Hacer reportes avanzandos (futuro)
+12.Hacer filtros avanzados (futuro)
 Tareas Administrativas:
 1. Hacer Fanpage de DDV inventarios
 2. Hacer video (opcional)
-3. Hacer cotizacion (lunes)
-4. Hacer contrato de venta (terminos y condiciones / politicas de privacidad)
+3. Hacer cotizacion (listo)
+4. Hacer contrato de venta (listo)
 5. Hacer presentacion PPT (opcional)

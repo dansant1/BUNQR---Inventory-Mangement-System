@@ -1498,6 +1498,14 @@
 			</div>
 		</div>
 
+		<!--<div class="buscador" style="height: 110px; padding-top: 11px;">
+				<h2>FILTRAR</h2>
+				<input type="date" name="desde" style="display: inline-block; width: 160px; margin: 2.5px">
+				<input type="date" name="hasta" style="display: inline-block; width: 160px; margin: 2.5px">
+				<button type="button" name="filtrar" style="margin-left: 5px;">Generar</button>
+		</div> -->
+
+
 			<table>
 				<thead>
 					<th style="color: #606C76;"><p style="margin-left: 10px; margin-bottom: 20px;">FECHA</p></th>
@@ -1646,24 +1654,30 @@
 </template>
 
 <template name="registrosProductos">
+	<div class="buscador" style="height: 110px; padding-top: 11px;">
+			<h2>Buscar producto</h2>
+			<input type="text" name="search" class="form-control" width="250px" placeholder="Busque por código o nombre...">
+	</div>
 			<table>
 				<thead>
 					<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">CÓDIGO</p></th>
 					<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">NOMBRE</p></th>
-					<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">P. COSTO (S/.)</p></th>
-					<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">P. VENTA (S/.)</p></th>
-					<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">UTILIDAD (S/.)</p></th>
-
+					<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">P. COSTO (S/)</p></th>
+					<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">P. VENTA (S/)</p></th>
+					<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">UTILIDAD</p></th>
+					<th style="color: #606C76;"><p style="margin-top: 10px; margin-bottom: 20px;">EDITAR</p></th>
 				</thead>
 				<tbody>
 					{{#each item}}
 						<tr>
-							<td style="padding-bottom: 0;"><p style="text-align: center;">{{codigo}}</p></td>
-							<td style="padding-bottom: 0;"><p style="text-align: center;">{{nombre}}</p></td>
-							<td style="padding-bottom: 0;"><p style="text-align: center;">S/. {{pcosto}}</p></td>
-							<td style="padding-bottom: 0;"><p style="text-align: center;">S/. {{pventa}}</p></td>
-							<td style="padding-bottom: 0;"><p style="text-align: center;">S/. {{utilidadReal}}</p></td>
-
+							<td style="padding-bottom: 0;"><p style="text-align: center;"><input type="text" class="cod{{_id}}" value="{{codigo}}"> </p></td>
+							<td style="padding-bottom: 0;"><p style="text-align: center;"><input type="text" class="no{{_id}}" value="{{nombre}}"> </p></td>
+							<td style="padding-bottom: 0;"><p style="text-align: center;"><input type="number" class="pco{{_id}}" value="{{pcosto}}"> </p></td>
+							<td style="padding-bottom: 0;"><p style="text-align: center;"><input type="number" class="pve{{_id}}" value="{{pventa}}"> </p></td>
+							<td style="padding-bottom: 0;"><p style="text-align: center;">S/ {{utilidadReal}}</p></td>
+							<td style="padding-bottom: 0;"><p style="text-align: center;">
+								<button type="button" name="editar" class="p{{_id}}">EDITAR</button>
+							</p></td>
 						</tr>
 					{{/each}}
 				</tbody>

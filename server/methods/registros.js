@@ -244,7 +244,7 @@ Meteor.methods({
 
 			let utilidad =  (datos.utilidad * cantidad);
 
-			var cargaItemId = CargaItem.insert({
+			let cargaItemId = CargaItem.insert({
 				nombre: datos.nombre,
 				medida: datos.medida,
 				codigo: datos.codigo,
@@ -709,11 +709,11 @@ Meteor.methods({
 		datos.userId = userId
 		if (userId) {
 			let costoProducto = Productos.findOne({_id: datos.productoId}).pcosto;
-			console.log(costoProducto);
+
 			let cantidad = datos.cantidad = parseInt(datos.cantidad);
-			console.log(cantidad)
+
 			datos.importe = costoProducto * cantidad;
-			console.log(datos.importe);
+			
 			datos.fecha = new Date(datos.fecha + 'T' + datos.hora + ':' + datos.minuto + ':00');
 
 			let ingresoId = Ingresos.insert(datos);

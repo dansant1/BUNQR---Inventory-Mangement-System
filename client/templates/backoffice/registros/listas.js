@@ -70,21 +70,94 @@ Template.listaProducto.events({
 
 
 Template.registrosProductos.onCreated(function () {
-	var self = this;
+		/*var self = this;
   	self.autorun(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
     	self.subscribe('ListaProductosItem', negocioId);
-  	});
+  	});*/
+
 });
+
+Template.registrosProductos.onCreated(function () {
+
+	let template = Template.instance();
+	template.gananciaTotal = new ReactiveVar();
+	template.utilidadTotal = new ReactiveVar();
+	template.costoTotal = new ReactiveVar();
+	let negocioId = Meteor.user().profile.negocioId;
+
+	template.searchQuery = new ReactiveVar();
+  template.searching   = new ReactiveVar( false );
+
+  template.autorun( () => {
+
+		template.subscribe( 'ListaProductosItemBuscador', negocioId, template.searchQuery.get(), () => {
+      setTimeout( () => {
+        template.searching.set( false );
+      }, 400 );
+    });
+  });
+
+});
+
+Template.registrosProductos.events({
+  'keyup [name="search"]' ( event, template ) {
+
+    let value = event.target.value.trim();
+
+
+    if ( value !== '' && event.keyCode === 13 ) {
+      template.searchQuery.set( value );
+      template.searching.set( true );
+    }
+
+    if ( value === '' ) {
+      template.searchQuery.set( value );
+    }
+  }
+});
+
 
 Template.registrosProductos.helpers({
 	item: function () {
-		return Productos.find({}, {sort: {createdAt: -1}});
+		let negocioId = Meteor.user().profile.negocioId;
+		return Productos.find({negocioId}, {sort: {createdAt: -1}});
 	},
 	utilidadReal() {
 		return this.utilidad.toFixed(1);
 	}
 });
+
+Template.registrosProductos.events({
+	'click [name="editar"]'(e, t) {
+
+		let pcosto = ".pco"+this._id;
+		let pventa = ".pve"+this._id;
+		let codigo = ".cod"+this._id;
+		let nombre = ".no"+this._id;
+
+		let datos = {
+			codigo: t.find(codigo).value,
+			nombre: t.find(nombre).value,
+			pcosto: t.find(pcosto).value,
+			pventa: t.find(pventa).value,
+			productoId: this._id
+		}
+
+		if (datos.codigo !== "" && datos.nombre !== "" && datos.pcosto !== "" && datos.pventa !== "") {
+			Meteor.call('actualizarDatosProducto', datos, (err) => {
+				if (err) {
+					Bert.alert(err, 'warning')
+				} else {
+					Bert.alert('Producto Editado', 'success')
+				}
+			})
+		} else {
+			Bert.alert('Complete los Datos', 'warning')
+		}
+
+	}
+})
 
 Template.listaStock.onCreated(function () {
 	var self = this;
@@ -863,7 +936,13 @@ Template.Ventas.events({
 
 
 Template.listaCargasMasivo.onCreated(function () {
-	var self = this;
+
+		let template = Template.instance();
+
+		template.desde = new ReactiveVar();
+		template.hasta = new ReactiveVar();
+
+		let self = this;
   	self.autorun(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
     	self.subscribe('ListaCargasMasivo', negocioId);
@@ -872,7 +951,15 @@ Template.listaCargasMasivo.onCreated(function () {
 
 Template.listaCargasMasivo.helpers({
 	item: function () {
-		return Cargas.find({}, {sort: {createdAt: -1} });
+		let template = Template.instance();
+		console.log(template.desde.get())
+		console.log(Cargas.find().fetch())
+		return Cargas.find({
+			/*fecha: {
+        $gte: new Date(template.desde.get()),
+        $lt: new Date(template.desde.get())
+    	}*/
+		}, {sort: {createdAt: -1} });
 	},
 	fechaAlmacenado: function () {
 		let meses = [
@@ -897,6 +984,20 @@ Template.listaCargasMasivo.helpers({
 });
 
 Template.listaCargasMasivo.events({
+	'click [name="filtrar"]'(e, t) {
+
+		let datos = {
+			desde:t.find("[name='desde']").value,
+			hasta:t.find("[name='hasta']").value
+		}
+
+		datos.desde = new Date(datos.desde).toISOString();
+		datos.hasta = new Date(datos.hasta).toISOString();
+
+		t.desde.set( datos.desde );
+		t.hasta.set( datos.hasta );
+
+	},
 	'click .ver': function () {
 		var cargaId = this._id;
 		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/ingresos/masivo/' + cargaId);
