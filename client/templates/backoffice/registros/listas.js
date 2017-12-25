@@ -1462,7 +1462,6 @@ Template.registrarVenta.events({
 	},
 	'click .lista-ventas'() {
 		FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' + FlowRouter.getParam('negocioid') + '/ventas');
-
 	}
 });
 
@@ -1471,7 +1470,7 @@ Template.generarBoletaModal.onRendered(function () {
 });
 
 Template.generarBoletaModal.helpers({
-	mostrar: function () {
+	mostrar() {
 		return Session.get('mostrar-boleta');
 	}
 });

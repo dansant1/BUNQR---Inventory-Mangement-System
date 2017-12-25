@@ -64,7 +64,7 @@ Template.listaClientes.onCreated(function() {
     	var negocioId = FlowRouter.getParam('negocioid');
     	self.subscribe('listaClientes', negocioId);
 	});
-	console.log('Si se suscribe clientes');
+
 });
 
 Template.listaClientes.helpers({
@@ -115,7 +115,7 @@ Template.ListaDeProductos.onCreated(function () {
 });
 
 Template.ListaDeProductos.helpers({
-	
+
 	productosIndex: function () {
 
 		return ProductosIndex;

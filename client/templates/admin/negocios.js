@@ -1,17 +1,11 @@
 Template.negocios.onCreated(function() {
 	var tu = this;
 	tu.autorun(function() {
-    	tu.subscribe('negocios'); 
-    	 
+    	tu.subscribe('negocios');
+
   	});
 });
 
-Template.negocios.onRendered(function () {
-	
-	/*var _elev = window._elev || {};(function() {var i,e;i=document.createElement("script"),i.type='text/javascript';i.async=1,i.src="https://static.elev.io/js/v3.js",e=document.getElementsByTagName("script")[0],e.parentNode.insertBefore(i,e);})();
-_elev.account_id = '56d48832d1030';*/
-
-});
 
 Template.negocios.helpers({
 	negocios: function () {
@@ -29,7 +23,7 @@ Template.negocios.helpers({
 
 Template.negocios.events({
 	'click .item-negocio': function (event, template) {
-		
+
 		event.preventDefault();
 
 		var negocioId = this._id;

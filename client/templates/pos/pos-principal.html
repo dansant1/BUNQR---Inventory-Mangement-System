@@ -1,19 +1,97 @@
-<template name="listaProductosPOS">
-	<h1>Lista de productos para POS</h1>
-	<div class="set-productos">
-		<!--Aqui ira el each-->
-		<div class="item-producto">Producto 1</div>
-		<div class="item-producto">Producto 2</div>
-		<div class="item-producto">Producto 3</div>
-		<div class="item-producto">Producto 4</div>
+<template name="POS">
+	<div class="main__pos">
+		{{#if esNoMobil}}
+		<div class="__side __60 __product__list">
+
+			{{#each productos}}
+			<div class="__product__item agregar">
+				<h4 class="__g">{{nombre}}</h4>
+				<div class="__data_product__item {{hayStock}}">
+					<span><i class="fa fa-folder-o" aria-hidden="true"></i> {{stock}}</span>
+					<span class="__right">S/ {{pventa}}</span>
+				</div>
+			</div>
+			{{/each}}
+
+
+		</div>
+		<div class="__side __30 __box__white">
+			<div class="__row__">
+				<p><i class="fa fa-user" aria-hidden="true"></i> {{currentUser.profile.nombre}} {{currentUser.profile.apellido}} - San Isidro <i class="fa fa-trash cancelar" aria-hidden="true"></i></p>
+			</div>
+			<div class="__row__ __cart__box" style="padding: 0;">
+
+				{{#each productosSeleccionados}}
+				<div class="__product__selected__item">
+					<div class="__side__item __10">{{cantidad}}</div>
+					<div class="__side__item __40">{{nombre}}</div>
+					<div class="__side__item __30">S/ {{importeReal}}</div>
+					<div class="__side__item __5"><i class="fa fa-trash eliminar" aria-hidden="true"></i></div>
+				</div>
+				{{/each}}
+
+			</div>
+			<div class="__row__ __payment__">
+				<button class="__payment__item"  type="button" name="pagar">PAGAR</button>
+				{{#each venta}}
+				<p class="__payment__item">S/ {{totalReal}}</p>
+				{{else}}
+				<p class="__payment__item">S/ 0.00</p>
+				{{/each}}
+			</div>
+		</div>
+		{{else}}
+			{{>incompatible}}
+		{{/if}}
 	</div>
 </template>
 
-<template name="cuadroVentas">
-	<h1>Cuadro ventas</h1>
+<template name="PagarPOS">
+	<div class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h4 class="modal-title" style="text-align: center;">FINALIZAR PAGO</h4>
+				</div>
+
+				<div class="modal-body">
+					<div class="box__white">
+						<h3 style="margin-bottom: 5px;">TOTAL A PAGAR</h3>
+						{{#each venta}}
+						<h1 style="font-weight: bold;">S/ {{totalReal}}</h1>
+						{{else}}
+						<h1 style="font-weight: bold;">S/ 0.00</h1>
+						{{/each}}
+					</div>
+					<select class="__box__select__white" id="clientes">
+						{{#each clientes}}
+						<option value="{{_id}}">{{nombre}}</option>
+						{{else}}
+						<option value="0">Sin Cliente</option>
+						{{/each}}
+					</select>
+					<select class="__box__select__white" id="formas-pago">
+						{{#each formas}}
+						<option value="{{_id}}">{{descripcion}}</option>
+						{{else}}
+						<option value="0">Sin Metodo de Pago</option>
+						{{/each}}
+					</select>
+
+					<div class="__center">
+						<button type="button" name="cancelar" class="__cancel">Cancelar</button>
+						<button type="button" name="guardar">Pagar</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
 </template>
 
-<template name="listaCarrito">
-	<h1>Lista carrito POS</h1>
+<template name="incompatible">
+	<h1 style="width: 80%; margin: 50px auto; text-align: center;">
+		Este Dispositivo no es Compatible
+	</h1>
 </template>
-

@@ -10,8 +10,14 @@
 		text-align: center;
     height: 70px;
     color: black;">
-		<a href="/dashboard" style="color: #606C76; font-size: 2.5rem" class="font-principal">{{currentUser.profile.empresa}}</a>
+		<a style="color: #606C76; font-size: 2.5rem" class="font-principal">{{currentUser.profile.empresa}}</a>
 	</div>
+
+	{{#if isInRole 'ventas'}}
+	<button type="button" id="go-pos" name="button" style="position: absolute; top: 10px; right: 25px;">
+		POS
+	</button>
+	{{/if}}
 
 	<div class="menu">
 		<ul class="menu-main">

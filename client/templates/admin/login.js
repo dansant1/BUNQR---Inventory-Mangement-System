@@ -21,11 +21,22 @@ Template.login.events({
     			} else {
     				Bert.alert( 'Hubo un error interno, porfavor vuelve a intentarlo', 'warning' );
     			}
-      			
+
     		} else {
-      			Bert.alert( 'Hola!', 'success' );
-      			FlowRouter.go('dashboard')
-    		} 
+
+            let negocioId = Meteor.user().profile.negocioId;
+
+        		Meteor.call('crearReporte', negocioId, function (error, result) {
+        			if (error) {
+        				console.log(error.reason);
+        			} else {
+        				let id = result._id
+
+        				FlowRouter.go('/dashboard/' + id + '/r/' + negocioId);
+        			}
+        		});
+
+    		}
     	});
  	}
 });

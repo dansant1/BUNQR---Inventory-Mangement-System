@@ -1,7 +1,23 @@
 Template.topbar.events({
+	'click #go-pos'(e, t) {
+		FlowRouter.go('/pos')
+	},
 	'click #open'(e, t) {
 		$( ".menu").toggleClass( "open" );
 
+	},
+	'click #go-pos': function () {
+
+		let negocioId = Meteor.user().profile.negocioId;
+
+		Meteor.call('nuevaVenta', negocioId, function (error, result) {
+			if (error) {
+				console.log(error.reason);
+			} else {
+				let ventaId = result.ventaId;
+				FlowRouter.go('/dashboard/' + FlowRouter.getParam('reporteid') + '/r/' +  FlowRouter.getParam('negocioid') + '/ventas/' + ventaId + '/pos/nuevo');
+			}
+		});
 	},
 	'click .nuevo-1': function () {
 		FlowRouter.go('/dashboard/' + FlowRouter.getParam('negocioid') + '/registros/almacenes/ingresos');
