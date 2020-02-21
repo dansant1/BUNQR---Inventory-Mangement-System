@@ -1,6 +1,6 @@
 BUNQR - SaaS for Inventory Mangement.
 
-BUNQR a lite Inventory Mangement System for small businesses. 
+BUNQR a Inventory Mangement System for small businesses. 
 
 It has the following features:
 
